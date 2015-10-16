@@ -11,7 +11,7 @@
 #import "WTRBaseViewController.h"
 #import "WTRNavigationPresenter.h"
 
-@interface HomeViewController : WTRBaseViewController
+@interface WTRTimeLineViewController : WTRBaseViewController
 
 @property(nonatomic, strong) WTRMyView *myView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

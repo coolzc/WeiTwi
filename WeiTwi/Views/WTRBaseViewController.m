@@ -74,6 +74,9 @@
                                                           [self.view removeGestureRecognizer:tapGesture];
                                                       }];
     }
+    if (self.needShowTabbar) {
+        self.tabBarController.tabBar.hidden = NO;
+    }
     for (WTRBasePresenter *presenter in [self presenters]) {
         [presenter view:self willAppear:animated];
     }
@@ -121,6 +124,7 @@
 #pragma mark Private Methods
 
 - (void)privateInit {
+    _needShowTabbar = NO;
     _needInstantAnimation = NO;
     _needObserveKeyboardAppearance = NO;
     _needTapAnywhereToHideKeyboard = NO;

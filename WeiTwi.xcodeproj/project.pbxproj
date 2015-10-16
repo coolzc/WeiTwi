@@ -17,7 +17,7 @@
 		375BD3091BCCC3D300A3EF90 /* WTRDataSyncInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 375BD3081BCCC3D300A3EF90 /* WTRDataSyncInteractor.m */; settings = {ASSET_TAGS = (); }; };
 		37657CE71B4565CE00E37CF8 /* WTRWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 37657CE41B4565CE00E37CF8 /* WTRWireframe.m */; };
 		37657CE81B4565CE00E37CF8 /* WTRAssemblingFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 37657CE61B4565CE00E37CF8 /* WTRAssemblingFactory.m */; };
-		37657CF11B45660500E37CF8 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37657CE91B45660500E37CF8 /* HomeViewController.m */; };
+		37657CF11B45660500E37CF8 /* WTRTimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37657CE91B45660500E37CF8 /* WTRTimeLineViewController.m */; };
 		37657CF31B45660500E37CF8 /* WTRTwitterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 37657CED1B45660500E37CF8 /* WTRTwitterCell.m */; };
 		37657CF41B45660500E37CF8 /* WTRMyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37657CEE1B45660500E37CF8 /* WTRMyView.m */; };
 		377CE1101B45417300C28A90 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 377CE10F1B45417300C28A90 /* main.m */; };
@@ -105,8 +105,8 @@
 		37657CE41B4565CE00E37CF8 /* WTRWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRWireframe.m; path = Rounting/WTRWireframe.m; sourceTree = "<group>"; };
 		37657CE51B4565CE00E37CF8 /* WTRAssemblingFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRAssemblingFactory.h; path = Rounting/WTRAssemblingFactory.h; sourceTree = "<group>"; };
 		37657CE61B4565CE00E37CF8 /* WTRAssemblingFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRAssemblingFactory.m; path = Rounting/WTRAssemblingFactory.m; sourceTree = "<group>"; };
-		37657CE91B45660500E37CF8 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = Views/HomeViewController.m; sourceTree = "<group>"; };
-		37657CEA1B45660500E37CF8 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = Views/HomeViewController.h; sourceTree = "<group>"; };
+		37657CE91B45660500E37CF8 /* WTRTimeLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRTimeLineViewController.m; path = Views/WTRTimeLineViewController.m; sourceTree = "<group>"; };
+		37657CEA1B45660500E37CF8 /* WTRTimeLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRTimeLineViewController.h; path = Views/WTRTimeLineViewController.h; sourceTree = "<group>"; };
 		37657CEC1B45660500E37CF8 /* WTRTwitterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRTwitterCell.h; path = Views/WTRTwitterCell.h; sourceTree = "<group>"; };
 		37657CED1B45660500E37CF8 /* WTRTwitterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRTwitterCell.m; path = Views/WTRTwitterCell.m; sourceTree = "<group>"; };
 		37657CEE1B45660500E37CF8 /* WTRMyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRMyView.m; path = Views/WTRMyView.m; sourceTree = "<group>"; };
@@ -340,8 +340,8 @@
 				37223AF31BC8C4FE0090AF3C /* Basic */,
 				37A7ACB11BCCB20100243B25 /* Generic */,
 				374ADFDE1BC7C5B00055AEB5 /* Deck View */,
-				37657CEA1B45660500E37CF8 /* HomeViewController.h */,
-				37657CE91B45660500E37CF8 /* HomeViewController.m */,
+				37657CEA1B45660500E37CF8 /* WTRTimeLineViewController.h */,
+				37657CE91B45660500E37CF8 /* WTRTimeLineViewController.m */,
 				37CBF5ED1BD0FC0300E01554 /* WTRMessageViewController.h */,
 				37CBF5EE1BD0FC0300E01554 /* WTRMessageViewController.m */,
 				37CBF5F01BD0FC1900E01554 /* WTRExploreViewController.h */,
@@ -798,7 +798,7 @@
 				37AA3FEC1BCB7F9900F1133D /* UINib+WeiTwi.m in Sources */,
 				37657CE71B4565CE00E37CF8 /* WTRWireframe.m in Sources */,
 				37F6527E1BCF794E00109CDF /* NSUserDefaults+CFUtility.m in Sources */,
-				37657CF11B45660500E37CF8 /* HomeViewController.m in Sources */,
+				37657CF11B45660500E37CF8 /* WTRTimeLineViewController.m in Sources */,
 				37C935E71B48D4F700160224 /* WTRApiResponse.m in Sources */,
 				37E037261B4B9AF400B119AD /* WeiboDialog.m in Sources */,
 				37BCAEE01BC6756700CB2D14 /* UIStoryboard+WeiTwi.m in Sources */,

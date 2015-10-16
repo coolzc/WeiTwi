@@ -10,7 +10,7 @@
 #import "UIStoryboard+WeiTwi.h"
 
 #import "WTRSplashScreenViewController.h"
-#import "HomeViewController.h"
+#import "WTRTimeLineViewController.h"
 #import "WTRMessageViewController.h"
 #import "WTRExploreViewController.h"
 #import "WTRSettingViewController.h"
@@ -19,10 +19,10 @@
 #import "WTRDataSyncInteractor.h"
 
 static NSString* const SplashScreenIdentifier = @"WTRSplashScreenViewController";
-static NSString* const HomeViewControllerIndentifier = @"HomeViewController";
-static NSString* const MessageViewControllerIndentifier = @"WTRMessageViewController.h";
-static NSString* const ExploreViewControllerIndentifier = @"WTRExploreViewController.h";
-static NSString* const SettingViewControllerIndentifier = @"WTRSettingViewController.h";
+static NSString* const TimeLineViewController = @"WTRTimeLineViewController";
+static NSString* const MessageViewControllerIndentifier = @"WTRMessageViewController";
+static NSString* const ExploreViewControllerIndentifier = @"WTRExploreViewController";
+static NSString* const SettingViewControllerIndentifier = @"WTRSettingViewController";
 static NSString* const DeckViewControllerIdentifier = @"WTRDeckViewController";
 
 @implementation WTRAssemblingFactory
@@ -33,9 +33,46 @@ static NSString* const DeckViewControllerIdentifier = @"WTRDeckViewController";
     return viewController;
 }
 
-+ (WTRBaseViewController *)assembleHomeView {
-    HomeViewController *viewController = [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:HomeViewControllerIndentifier];
-    viewController.navigationPresenter = [self buildNavigationPresenter];
++ (UIViewController *)assembleHomeView {
+    WTRBaseViewController *timeLineViewController = [self assembleTimelineView];
+    timeLineViewController.title = NSLocalizedString(@"tab-bar-item-timeline", nil);
+    timeLineViewController.tabBarItem.image = [UIImage imageNamed:@"tab_item_timeline"];
+    timeLineViewController.tabBarItem.selectedImage = [UIImage imageNamed:@"tab_item_timeline_selected"];
+    timeLineViewController.navigationItem.title = NSLocalizedString(@"navigation-title-timeline-list", nil);
+    timeLineViewController.needShowTabbar = YES;
+    
+    WTRBaseViewController *messageViewController = [self assembleMessageView];
+    messageViewController.title = NSLocalizedString(@"tab-bar-item-message", nil);
+    messageViewController.tabBarItem.image = [UIImage imageNamed:@"tab_item_message"];
+    messageViewController.tabBarItem.selectedImage = [UIImage imageNamed:@"tab_item_message_selected"];
+    messageViewController.navigationItem.title = NSLocalizedString(@"navigation-title-message-list", nil);
+    messageViewController.needShowTabbar = YES;
+    
+    WTRBaseViewController *exploreViewController = [self assembleExploreView];
+    exploreViewController.title = NSLocalizedString(@"tab-bar-item-explore", nil);
+    exploreViewController.tabBarItem.image = [UIImage imageNamed:@"tab_item_explore"];
+    exploreViewController.tabBarItem.selectedImage = [UIImage imageNamed:@"tab_item_explore_selected"];
+    exploreViewController.navigationItem.title = NSLocalizedString(@"navigation-title-explore-list", nil);
+    exploreViewController.needShowTabbar = YES;
+    
+    WTRBaseViewController *settingViewController = [self assembleSettingView];
+    settingViewController.title = NSLocalizedString(@"tab-bar-item-setting", nil);
+    settingViewController.tabBarItem.image = [UIImage imageNamed:@"tab_item_setting"];
+    settingViewController.tabBarItem.selectedImage = [UIImage imageNamed:@"tab_item_setting_selected"];
+    settingViewController.navigationItem.title = NSLocalizedString(@"navigation-title-setting-list", nil);
+    settingViewController.needShowTabbar = YES;
+    
+    UIViewController *tabViewController = [self wrapWithDefaultTabBarController:@[
+        [self wrapWithDefaultNavigationController:timeLineViewController],
+        [self wrapWithDefaultNavigationController:messageViewController],
+        [self wrapWithDefaultNavigationController:exploreViewController],
+        [self wrapWithDefaultNavigationController:settingViewController]
+        ]];
+    return tabViewController;
+}
+
++ (WTRBaseViewController *)assembleTimelineView {
+    WTRBaseViewController *viewController = [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:TimeLineViewController];
     return viewController;
 }
 

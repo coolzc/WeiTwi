@@ -9,7 +9,7 @@
 #import "WTRWireframe.h"
 #import "WTRAssemblingFactory.h"
 #import "WTRBaseViewController.h"
-#import "HomeViewController.h"
+#import "WTRTimeLineViewController.h"
 #import "WTRSplashScreenViewController.h"
 #import "WTRDeckViewController.h"
 
@@ -49,17 +49,18 @@ static WTRTransitionDelegate *CurrentTransitionDelegate = nil;
     // cast to IMP to avoid compiler's warning
     IMP imp = [[self class] methodForSelector:selector];
     id (*func)(id, SEL) = (id (*)(id, SEL))imp;
-
-    WTRBaseViewController *targetViewController = func([self class],selector);
-    if (targetViewController) {
-        targetViewController.params = [messenger params];
-        //not sure if it is correct to add logic in the block
+    
+    //to make sure the initial controller of tabBarViewController load successfully
+    UIViewController *targetViewController = func([self class],selector);
+    if ([targetViewController isKindOfClass:[WTRBaseViewController class]]) {
+        WTRBaseViewController *targetWTRViewController = (WTRBaseViewController *)targetViewController;
+        targetWTRViewController.params = [messenger params];
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (!viewController.navigationController) {
-                [viewController presentViewController:targetViewController animated:YES completion:nil];
-            } else {
-                [viewController.navigationController pushViewController:targetViewController animated:YES];
-            }
+            [viewController presentViewController:targetWTRViewController animated:YES completion:nil];
+        });
+    } else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [viewController presentViewController:targetViewController animated:YES completion:nil];
         });
     }
 }
@@ -86,15 +87,13 @@ static WTRTransitionDelegate *CurrentTransitionDelegate = nil;
     return [WTRAssemblingFactory assembleSplashScreen];
 }
 
-+ (WTRBaseViewController *)loadHomeScreen {
++ (UIViewController *)loadHomeScreen {
     return [WTRAssemblingFactory assembleHomeView];
 }
 
 + (WTRBaseViewController *)loadDeckScreen {
     return [WTRAssemblingFactory assembleDeckView];
 }
-
-
 
 + (WTRBaseViewController *)loadEmptyScreen {
     return nil;
@@ -105,8 +104,8 @@ static WTRTransitionDelegate *CurrentTransitionDelegate = nil;
     static NSDictionary *selectorMap = nil;
     if (!selectorMap) {
         selectorMap = @{
-                        [WTRSplashScreenViewController wireframeKey:[WTRPageMessenger homeName]] : [NSValue valueWithPointer:@selector(loadHomeScreen)],
-                        [HomeViewController wireframeKey:[WTRPageMessenger deckName]] : [NSValue valueWithPointer:@selector(loadDeckScreen)],
+                        [WTRSplashScreenViewController wireframeKey:[WTRPageMessenger defaultName]] : [NSValue valueWithPointer:@selector(loadHomeScreen)],
+                        [WTRTimeLineViewController wireframeKey:[WTRPageMessenger deckName]] : [NSValue valueWithPointer:@selector(loadDeckScreen)],
                         [WTRDeckViewController wireframeKey:[WTRPageMessenger homeName]] : [NSValue valueWithPointer:@selector(loadHomeScreen)]
                         };
     }

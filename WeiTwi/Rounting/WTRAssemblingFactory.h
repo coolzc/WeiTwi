@@ -13,7 +13,7 @@
 @interface WTRAssemblingFactory : NSObject
 
 + (WTRBaseViewController *)assembleSplashScreen;
-+ (WTRBaseViewController *)assembleHomeView;
++ (UIViewController *)assembleHomeView;//homeViewController is tabViewController
 + (WTRBaseViewController *)assembleMessageView;
 + (WTRBaseViewController *)assembleExploreView;
 + (WTRBaseViewController *)assembleSettingView;

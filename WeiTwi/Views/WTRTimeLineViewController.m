@@ -7,7 +7,7 @@
 //
 
 
-#import "HomeViewController.h"
+#import "WTRTimeLineViewController.h"
 #import "WTRTwitterCell.h"
 #import "STTwitter.h"
 #import "WTRWireframe.h"
@@ -26,7 +26,7 @@ static NSString *const WeiboAppSecret = @"2d3f9fcf083316cc12066edae8ffc408";
 typedef void (^accountChooserBlock_t)(ACAccount *account, NSString *errorMessage); // don't bother with NSError for that
 typedef void (^myBlock)(BOOL need, NSInteger num);
 
-@interface HomeViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface WTRTimeLineViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray* twitterFeed;
 @property (nonatomic, strong) NSMutableArray* weiboFeed;
@@ -42,7 +42,7 @@ typedef void (^myBlock)(BOOL need, NSInteger num);
 
 @end
 
-@implementation HomeViewController
+@implementation WTRTimeLineViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

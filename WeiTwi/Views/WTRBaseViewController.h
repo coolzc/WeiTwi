@@ -10,6 +10,7 @@
 
 @interface WTRBaseViewController : UIViewController
 
+@property (nonatomic, assign) BOOL needShowTabbar; // default NO
 @property (nonatomic, assign) BOOL needInstantAnimation; // default NO
 @property (nonatomic, assign) BOOL needObserveKeyboardAppearance; // default NO
 @property (nonatomic, assign) BOOL needTapAnywhereToHideKeyboard; // default NO
