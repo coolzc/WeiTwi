@@ -7,12 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WTRPageMessenger.h"
 
 @interface WTRWireframe : NSObject
 
-+ (UIViewController *)entryPoint;
-+ (UIViewController *)moveToHomeViewControllerFrom:(UIViewController *)viewcontroller;
-+ (void)dismissToPreviousPageOfViewController:(UIViewController *)viewController;
++ (UIViewController *)entryScreen;
++ (void)moveToNextPageOfViewController:(UIViewController *)viewController;
++ (void)moveToNextPageOfViewController:(UIViewController *)viewController messenger:(WTRPageMessenger *)messenger;
++ (void)moveToPreviousPageOfViewController:(UIViewController *)viewController;
+
 
 @end
 

@@ -21,13 +21,25 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - STTwitter (0.2.0)
+  - WeiboSDK (3.1.3)
 
 DEPENDENCIES:
   - AFNetworking
   - STTwitter
+  - WeiboSDK (from `https://github.com/sinaweibosdk/weibo_ios_sdk.git`)
+
+EXTERNAL SOURCES:
+  WeiboSDK:
+    :git: https://github.com/sinaweibosdk/weibo_ios_sdk.git
+
+CHECKOUT OPTIONS:
+  WeiboSDK:
+    :commit: 4b228c28402e7cf34363e59f05856249f4421ca4
+    :git: https://github.com/sinaweibosdk/weibo_ios_sdk.git
 
 SPEC CHECKSUMS:
   AFNetworking: fefbce9660acb17f48ae0011292d4da0f457bf36
   STTwitter: 4fda61d0a96c707f94df85677b1a4aedbcec6fcd
+  WeiboSDK: 5f2a707c4569a64f4641f4171acd712016f24342
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.38.2

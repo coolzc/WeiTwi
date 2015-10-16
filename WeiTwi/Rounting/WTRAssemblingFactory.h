@@ -8,10 +8,18 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "WTRBaseViewController.h"
 
 @interface WTRAssemblingFactory : NSObject
 
-+ (UIViewController *)assembleWelcomeViewController;
-+ (UIViewController *)assembleHomeViewController;
++ (WTRBaseViewController *)assembleSplashScreen;
++ (WTRBaseViewController *)assembleHomeView;
++ (WTRBaseViewController *)assembleMessageView;
++ (WTRBaseViewController *)assembleExploreView;
++ (WTRBaseViewController *)assembleSettingView;
++ (WTRBaseViewController *)assembleDeckView;
+
++ (UINavigationController *)wrapWithDefaultNavigationController:(UIViewController *)viewController;
++ (UITabBarController *)wrapWithDefaultTabBarController:(NSArray *)viewControllers;
 
 @end

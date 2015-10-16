@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <scenes>
+        <!--Splash Screen View Controller-->
+        <scene sceneID="DdS-mC-uJa">
+            <objects>
+                <viewController storyboardIdentifier="WTRSplashScreenViewController" id="AJg-7B-aWN" customClass="WTRSplashScreenViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XM4-9l-dXQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="8gC-8H-jFv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wMo-Gn-MVo">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash_screen.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="5lH-7T-ags">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <animations/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZfL-vR-nns">
+                                <rect key="frame" x="270" y="280" width="60" height="40"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="N2H-Xm-h8F"/>
+                                    <constraint firstAttribute="height" constant="40" id="bpB-Vk-oZj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZfL-vR-nns" firstAttribute="centerY" secondItem="wMo-Gn-MVo" secondAttribute="centerY" id="3Bq-TW-2Ea"/>
+                            <constraint firstItem="ZfL-vR-nns" firstAttribute="centerX" secondItem="wMo-Gn-MVo" secondAttribute="centerX" id="90l-lE-kxB"/>
+                            <constraint firstItem="5lH-7T-ags" firstAttribute="top" secondItem="wMo-Gn-MVo" secondAttribute="top" id="Cb2-Rf-d3N"/>
+                            <constraint firstAttribute="trailing" secondItem="5lH-7T-ags" secondAttribute="trailing" id="EaR-jn-9Zc"/>
+                            <constraint firstItem="5lH-7T-ags" firstAttribute="leading" secondItem="wMo-Gn-MVo" secondAttribute="leading" id="UFO-ij-AiL"/>
+                            <constraint firstAttribute="bottom" secondItem="5lH-7T-ags" secondAttribute="bottom" id="cGL-5w-3KI"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="splashImageLeftContraint" destination="UFO-ij-AiL" id="D36-Jj-vXV"/>
+                        <outlet property="splashImageTopContraint" destination="Cb2-Rf-d3N" id="XHJ-ns-scH"/>
+                        <outlet property="splashImageView" destination="5lH-7T-ags" id="va1-Xk-mCE"/>
+                        <outlet property="textLabel" destination="ZfL-vR-nns" id="awf-V2-yBe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ge8-jX-sTN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1042" y="116"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="splash_screen.jpg" width="1192" height="796"/>
+    </resources>
+</document>

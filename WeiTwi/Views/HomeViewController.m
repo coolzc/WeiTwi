@@ -13,6 +13,7 @@
 #import "WTRWireframe.h"
 #import <Accounts/Accounts.h>
 #import "WeiboSDK.h"
+#import "WTRPageMessenger.h"
 
 //twitter
 static NSString *const TwitterCellReuseIdentifier = @"TwitterCellReusedId";
@@ -37,6 +38,8 @@ typedef void (^myBlock)(BOOL need, NSInteger num);
 @property (nonatomic, strong) myBlock myBolck;
 @property (nonatomic, strong) WeiboRequestOperation* weiboquery;
 
+@property (nonatomic, strong) UIView *circleView;
+
 @end
 
 @implementation HomeViewController
@@ -45,7 +48,6 @@ typedef void (^myBlock)(BOOL need, NSInteger num);
     [super viewDidLoad];
     [self configureView];
     self.accountStore = [[ACAccountStore alloc] init];
-    
 }
 
 #pragma mark - UITableViewDataSource
@@ -74,7 +76,7 @@ typedef void (^myBlock)(BOOL need, NSInteger num);
 
 #pragma mark -Action
 - (IBAction)backButtonTouchUpInside:(id)sender {
-    [WTRWireframe dismissToPreviousPageOfViewController:self];
+    [self.navigationPresenter goToNextScreen];
 }
 
 - (IBAction)loginButtonTouchUpInside:(id)sender {
@@ -219,7 +221,7 @@ typedef void (^myBlock)(BOOL need, NSInteger num);
     }];
 }
 
-- (void)reloadTableSourceData {
+- (void)reloadTableSourceData{
     if (self.twitterFeed) {
         self.tableSoucreFeed = self.twitterFeed;
         self.weiboFeed = nil;
@@ -229,5 +231,5 @@ typedef void (^myBlock)(BOOL need, NSInteger num);
     }
     [self.tableView reloadData];
 }
-                        
+
 @end

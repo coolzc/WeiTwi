@@ -4,6 +4,7 @@
 target 'WeiTwi' do
   pod 'STTwitter'
   pod 'AFNetworking'
+  pod "WeiboSDK", :git => "https://github.com/sinaweibosdk/weibo_ios_sdk.git"
 end
 
 target 'WeiTwiTests' do
