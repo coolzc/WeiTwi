@@ -10,4 +10,6 @@
 
 @interface UINib (WeiTwi)
 
++ (instancetype)nibForUserGroupCell;
+
 @end

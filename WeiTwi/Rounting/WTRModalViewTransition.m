@@ -28,17 +28,31 @@
     return 0.5f;
 }
 
-- (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-
+- (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
+    switch (self.type) {
+        case WTRTransitionShow:
+            [self animateShowTransition:transitionContext];
+            break;
+            
+        case WTRTransitionDismiss:
+            [self animateDismissTransition:transitionContext];
+            break;
+            
+        case WTRTransitionPop:
+            [self animatePopTransition:transitionContext];
+            break;
+            
+        default:
+            break;
+    }
 }
-
 #pragma mark - Private Methods
 
-- (void)animateShowTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
-    UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    UIView *containerView = [transitionContext containerView];
+- (void)animateShowTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
+    UIViewController* toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    UIView* containerView = [transitionContext containerView];
     
-    //caculate position
+    // calculate positions
     CGRect toFrame = containerView.bounds;
     CGRect fromFrame = toFrame;
     if (self.moveInFromTop) {
@@ -49,17 +63,16 @@
     toViewController.view.frame = fromFrame;
     [containerView addSubview:toViewController.view];
     
-    //animation
-    NSTimeInterval duration =[self transitionDuration:transitionContext];
-    [UIView animateWithDuration:duration
-                     animations:^{
-                         toViewController.view.frame = toFrame;
-                   } completion:^(BOOL finished) {
-                       [transitionContext completeTransition:YES];
-                     }];
+    // animation
+    NSTimeInterval duration = [self transitionDuration:transitionContext];
+    [UIView animateWithDuration:duration animations:^{
+        toViewController.view.frame = toFrame;
+    } completion:^(BOOL finished) {
+        [transitionContext completeTransition:YES];
+    }];
 }
 
-- (void)animateDismissTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
+- (void)animateDismissTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
     UIViewController* fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     
     // calculate positions
@@ -80,7 +93,7 @@
     }];
 }
 
-- (void)animatePopTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
+- (void)animateSwiTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
     UIViewController* fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController* toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     UIView* containerView = [transitionContext containerView];
@@ -99,7 +112,32 @@
     [UIView animateWithDuration:duration animations:^{
         fromViewController.view.frame = toFrame;
     } completion:^(BOOL finished) {
+        //TODO:
         [transitionContext completeTransition:YES];
+    }];
+}
+
+- (void)animatePopTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
+    UIViewController* fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
+    UIViewController* toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
+    UIView* containerView = [transitionContext containerView];
+    [containerView insertSubview:toViewController.view belowSubview:fromViewController.view];
+
+    // calculate positions
+    CGRect toFrame = fromViewController.view.frame;
+    if (self.moveInFromTop) {
+        toFrame.origin.y -= toFrame.size.height;
+    } else {
+        toFrame.origin.y += toFrame.size.height;
+    }
+    
+    // animation
+    NSTimeInterval duration = [self transitionDuration:transitionContext];
+    [UIView animateWithDuration:duration animations:^{
+        fromViewController.view.frame = toFrame;
+    } completion:^(BOOL finished) {
+        //TODO:
+        [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
     }];
 }
 

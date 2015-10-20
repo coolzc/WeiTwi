@@ -1,0 +1,21 @@
+
+/* Class = "UIButton"; normalTitle = "back"; ObjectID = "01Y-PJ-M7d"; */
+"01Y-PJ-M7d.normalTitle" = "back";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "0JN-io-rx4"; */
+"0JN-io-rx4.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "0wc-qP-U64"; */
+"0wc-qP-U64.normalTitle" = "Login";
+
+/* Class = "UIButton"; normalTitle = "change"; ObjectID = "2gU-XA-4lC"; */
+"2gU-XA-4lC.normalTitle" = "change";
+
+/* Class = "UILabel"; text = "Log in Status"; ObjectID = "Fe7-qK-TQn"; */
+"Fe7-qK-TQn.text" = "Log in Status";
+
+/* Class = "UIButton"; normalTitle = "Timeline"; ObjectID = "vmH-QV-QzL"; */
+"vmH-QV-QzL.normalTitle" = "Timeline";
+
+/* Class = "UILabel"; text = "Time line Status"; ObjectID = "wtk-jJ-feV"; */
+"wtk-jJ-feV.text" = "Time line Status";

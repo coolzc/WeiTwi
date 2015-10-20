@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  WeiTwi
+
+  Created by zhangcheng on 10/18/15.
+  Copyright © 2015 XYZ. All rights reserved.
+*/
+
+// Navigation Title
+"navigation-title-home" = "WeiTwi";
+"navigation-title-timeline-list" = "timeline";
+"navigation-title-message-list" = "message";
+"navigation-title-explore-list" = "explore";
+"navigation-title-setting-list" = "setting";
+
+// Tab Bar Items
+"tab-bar-item-timeline" = "timeline";
+"tab-bar-item-message" = "message";
+"tab-bar-item-explore" = "explore";
+"tab-bar-item-setting" = "setting";

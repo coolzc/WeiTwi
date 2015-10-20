@@ -14,7 +14,6 @@
 #import "WTRDeckViewController.h"
 
 #import "NSString+WTRUtility.h"
-#import "WTRTransitionDelegate.h"
 
 @interface UIViewController (WeiTwi)
 
@@ -30,7 +29,6 @@
 
 @end
 
-static WTRTransitionDelegate *CurrentTransitionDelegate = nil;
 
 @implementation WTRWireframe
 
@@ -50,18 +48,21 @@ static WTRTransitionDelegate *CurrentTransitionDelegate = nil;
     IMP imp = [[self class] methodForSelector:selector];
     id (*func)(id, SEL) = (id (*)(id, SEL))imp;
     
-    //to make sure the initial controller of tabBarViewController load successfully
+    //to make sure the initial controller of tabBarViewController load successfully and to differ from navigationViewController
     UIViewController *targetViewController = func([self class],selector);
-    if ([targetViewController isKindOfClass:[WTRBaseViewController class]]) {
-        WTRBaseViewController *targetWTRViewController = (WTRBaseViewController *)targetViewController;
-        targetWTRViewController.params = [messenger params];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [viewController presentViewController:targetWTRViewController animated:YES completion:nil];
-        });
-    } else {
+    if  (!viewController.navigationController) {
+        //check if not tabbarviewcontroller
+        if ([targetViewController isKindOfClass:[WTRBaseViewController class]]) {
+            WTRBaseViewController *targetWTRViewController = (WTRBaseViewController *)targetViewController;
+            targetWTRViewController.params = [messenger params];
+        }
         dispatch_async(dispatch_get_main_queue(), ^{
             [viewController presentViewController:targetViewController animated:YES completion:nil];
         });
+    } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [viewController.navigationController pushViewController:targetViewController animated:YES];
+            });
     }
 }
 
@@ -105,8 +106,8 @@ static WTRTransitionDelegate *CurrentTransitionDelegate = nil;
     if (!selectorMap) {
         selectorMap = @{
                         [WTRSplashScreenViewController wireframeKey:[WTRPageMessenger defaultName]] : [NSValue valueWithPointer:@selector(loadHomeScreen)],
-                        [WTRTimeLineViewController wireframeKey:[WTRPageMessenger deckName]] : [NSValue valueWithPointer:@selector(loadDeckScreen)],
-                        [WTRDeckViewController wireframeKey:[WTRPageMessenger homeName]] : [NSValue valueWithPointer:@selector(loadHomeScreen)]
+                        [WTRTimeLineViewController wireframeKey:[WTRPageMessenger defaultName]] : [NSValue valueWithPointer:@selector(loadDeckScreen)],
+                        [WTRDeckViewController wireframeKey:[WTRPageMessenger defaultName]] : [NSValue valueWithPointer:@selector(loadHomeScreen)]
                         };
     }
     NSValue *selectorName = [selectorMap valueForKey:[[class description] conj:messengerName]];

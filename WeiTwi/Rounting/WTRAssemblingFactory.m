@@ -17,6 +17,9 @@
 #import "WTRDeckViewController.h"
 
 #import "WTRDataSyncInteractor.h"
+#import "WTRTransitionDelegate.h"
+
+static WTRTransitionDelegate *CurrentTransitionDelegate = nil;
 
 static NSString* const SplashScreenIdentifier = @"WTRSplashScreenViewController";
 static NSString* const TimeLineViewController = @"WTRTimeLineViewController";
@@ -35,59 +38,67 @@ static NSString* const DeckViewControllerIdentifier = @"WTRDeckViewController";
 
 + (UIViewController *)assembleHomeView {
     WTRBaseViewController *timeLineViewController = [self assembleTimelineView];
-    timeLineViewController.title = NSLocalizedString(@"tab-bar-item-timeline", nil);
-    timeLineViewController.tabBarItem.image = [UIImage imageNamed:@"tab_item_timeline"];
-    timeLineViewController.tabBarItem.selectedImage = [UIImage imageNamed:@"tab_item_timeline_selected"];
-    timeLineViewController.navigationItem.title = NSLocalizedString(@"navigation-title-timeline-list", nil);
-    timeLineViewController.needShowTabbar = YES;
-    
     WTRBaseViewController *messageViewController = [self assembleMessageView];
-    messageViewController.title = NSLocalizedString(@"tab-bar-item-message", nil);
-    messageViewController.tabBarItem.image = [UIImage imageNamed:@"tab_item_message"];
-    messageViewController.tabBarItem.selectedImage = [UIImage imageNamed:@"tab_item_message_selected"];
-    messageViewController.navigationItem.title = NSLocalizedString(@"navigation-title-message-list", nil);
-    messageViewController.needShowTabbar = YES;
-    
     WTRBaseViewController *exploreViewController = [self assembleExploreView];
-    exploreViewController.title = NSLocalizedString(@"tab-bar-item-explore", nil);
-    exploreViewController.tabBarItem.image = [UIImage imageNamed:@"tab_item_explore"];
-    exploreViewController.tabBarItem.selectedImage = [UIImage imageNamed:@"tab_item_explore_selected"];
-    exploreViewController.navigationItem.title = NSLocalizedString(@"navigation-title-explore-list", nil);
-    exploreViewController.needShowTabbar = YES;
-    
     WTRBaseViewController *settingViewController = [self assembleSettingView];
-    settingViewController.title = NSLocalizedString(@"tab-bar-item-setting", nil);
-    settingViewController.tabBarItem.image = [UIImage imageNamed:@"tab_item_setting"];
-    settingViewController.tabBarItem.selectedImage = [UIImage imageNamed:@"tab_item_setting_selected"];
-    settingViewController.navigationItem.title = NSLocalizedString(@"navigation-title-setting-list", nil);
-    settingViewController.needShowTabbar = YES;
     
+    UINavigationController *timelineNav = [self wrapWithDefaultNavigationController:timeLineViewController];
+    CurrentTransitionDelegate = [WTRTransitionDelegate delegateForPresentFromTop:YES];
+    timelineNav.navigationController.delegate = CurrentTransitionDelegate;
+    
+    UINavigationController *messageNav = [self wrapWithDefaultNavigationController:messageViewController];
+    UINavigationController *exploreNav = [self wrapWithDefaultNavigationController:exploreViewController];
+    UINavigationController *settingNav = [self wrapWithDefaultNavigationController:settingViewController];
     UIViewController *tabViewController = [self wrapWithDefaultTabBarController:@[
-        [self wrapWithDefaultNavigationController:timeLineViewController],
-        [self wrapWithDefaultNavigationController:messageViewController],
-        [self wrapWithDefaultNavigationController:exploreViewController],
-        [self wrapWithDefaultNavigationController:settingViewController]
-        ]];
+                                                                                  timelineNav,
+                                                                                  messageNav,
+                                                                                  exploreNav,
+                                                                                  settingNav
+                                                                                  ]];
+    
     return tabViewController;
 }
 
 + (WTRBaseViewController *)assembleTimelineView {
-    WTRBaseViewController *viewController = [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:TimeLineViewController];
+    WTRTimeLineViewController *viewController = [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:TimeLineViewController];
+    viewController.navigationPresenter = [self buildNavigationPresenter];
+    viewController.timelineListPresenter = [self buildTimelinePresenter];
+    
+    viewController.title = NSLocalizedString(@"tab-bar-item-timeline", nil);
+    viewController.tabBarItem.image = [UIImage imageNamed:@"tab_item_timeline"];
+    viewController.tabBarItem.selectedImage = [UIImage imageNamed:@"tab_item_timeline_selected"];
+    viewController.navigationItem.title = NSLocalizedString(@"navigation-title-timeline-list", nil);
+    viewController.needShowTabbar = YES;
     return viewController;
 }
 
 + (WTRBaseViewController *)assembleMessageView {
     WTRMessageViewController *viewController = [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:MessageViewControllerIndentifier];
+    viewController.title = NSLocalizedString(@"tab-bar-item-message", nil);
+    viewController.tabBarItem.image = [UIImage imageNamed:@"tab_item_message"];
+    viewController.tabBarItem.selectedImage = [UIImage imageNamed:@"tab_item_message_selected"];
+    viewController.navigationItem.title = NSLocalizedString(@"navigation-title-message-list", nil);
+    viewController.needShowTabbar = YES;
     return viewController;
 }
 
 + (WTRBaseViewController *)assembleExploreView {
     WTRExploreViewController *viewController = [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:ExploreViewControllerIndentifier];
+    viewController.title = NSLocalizedString(@"tab-bar-item-explore", nil);
+    viewController.tabBarItem.image = [UIImage imageNamed:@"tab_item_explore"];
+    viewController.tabBarItem.selectedImage = [UIImage imageNamed:@"tab_item_explore_selected"];
+    viewController.navigationItem.title = NSLocalizedString(@"navigation-title-explore-list", nil);
+    viewController.needShowTabbar = YES;
     return viewController;
 }
 
 + (WTRBaseViewController *)assembleSettingView {
     WTRSettingViewController *viewController = [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:SettingViewControllerIndentifier];
+    viewController.title = NSLocalizedString(@"tab-bar-item-setting", nil);
+    viewController.tabBarItem.image = [UIImage imageNamed:@"tab_item_setting"];
+    viewController.tabBarItem.selectedImage = [UIImage imageNamed:@"tab_item_setting_selected"];
+    viewController.navigationItem.title = NSLocalizedString(@"navigation-title-setting-list", nil);
+    viewController.needShowTabbar = YES;
     return viewController;
 }
 
@@ -96,8 +107,6 @@ static NSString* const DeckViewControllerIdentifier = @"WTRDeckViewController";
     viewController.navigationPresenter = [self buildNavigationPresenter];
     return viewController;
 }
-
-
 
 + (UINavigationController *)wrapWithDefaultNavigationController:(UIViewController *)viewController {
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:viewController];
@@ -124,6 +133,11 @@ static NSString* const DeckViewControllerIdentifier = @"WTRDeckViewController";
 + (WTRNavigationPresenter *)buildNavigationPresenter {
     WTRNavigationPresenter *navigationPresenter = [WTRNavigationPresenter new];
     return navigationPresenter;
+}
+
++ (WTRTimeLineListPresenter *)buildTimelinePresenter {
+    WTRTimeLineListPresenter *timelinePresenter = [WTRTimeLineListPresenter new];
+    return timelinePresenter;
 }
 
 

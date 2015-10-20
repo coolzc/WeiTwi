@@ -50,6 +50,10 @@ typedef void (^myBlock)(BOOL need, NSInteger num);
     self.accountStore = [[ACAccountStore alloc] init];
 }
 
+- (NSArray *)presenters {
+   return @[self.navigationPresenter, self.timelineListPresenter];
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

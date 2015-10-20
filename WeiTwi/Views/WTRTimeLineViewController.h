@@ -10,7 +10,7 @@
 #import "WTRMyView.h"
 #import "WTRBaseViewController.h"
 #import "WTRNavigationPresenter.h"
-
+#import "WTRTimeLineListPresenter.h"
 @interface WTRTimeLineViewController : WTRBaseViewController
 
 @property(nonatomic, strong) WTRMyView *myView;
@@ -19,5 +19,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *timelineStatusLabel;
 
 @property (nonatomic, strong) WTRNavigationPresenter *navigationPresenter;
+@property (nonatomic, strong) WTRTimeLineListPresenter *timelineListPresenter;
 
 @end

@@ -8,6 +8,12 @@
 
 #import "UINib+WeiTwi.h"
 
+static NSString* const UserGroupListCellNibName = @"WTRDecListTableViewCell";
+
 @implementation UINib (WeiTwi)
+
++ (instancetype)nibForUserGroupCell {
+    return [self nibWithNibName:UserGroupListCellNibName bundle:nil];
+}
 
 @end
