@@ -28,6 +28,7 @@
 		377CE1131B45417300C28A90 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 377CE1121B45417300C28A90 /* AppDelegate.m */; };
 		377CE1191B45417300C28A90 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 377CE1171B45417300C28A90 /* Main.storyboard */; };
 		377CE12A1B45417300C28A90 /* WeiTwiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 377CE1291B45417300C28A90 /* WeiTwiTests.m */; };
+		378478A91BD68A96009A2F6B /* WTRSwipeHorizontalInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 378478A81BD68A96009A2F6B /* WTRSwipeHorizontalInteractiveTransition.m */; settings = {ASSET_TAGS = (); }; };
 		379101A31BD4B0DE00AC8E1C /* WTRDeckPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 379101A21BD4B0DE00AC8E1C /* WTRDeckPresenter.m */; settings = {ASSET_TAGS = (); }; };
 		379101AB1BD4DCFC00AC8E1C /* WTRDecListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 379101A91BD4DCFC00AC8E1C /* WTRDecListTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		379101AC1BD4DCFC00AC8E1C /* WTRDecListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 379101AA1BD4DCFC00AC8E1C /* WTRDecListTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
@@ -137,6 +138,8 @@
 		377CE1231B45417300C28A90 /* WeiTwiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeiTwiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		377CE1281B45417300C28A90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		377CE1291B45417300C28A90 /* WeiTwiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeiTwiTests.m; sourceTree = "<group>"; };
+		378478A71BD68A96009A2F6B /* WTRSwipeHorizontalInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRSwipeHorizontalInteractiveTransition.h; path = Rounting/WTRSwipeHorizontalInteractiveTransition.h; sourceTree = "<group>"; };
+		378478A81BD68A96009A2F6B /* WTRSwipeHorizontalInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRSwipeHorizontalInteractiveTransition.m; path = Rounting/WTRSwipeHorizontalInteractiveTransition.m; sourceTree = "<group>"; };
 		379101A11BD4B0DE00AC8E1C /* WTRDeckPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRDeckPresenter.h; path = Presenters/WTRDeckPresenter.h; sourceTree = "<group>"; };
 		379101A21BD4B0DE00AC8E1C /* WTRDeckPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRDeckPresenter.m; path = Presenters/WTRDeckPresenter.m; sourceTree = "<group>"; };
 		379101A81BD4DCFC00AC8E1C /* WTRDecListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRDecListTableViewCell.h; path = Views/WTRDecListTableViewCell.h; sourceTree = "<group>"; };
@@ -262,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				37223AF31BC8C4FE0090AF3C /* Basic */,
+				378478AA1BD68AB7009A2F6B /* Transition */,
 				3706DE751BD61B09007C0072 /* Motions */,
 			);
 			name = Widgets;
@@ -420,10 +424,6 @@
 				37223AE91BC8B9D20090AF3C /* WTRPageMessenger.m */,
 				37657CE51B4565CE00E37CF8 /* WTRAssemblingFactory.h */,
 				37657CE61B4565CE00E37CF8 /* WTRAssemblingFactory.m */,
-				37CBF5E71BD0B20800E01554 /* WTRModalViewTransition.h */,
-				37CBF5E81BD0B20800E01554 /* WTRModalViewTransition.m */,
-				37CBF5EA1BD0B21800E01554 /* WTRTransitionDelegate.h */,
-				37CBF5EB1BD0B21800E01554 /* WTRTransitionDelegate.m */,
 				37657CE01B45656E00E37CF8 /* UIStoryboard+WeiTwi.h */,
 				37BCAEDF1BC6756700CB2D14 /* UIStoryboard+WeiTwi.m */,
 				37AA3FE71BCB7F1A00F1133D /* NSBundle+WeiTwi.h */,
@@ -546,6 +546,19 @@
 				377CE1281B45417300C28A90 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		378478AA1BD68AB7009A2F6B /* Transition */ = {
+			isa = PBXGroup;
+			children = (
+				37CBF5E71BD0B20800E01554 /* WTRModalViewTransition.h */,
+				37CBF5E81BD0B20800E01554 /* WTRModalViewTransition.m */,
+				37CBF5EA1BD0B21800E01554 /* WTRTransitionDelegate.h */,
+				37CBF5EB1BD0B21800E01554 /* WTRTransitionDelegate.m */,
+				378478A71BD68A96009A2F6B /* WTRSwipeHorizontalInteractiveTransition.h */,
+				378478A81BD68A96009A2F6B /* WTRSwipeHorizontalInteractiveTransition.m */,
+			);
+			name = Transition;
 			sourceTree = "<group>";
 		};
 		379101A41BD4DCA600AC8E1C /* DeckListCell */ = {
@@ -926,6 +939,7 @@
 				375BD3011BCCC28E00A3EF90 /* WTRInitializationPresenter.m in Sources */,
 				37E0373A1B4B9B2000B119AD /* WeiboDialogClosePNG.m in Sources */,
 				3706DE7A1BD61B40007C0072 /* SlideMotion+Calculation.m in Sources */,
+				378478A91BD68A96009A2F6B /* WTRSwipeHorizontalInteractiveTransition.m in Sources */,
 				37223AEA1BC8B9D20090AF3C /* WTRPageMessenger.m in Sources */,
 				37223AF61BC8CA050090AF3C /* WTRBaseViewController.m in Sources */,
 				37AA3FE91BCB7F1A00F1133D /* NSBundle+WeiTwi.m in Sources */,

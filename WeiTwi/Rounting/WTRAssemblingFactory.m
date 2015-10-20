@@ -18,8 +18,10 @@
 
 #import "WTRDataSyncInteractor.h"
 #import "WTRTransitionDelegate.h"
+#import "WTRSwipeHorizontalInteractiveTransition.h"
 
 static WTRTransitionDelegate *CurrentTransitionDelegate = nil;
+static WTRSwipeHorizontalInteractiveTransition *CurrentSwipeTransition = nil;
 
 static NSString* const SplashScreenIdentifier = @"WTRSplashScreenViewController";
 static NSString* const TimeLineViewController = @"WTRTimeLineViewController";
@@ -33,6 +35,7 @@ static NSString* const DeckViewControllerIdentifier = @"WTRDeckViewController";
 + (WTRBaseViewController *)assembleSplashScreen {
     WTRSplashScreenViewController *viewController = [[UIStoryboard genericStoryboard] instantiateViewControllerWithIdentifier:SplashScreenIdentifier];
     viewController.initializaitonPresenter = [self buildInitializationPresenter];
+    
     return viewController;
 }
 
@@ -43,8 +46,6 @@ static NSString* const DeckViewControllerIdentifier = @"WTRDeckViewController";
     WTRBaseViewController *settingViewController = [self assembleSettingView];
     
     UINavigationController *timelineNav = [self wrapWithDefaultNavigationController:timeLineViewController];
-    CurrentTransitionDelegate = [WTRTransitionDelegate delegateForPresentFromTop:YES];
-    timelineNav.navigationController.delegate = CurrentTransitionDelegate;
     
     UINavigationController *messageNav = [self wrapWithDefaultNavigationController:messageViewController];
     UINavigationController *exploreNav = [self wrapWithDefaultNavigationController:exploreViewController];
@@ -56,6 +57,12 @@ static NSString* const DeckViewControllerIdentifier = @"WTRDeckViewController";
                                                                                   settingNav
                                                                                   ]];
     
+    tabViewController.modalPresentationStyle = UIModalPresentationCustom;
+    CurrentTransitionDelegate = [WTRTransitionDelegate delegateForPresentFromTop:YES];
+    tabViewController.transitioningDelegate = CurrentTransitionDelegate;
+    
+    NSLog(@"initial timeline:viewcontrollers in navigationviewcontroller count:%d",[timelineNav.navigationController.viewControllers count]);
+
     return tabViewController;
 }
 
@@ -105,6 +112,14 @@ static NSString* const DeckViewControllerIdentifier = @"WTRDeckViewController";
 + (WTRBaseViewController *)assembleDeckView {
     WTRDeckViewController *viewController = [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:DeckViewControllerIdentifier];
     viewController.navigationPresenter = [self buildNavigationPresenter];
+    
+    viewController.modalPresentationStyle = UIModalPresentationCustom;
+    CurrentTransitionDelegate = [WTRTransitionDelegate delegateForPresentFromTop:YES];
+    CurrentSwipeTransition = [WTRSwipeHorizontalInteractiveTransition new];
+    [CurrentSwipeTransition wireToViewController:viewController];
+    viewController.transitioningDelegate = CurrentTransitionDelegate;
+    
+    
     return viewController;
 }
 

@@ -24,6 +24,13 @@
     return transition;
 }
 
++ (instancetype)moveInTransitionFromLeft:(BOOL)moveInFromLeft type:(WTRTransitionType)type {
+    WTRModalViewTransition *transition = [WTRModalViewTransition new];
+    transition.type = type;
+    transition.moveInFromTop = moveInFromLeft;
+    return transition;
+}
+
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
     return 0.5f;
 }
@@ -40,6 +47,14 @@
             
         case WTRTransitionPop:
             [self animatePopTransition:transitionContext];
+            break;
+            
+        case WTRTransitionLeft:
+            [self animateLeftTransition:transitionContext];
+            break;
+            
+        case WTRTransitionRight:
+            [self animateLeftTransition:transitionContext];
             break;
             
         default:
@@ -93,7 +108,7 @@
     }];
 }
 
-- (void)animateSwiTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
+- (void)animateLeftTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
     UIViewController* fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController* toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     UIView* containerView = [transitionContext containerView];
@@ -101,10 +116,10 @@
     
     // calculate positions
     CGRect toFrame = fromViewController.view.frame;
-    if (self.moveInFromTop) {
-        toFrame.origin.y -= toFrame.size.height;
+    if (self.moveInFromLeft) {
+        toFrame.origin.x -= toFrame.size.width;
     } else {
-        toFrame.origin.y += toFrame.size.height;
+        toFrame.origin.x += toFrame.size.width;
     }
     
     // animation
@@ -112,8 +127,7 @@
     [UIView animateWithDuration:duration animations:^{
         fromViewController.view.frame = toFrame;
     } completion:^(BOOL finished) {
-        //TODO:
-        [transitionContext completeTransition:YES];
+        [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
     }];
 }
 

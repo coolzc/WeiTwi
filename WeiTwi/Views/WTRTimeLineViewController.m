@@ -48,6 +48,13 @@ typedef void (^myBlock)(BOOL need, NSInteger num);
     [super viewDidLoad];
     [self configureView];
     self.accountStore = [[ACAccountStore alloc] init];
+    NSLog(@"timeline after viewdidload viewcontrollers in navigationviewcontroller count:%d",[self.navigationController.viewControllers count]);
+
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    NSLog(@"timeline after viewdidappear viewcontrollers in navigationviewcontroller count:%d",[self.navigationController.viewControllers count]);
+
 }
 
 - (NSArray *)presenters {

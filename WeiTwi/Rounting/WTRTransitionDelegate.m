@@ -10,6 +10,7 @@
 #import "WTRModalViewTransition.h"
 @implementation WTRTransitionDelegate
 
+//once use delegateForPresentFromTop or delegateForDismissToTop method,present or dismiss will be the same direction
 + (instancetype)delegateForPresentFromTop:(BOOL)presentFromTop {
     WTRTransitionDelegate *delegate = [WTRTransitionDelegate new];
     delegate.presentFromTop = presentFromTop;

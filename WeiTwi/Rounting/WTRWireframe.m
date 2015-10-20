@@ -50,7 +50,8 @@
     
     //to make sure the initial controller of tabBarViewController load successfully and to differ from navigationViewController
     UIViewController *targetViewController = func([self class],selector);
-    if  (!viewController.navigationController) {
+    //there is more than 2viewcontrollers in navigationcontrollers,it means tabbarview's 4 basic controllers has pushed viewcontroller ,so need to work as navigationcontrollers
+    if  (2 > viewController.navigationController.viewControllers.count) {
         //check if not tabbarviewcontroller
         if ([targetViewController isKindOfClass:[WTRBaseViewController class]]) {
             WTRBaseViewController *targetWTRViewController = (WTRBaseViewController *)targetViewController;

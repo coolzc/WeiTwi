@@ -25,6 +25,11 @@ static NSString *const DivideListCellReuseIdentifier = @"WTRDecListTableViewCell
     [self configureView];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    NSLog(@" deckview after viewdidappear  in navigationviewcontroller count:%d",[self.navigationController.viewControllers count]);
+    
+}
+
 - (NSArray *)presenters {
     return @[self.navigationPresenter];
 }
