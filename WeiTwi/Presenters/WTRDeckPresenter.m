@@ -7,6 +7,8 @@
 //
 
 #import "WTRDeckPresenter.h"
+#import "WTRWireframe.h"
+#import "WTRPageMessenger.h"
 
 @interface WTRDeckPresenter ()
 
@@ -20,8 +22,15 @@
 
 #pragma mark - Helper Methods
 
+
 - (void)displayGroupList:(NSArray *)list {
     [self.userGroupListDisplay displayUserGroupList:list];
+}
+
+- (void)selectToDisplayGroup:(NSString *)group {
+    //TODO:to differ from ecah group so that timeline viewcontroller can display the correct information
+    [WTRWireframe moveToGroupTimelineController:self.mainViewController Messenger:[WTRPageMessenger messenger]];
+    
 }
 
 @end

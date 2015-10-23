@@ -14,6 +14,7 @@
 
 + (WTRBaseViewController *)assembleSplashScreen;
 + (UIViewController *)assembleHomeView;//homeViewController is tabViewController
++ (WTRBaseViewController *)assembleTimelineView;
 + (WTRBaseViewController *)assembleMessageView;
 + (WTRBaseViewController *)assembleExploreView;
 + (WTRBaseViewController *)assembleSettingView;

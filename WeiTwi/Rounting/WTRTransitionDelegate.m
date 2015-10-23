@@ -8,47 +8,72 @@
 
 #import "WTRTransitionDelegate.h"
 #import "WTRModalViewTransition.h"
+#import "WTRSwipeHorizontalInteractiveTransition.h"
+
+@interface WTRTransitionDelegate ()
+
+@property (nonatomic, strong) WTRSwipeHorizontalInteractiveTransition *interactiveSwipeTransition;
+@property (nonatomic, assign) WTRTransitionDirection direction;
+@property (nonatomic, strong) UIPercentDrivenInteractiveTransition *interactivePopTransition;
+
+@end
+
 @implementation WTRTransitionDelegate
 
 //once use delegateForPresentFromTop or delegateForDismissToTop method,present or dismiss will be the same direction
-+ (instancetype)delegateForPresentFromTop:(BOOL)presentFromTop {
++ (instancetype)delegateForPresentFrom:(WTRTransitionDirection)direction viewController:(UIViewController *)viewController {
+    WTRSwipeHorizontalInteractiveTransition *interactiveSwipeTransition = [WTRSwipeHorizontalInteractiveTransition new];
+    [interactiveSwipeTransition wireToViewController:viewController];
     WTRTransitionDelegate *delegate = [WTRTransitionDelegate new];
-    delegate.presentFromTop = presentFromTop;
-    delegate.dismissToTop = presentFromTop;
+    delegate.direction = direction;
     return delegate;
 }
 
-+(instancetype)delegateForDismissToTop:(BOOL)dismissToTop {
++ (instancetype)delegateForDismissFrom:(WTRTransitionDirection)direction viewController:(UIViewController *)viewController {
+    WTRSwipeHorizontalInteractiveTransition *interactiveSwipeTransition = [WTRSwipeHorizontalInteractiveTransition new];
+    [interactiveSwipeTransition wireToViewController:viewController];
     WTRTransitionDelegate *delegate = [WTRTransitionDelegate new];
-    delegate.presentFromTop = dismissToTop;
-    delegate.dismissToTop = dismissToTop;
+    delegate.direction = direction;
     return delegate;
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
                                                                   presentingController:(UIViewController *)presenting
                                                                       sourceController:(UIViewController *)source {
-    return [WTRModalViewTransition moveInTransitionFromTop:self.presentFromTop type:WTRTransitionShow];
+    return [WTRModalViewTransition moveInTransitionType:WTRTransitionShow direction:self.direction];
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-    return [WTRModalViewTransition moveInTransitionFromTop:self.dismissToTop type:WTRTransitionDismiss];
+    return [WTRModalViewTransition moveInTransitionType:WTRTransitionDismiss direction:self.direction];
 }
 
+//TODO : add horizontal swipe to navigation controller
 - (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController
                                   animationControllerForOperation:(UINavigationControllerOperation)operation
                                                fromViewController:(UIViewController *)fromVC
                                                  toViewController:(UIViewController *)toVC {
     if (UINavigationControllerOperationPush == operation) {
-        return [WTRModalViewTransition moveInTransitionFromTop:self.presentFromTop type:WTRTransitionPop];
+        return [WTRModalViewTransition moveInTransitionType:WTRTransitionPop direction:self.direction];
     } else {
-        return [WTRModalViewTransition moveInTransitionFromTop:self.dismissToTop type:WTRTransitionDismiss];
+        return [WTRModalViewTransition moveInTransitionType:WTRTransitionDismiss direction:self.direction];
     }
 
 }
 
-- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
-    navigationController.delegate = nil; //one time use this
+- (id<UIViewControllerInteractiveTransitioning>)navigationController:(UINavigationController *)navigationController interactionControllerForAnimationController:(id<UIViewControllerAnimatedTransitioning>)animationController {
+    return self.interactiveSwipeTransition;
 }
+
+- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForPresentation:(id<UIViewControllerAnimatedTransitioning>)animator {
+    return self.interactiveSwipeTransition.interacting ? self.interactiveSwipeTransition : nil;
+}
+
+- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
+    return self.interactiveSwipeTransition.interacting ? self.interactiveSwipeTransition : nil;
+}
+
+//- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
+//    navigationController.delegate = nil; //one time use this
+//}
 
 @end

@@ -14,4 +14,6 @@
 
 @property (nonatomic, weak) id<WTRUserGroupListDisplayInterface> userGroupListDisplay;
 
+- (void)selectToDisplayGroup:(NSString *)group;
+
 @end

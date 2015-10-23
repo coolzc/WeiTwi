@@ -11,23 +11,16 @@
 @interface WTRModalViewTransition ()
 
 @property (readwrite, nonatomic, assign) WTRTransitionType type;
-@property (readwrite, nonatomic, assign) BOOL moveInFromTop;
+@property (readwrite, nonatomic, assign) WTRTransitionDirection moveInDirection;
 
 @end
 
 @implementation WTRModalViewTransition
 
-+ (instancetype)moveInTransitionFromTop:(BOOL)moveInFromTop type:(WTRTransitionType)type {
++ (instancetype)moveInTransitionType:(WTRTransitionType)type direction:(WTRTransitionDirection)direction {
     WTRModalViewTransition *transition = [WTRModalViewTransition new];
     transition.type = type;
-    transition.moveInFromTop = moveInFromTop;
-    return transition;
-}
-
-+ (instancetype)moveInTransitionFromLeft:(BOOL)moveInFromLeft type:(WTRTransitionType)type {
-    WTRModalViewTransition *transition = [WTRModalViewTransition new];
-    transition.type = type;
-    transition.moveInFromTop = moveInFromLeft;
+    transition.moveInDirection = direction;
     return transition;
 }
 
@@ -49,14 +42,6 @@
             [self animatePopTransition:transitionContext];
             break;
             
-        case WTRTransitionLeft:
-            [self animateLeftTransition:transitionContext];
-            break;
-            
-        case WTRTransitionRight:
-            [self animateLeftTransition:transitionContext];
-            break;
-            
         default:
             break;
     }
@@ -70,10 +55,21 @@
     // calculate positions
     CGRect toFrame = containerView.bounds;
     CGRect fromFrame = toFrame;
-    if (self.moveInFromTop) {
-        fromFrame.origin.y -= fromFrame.size.height;
-    } else {
-        fromFrame.origin.y += fromFrame.size.height;
+    switch (self.moveInDirection) {
+        case WTRTransitionFromTop:
+            fromFrame.origin.y -= fromFrame.size.height;
+            break;
+        case WTRTransitionFromRight:
+            fromFrame.origin.x += fromFrame.size.width;
+            break;
+        case WTRTransitionFromBottom:
+            fromFrame.origin.y += fromFrame.size.height;
+            break;
+        case WTRTransitionFromLeft:
+            fromFrame.origin.x -= fromFrame.size.width;
+            break;
+        default:
+            break;
     }
     toViewController.view.frame = fromFrame;
     [containerView addSubview:toViewController.view];
@@ -92,12 +88,22 @@
     
     // calculate positions
     CGRect toFrame = fromViewController.view.frame;
-    if (self.moveInFromTop) {
-        toFrame.origin.y -= toFrame.size.height;
-    } else {
-        toFrame.origin.y += toFrame.size.height;
+    switch (self.moveInDirection) {
+        case WTRTransitionFromTop:
+            toFrame.origin.y -= toFrame.size.height;
+            break;
+        case WTRTransitionFromRight:
+            toFrame.origin.x += toFrame.size.width;
+            break;
+        case WTRTransitionFromBottom:
+            toFrame.origin.y += toFrame.size.height;
+            break;
+        case WTRTransitionFromLeft:
+            toFrame.origin.x -= toFrame.size.width;
+            break;
+        default:
+            break;
     }
-    
     // animation
     NSTimeInterval duration = [self transitionDuration:transitionContext];
     [UIView animateWithDuration:duration animations:^{
@@ -105,29 +111,6 @@
     } completion:^(BOOL finished) {
         [fromViewController.view removeFromSuperview];
         [transitionContext completeTransition:YES];
-    }];
-}
-
-- (void)animateLeftTransition:(id <UIViewControllerContextTransitioning>)transitionContext {
-    UIViewController* fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
-    UIViewController* toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
-    UIView* containerView = [transitionContext containerView];
-    [containerView insertSubview:toViewController.view belowSubview:fromViewController.view];
-    
-    // calculate positions
-    CGRect toFrame = fromViewController.view.frame;
-    if (self.moveInFromLeft) {
-        toFrame.origin.x -= toFrame.size.width;
-    } else {
-        toFrame.origin.x += toFrame.size.width;
-    }
-    
-    // animation
-    NSTimeInterval duration = [self transitionDuration:transitionContext];
-    [UIView animateWithDuration:duration animations:^{
-        fromViewController.view.frame = toFrame;
-    } completion:^(BOOL finished) {
-        [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
     }];
 }
 
@@ -139,10 +122,21 @@
 
     // calculate positions
     CGRect toFrame = fromViewController.view.frame;
-    if (self.moveInFromTop) {
-        toFrame.origin.y -= toFrame.size.height;
-    } else {
-        toFrame.origin.y += toFrame.size.height;
+    switch (self.moveInDirection) {
+        case WTRTransitionFromTop:
+            toFrame.origin.y -= toFrame.size.height;
+            break;
+        case WTRTransitionFromRight:
+            toFrame.origin.x += toFrame.size.width;
+            break;
+        case WTRTransitionFromBottom:
+            toFrame.origin.y += toFrame.size.height;
+            break;
+        case WTRTransitionFromLeft:
+            toFrame.origin.x -= toFrame.size.width;
+            break;
+        default:
+            break;
     }
     
     // animation

@@ -75,6 +75,10 @@
 		37E037601B4B9B6200B119AD /* WeiboRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E0375A1B4B9B6200B119AD /* WeiboRequest.m */; };
 		37E037611B4B9B6200B119AD /* WeiboRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E0375C1B4B9B6200B119AD /* WeiboRequestOperation.m */; };
 		37E037621B4B9B6200B119AD /* WeiboSignIn.m in Sources */ = {isa = PBXBuildFile; fileRef = 37E0375E1B4B9B6200B119AD /* WeiboSignIn.m */; };
+		37F514761BD8B4E700D151AF /* MMDrawerBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F5146E1BD8B4E700D151AF /* MMDrawerBarButtonItem.m */; settings = {ASSET_TAGS = (); }; };
+		37F514771BD8B4E700D151AF /* MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F514701BD8B4E700D151AF /* MMDrawerController.m */; settings = {ASSET_TAGS = (); }; };
+		37F514781BD8B4E700D151AF /* MMDrawerVisualState.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F514731BD8B4E700D151AF /* MMDrawerVisualState.m */; settings = {ASSET_TAGS = (); }; };
+		37F514791BD8B4E700D151AF /* UIViewController+MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F514751BD8B4E700D151AF /* UIViewController+MMDrawerController.m */; settings = {ASSET_TAGS = (); }; };
 		37F6527E1BCF794E00109CDF /* NSUserDefaults+CFUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F6527C1BCF794E00109CDF /* NSUserDefaults+CFUtility.m */; settings = {ASSET_TAGS = (); }; };
 		37F652811BCFABFF00109CDF /* WTRNavigationPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F652801BCFABFF00109CDF /* WTRNavigationPresenter.m */; settings = {ASSET_TAGS = (); }; };
 		37FBE0EB1B46310D00813B36 /* WTRTwitterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37FBE0EA1B46310D00813B36 /* WTRTwitterCell.xib */; };
@@ -232,6 +236,15 @@
 		37E0375C1B4B9B6200B119AD /* WeiboRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeiboRequestOperation.m; path = WeiboSDK/Engine/WeiboRequestOperation.m; sourceTree = "<group>"; };
 		37E0375D1B4B9B6200B119AD /* WeiboSignIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WeiboSignIn.h; path = WeiboSDK/Engine/WeiboSignIn.h; sourceTree = "<group>"; };
 		37E0375E1B4B9B6200B119AD /* WeiboSignIn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WeiboSignIn.m; path = WeiboSDK/Engine/WeiboSignIn.m; sourceTree = "<group>"; };
+		37F5146D1BD8B4E700D151AF /* MMDrawerBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMDrawerBarButtonItem.h; path = MMDrawerController/MMDrawerBarButtonItem.h; sourceTree = "<group>"; };
+		37F5146E1BD8B4E700D151AF /* MMDrawerBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMDrawerBarButtonItem.m; path = MMDrawerController/MMDrawerBarButtonItem.m; sourceTree = "<group>"; };
+		37F5146F1BD8B4E700D151AF /* MMDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMDrawerController.h; path = MMDrawerController/MMDrawerController.h; sourceTree = "<group>"; };
+		37F514701BD8B4E700D151AF /* MMDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMDrawerController.m; path = MMDrawerController/MMDrawerController.m; sourceTree = "<group>"; };
+		37F514711BD8B4E700D151AF /* MMDrawerController+Subclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MMDrawerController+Subclass.h"; path = "MMDrawerController/MMDrawerController+Subclass.h"; sourceTree = "<group>"; };
+		37F514721BD8B4E700D151AF /* MMDrawerVisualState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MMDrawerVisualState.h; path = MMDrawerController/MMDrawerVisualState.h; sourceTree = "<group>"; };
+		37F514731BD8B4E700D151AF /* MMDrawerVisualState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MMDrawerVisualState.m; path = MMDrawerController/MMDrawerVisualState.m; sourceTree = "<group>"; };
+		37F514741BD8B4E700D151AF /* UIViewController+MMDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+MMDrawerController.h"; path = "MMDrawerController/UIViewController+MMDrawerController.h"; sourceTree = "<group>"; };
+		37F514751BD8B4E700D151AF /* UIViewController+MMDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+MMDrawerController.m"; path = "MMDrawerController/UIViewController+MMDrawerController.m"; sourceTree = "<group>"; };
 		37F6527C1BCF794E00109CDF /* NSUserDefaults+CFUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSUserDefaults+CFUtility.m"; path = "Tools/NSUserDefaults+CFUtility.m"; sourceTree = "<group>"; };
 		37F6527D1BCF794E00109CDF /* NSUserDefaults+CFUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSUserDefaults+CFUtility.h"; path = "Tools/NSUserDefaults+CFUtility.h"; sourceTree = "<group>"; };
 		37F6527F1BCFABFF00109CDF /* WTRNavigationPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRNavigationPresenter.h; path = Presenters/WTRNavigationPresenter.h; sourceTree = "<group>"; };
@@ -514,6 +527,7 @@
 				374ADFE01BC7C5DA0055AEB5 /* Models */,
 				37C935DA1B48D4DF00160224 /* ApiService */,
 				37C935EA1B48DBA900160224 /* Tools */,
+				37F5146C1BD8B4D800D151AF /* MMDrawerController */,
 				37E0371B1B4B9AC600B119AD /* WeiboSDk */,
 				37A7ACB71BCCB3ED00243B25 /* Resources */,
 				375BD2F91BCCB99000A3EF90 /* Images.xcassets */,
@@ -730,6 +744,22 @@
 			name = Engine;
 			sourceTree = "<group>";
 		};
+		37F5146C1BD8B4D800D151AF /* MMDrawerController */ = {
+			isa = PBXGroup;
+			children = (
+				37F5146D1BD8B4E700D151AF /* MMDrawerBarButtonItem.h */,
+				37F5146E1BD8B4E700D151AF /* MMDrawerBarButtonItem.m */,
+				37F5146F1BD8B4E700D151AF /* MMDrawerController.h */,
+				37F514701BD8B4E700D151AF /* MMDrawerController.m */,
+				37F514711BD8B4E700D151AF /* MMDrawerController+Subclass.h */,
+				37F514721BD8B4E700D151AF /* MMDrawerVisualState.h */,
+				37F514731BD8B4E700D151AF /* MMDrawerVisualState.m */,
+				37F514741BD8B4E700D151AF /* UIViewController+MMDrawerController.h */,
+				37F514751BD8B4E700D151AF /* UIViewController+MMDrawerController.m */,
+			);
+			name = MMDrawerController;
+			sourceTree = "<group>";
+		};
 		566220A22C74ECD2A1F3ABBA /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -902,10 +932,12 @@
 				37E037381B4B9B2000B119AD /* Resources.m in Sources */,
 				37C935F01B48DBB700160224 /* NSDictionary+WTRUtility.m in Sources */,
 				379101A31BD4B0DE00AC8E1C /* WTRDeckPresenter.m in Sources */,
+				37F514761BD8B4E700D151AF /* MMDrawerBarButtonItem.m in Sources */,
 				37CBF5EC1BD0B21800E01554 /* WTRTransitionDelegate.m in Sources */,
 				37E037271B4B9AF400B119AD /* WeiboLoginDialog.m in Sources */,
 				37E037611B4B9B6200B119AD /* WeiboRequestOperation.m in Sources */,
 				37C935E51B48D4F700160224 /* WTRApiRequest.m in Sources */,
+				37F514771BD8B4E700D151AF /* MMDrawerController.m in Sources */,
 				37C935F71B49020000160224 /* WTRWeiboFriendsTimeline.m in Sources */,
 				374ADFDD1BC7A5E20055AEB5 /* WTRDeckViewController.m in Sources */,
 				37E0374F1B4B9B4F00B119AD /* GeoInfo.m in Sources */,
@@ -920,6 +952,7 @@
 				37E037501B4B9B4F00B119AD /* Status.m in Sources */,
 				37657CE81B4565CE00E37CF8 /* WTRAssemblingFactory.m in Sources */,
 				37E037201B4B9AE200B119AD /* Weibo.m in Sources */,
+				37F514791BD8B4E700D151AF /* UIViewController+MMDrawerController.m in Sources */,
 				37CBF5EF1BD0FC0300E01554 /* WTRMessageViewController.m in Sources */,
 				37AA3FEC1BCB7F9900F1133D /* UINib+WeiTwi.m in Sources */,
 				37657CE71B4565CE00E37CF8 /* WTRWireframe.m in Sources */,
@@ -927,6 +960,7 @@
 				3706DE7B1BD61B40007C0072 /* SlideMotion.m in Sources */,
 				37657CF11B45660500E37CF8 /* WTRTimeLineViewController.m in Sources */,
 				37C935E71B48D4F700160224 /* WTRApiResponse.m in Sources */,
+				37F514781BD8B4E700D151AF /* MMDrawerVisualState.m in Sources */,
 				37E037261B4B9AF400B119AD /* WeiboDialog.m in Sources */,
 				37BCAEE01BC6756700CB2D14 /* UIStoryboard+WeiTwi.m in Sources */,
 				37E037351B4B9B2000B119AD /* ImageResourceLoader.m in Sources */,

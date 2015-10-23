@@ -12,5 +12,6 @@
 @interface WTRTimeLineListPresenter : WTRBasePresenter
 
 - (void)viewDetailOfTimelineWeibo:(NSArray *)weibo;
+- (void)viewGroupDeckListDetail;
 
 @end

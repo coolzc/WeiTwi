@@ -14,6 +14,19 @@ typedef NS_OPTIONS(NSUInteger, PNParamFlags) {
     WTRParamFlagsAutoEditing         = 1 << 0
 };
 
+typedef enum {
+    WTRTransitionShow,//push or present
+    WTRTransitionDismiss,
+    WTRTransitionPop,
+} WTRTransitionType;
+
+typedef enum {
+    WTRTransitionFromLeft,
+    WTRTransitionFromRight,
+    WTRTransitionFromTop,
+    WTRTransitionFromBottom,
+} WTRTransitionDirection;
+
 //extern NSString *const ThirdPartyServiceFlurryToken;
 //
 //extern NSString *const ParamKeyCardInfo;

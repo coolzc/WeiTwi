@@ -16,6 +16,9 @@
 + (void)moveToNextPageOfViewController:(UIViewController *)viewController messenger:(WTRPageMessenger *)messenger;
 + (void)moveToPreviousPageOfViewController:(UIViewController *)viewController;
 
+//MMDrawController only
++ (void)moveToGroupTimelineController:(UIViewController *)viewController Messenger:(WTRPageMessenger *)messenger;
++ (void)moveToDeckViewController:(UIViewController *)viewController Messenger:(WTRPageMessenger *)messenger;
 
 @end
 

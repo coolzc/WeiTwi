@@ -14,7 +14,7 @@
 #import <Accounts/Accounts.h>
 #import "WeiboSDK.h"
 #import "WTRPageMessenger.h"
-
+#import "MMDrawerBarButtonItem.h"
 //twitter
 static NSString *const TwitterCellReuseIdentifier = @"TwitterCellReusedId";
 static NSString *const ConsumerKey = @"C3SleTImiuZn5OfoDieHyoonJ";
@@ -48,12 +48,12 @@ typedef void (^myBlock)(BOOL need, NSInteger num);
     [super viewDidLoad];
     [self configureView];
     self.accountStore = [[ACAccountStore alloc] init];
-    NSLog(@"timeline after viewdidload viewcontrollers in navigationviewcontroller count:%d",[self.navigationController.viewControllers count]);
+    NSLog(@"timeline after viewdidload viewcontrollers in navigationviewcontroller count:%lu",[self.navigationController.viewControllers count]);
 
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    NSLog(@"timeline after viewdidappear viewcontrollers in navigationviewcontroller count:%d",[self.navigationController.viewControllers count]);
+    NSLog(@"timeline after viewdidappear viewcontrollers in navigationviewcontroller count:%lu",[self.navigationController.viewControllers count]);
 
 }
 
@@ -155,6 +155,16 @@ typedef void (^myBlock)(BOOL need, NSInteger num);
         num = 1;
     };
     [self testFunc];
+    [self setupLeftMenuButton];
+}
+
+-(void)setupLeftMenuButton{
+    MMDrawerBarButtonItem * leftDrawerButton = [[MMDrawerBarButtonItem alloc] initWithTarget:self action:@selector(leftDrawerButtonPress:)];
+    [self.navigationItem setLeftBarButtonItem:leftDrawerButton animated:YES];
+}
+
+-(void)leftDrawerButtonPress:(id)sender{
+    [self.timelineListPresenter viewGroupDeckListDetail];
 }
 
 - (void)testFunc {

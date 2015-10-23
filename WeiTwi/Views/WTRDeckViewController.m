@@ -9,6 +9,8 @@
 #import "WTRDeckViewController.h"
 #import "WTRDecListTableViewCell.h"
 #import "UINib+WeiTwi.h"
+#import "WTRConfig.h"
+#import "UIViewController+MMDrawerController.h"
 
 static NSString *const DivideListCellReuseIdentifier = @"WTRDecListTableViewCell";
 
@@ -26,12 +28,12 @@ static NSString *const DivideListCellReuseIdentifier = @"WTRDecListTableViewCell
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    NSLog(@" deckview after viewdidappear  in navigationviewcontroller count:%d",[self.navigationController.viewControllers count]);
+    NSLog(@" deckview after viewdidappear  in navigationviewcontroller count:%lu",[self.navigationController.viewControllers count]);
     
 }
 
 - (NSArray *)presenters {
-    return @[self.navigationPresenter];
+    return @[self.deckListPresenter];
 }
 
 #pragma mark - WTRUserGroupListDisplayInterface
@@ -43,7 +45,7 @@ static NSString *const DivideListCellReuseIdentifier = @"WTRDecListTableViewCell
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.navigationPresenter goBack];
+    [self.deckListPresenter selectToDisplayGroup:@""];
 }
 
 

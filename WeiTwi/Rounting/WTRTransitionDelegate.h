@@ -8,13 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "WTRConfig.h"
 
 @interface WTRTransitionDelegate : NSObject <UIViewControllerTransitioningDelegate, UINavigationControllerDelegate>
 
-@property (nonatomic, assign) BOOL presentFromTop;
-@property (nonatomic, assign) BOOL dismissToTop;
-
-+ (instancetype)delegateForPresentFromTop:(BOOL)presentFromTop;
-+ (instancetype)delegateForDismissToTop:(BOOL)dismissToTop;
++ (instancetype)delegateForPresentFrom:(WTRTransitionDirection)direction viewController:(UIViewController *)viewController;
++ (instancetype)delegateForDismissFrom:(WTRTransitionDirection)direction viewController:(UIViewController *)viewController;
 
 @end

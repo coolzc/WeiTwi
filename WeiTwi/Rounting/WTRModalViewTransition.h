@@ -8,22 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
-typedef enum {
-    WTRTransitionShow,//push or present
-    WTRTransitionDismiss,
-    WTRTransitionPop,
-    WTRTransitionLeft,
-    WTRTransitionRight,
-} WTRTransitionType;
+#import "WTRConfig.h"
 
 @interface WTRModalViewTransition : NSObject <UIViewControllerAnimatedTransitioning>
 
 @property (readonly, nonatomic, assign) WTRTransitionType type;
-@property (readonly, nonatomic, assign) BOOL moveInFromTop;
-@property (readonly, nonatomic, assign) BOOL moveInFromLeft;
+@property (readonly, nonatomic, assign) WTRTransitionDirection moveInDirection;
 
-+ (instancetype)moveInTransitionFromTop:(BOOL)moveInFromTop type:(WTRTransitionType)type;
-+ (instancetype)moveInTransitionFromLeft:(BOOL)moveInFromLeft type:(WTRTransitionType)type;
++ (instancetype)moveInTransitionType:(WTRTransitionType)type direction:(WTRTransitionDirection)direction;
 
 @end

@@ -14,6 +14,7 @@
 @interface WTRTimeLineViewController : WTRBaseViewController
 
 @property(nonatomic, strong) WTRMyView *myView;
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *loginStatusLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timelineStatusLabel;

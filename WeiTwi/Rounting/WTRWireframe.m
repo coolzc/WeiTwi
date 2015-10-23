@@ -14,6 +14,7 @@
 #import "WTRDeckViewController.h"
 
 #import "NSString+WTRUtility.h"
+#import "UIViewController+MMDrawerController.h"
 
 @interface UIViewController (WeiTwi)
 
@@ -79,9 +80,15 @@
     });
 }
 
-//+ (void)dismissToPreviousPageOfViewController:(UIViewController *)viewController {
-//    [viewController dismissViewControllerAnimated:YES completion:nil];
-//}
+#pragma mark - MMDrawerController Mapping Methods
+
++(void)moveToGroupTimelineController:(UIViewController *)viewController Messenger:(WTRPageMessenger *)messenger {
+    [viewController.mm_drawerController setCenterViewController:[WTRAssemblingFactory wrapWithDefaultNavigationController:[self loadTimelineScreen]] withCloseAnimation:YES completion:nil];
+}
+
++ (void)moveToDeckViewController:(UIViewController *)viewController Messenger:(WTRPageMessenger *)messenger {
+    [viewController.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+}
 
 #pragma mark - Route Mapping Methods
 
@@ -91,6 +98,10 @@
 
 + (UIViewController *)loadHomeScreen {
     return [WTRAssemblingFactory assembleHomeView];
+}
+
++ (WTRBaseViewController *)loadTimelineScreen {
+    return [WTRAssemblingFactory assembleTimelineView];
 }
 
 + (WTRBaseViewController *)loadDeckScreen {

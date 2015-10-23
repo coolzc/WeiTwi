@@ -15,4 +15,8 @@
 //    [WTRWireframe moveToNextPageOfViewController:self.mainViewController];
 }
 
+- (void)viewGroupDeckListDetail {
+    [WTRWireframe moveToDeckViewController:self.mainViewController Messenger:[WTRPageMessenger messenger]];
+}
+
 @end

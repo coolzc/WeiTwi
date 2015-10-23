@@ -20,8 +20,10 @@
 #import "WTRTransitionDelegate.h"
 #import "WTRSwipeHorizontalInteractiveTransition.h"
 
+#import "MMDrawerController.h"
+#import "MMDrawerVisualState.h"
+
 static WTRTransitionDelegate *CurrentTransitionDelegate = nil;
-static WTRSwipeHorizontalInteractiveTransition *CurrentSwipeTransition = nil;
 
 static NSString* const SplashScreenIdentifier = @"WTRSplashScreenViewController";
 static NSString* const TimeLineViewController = @"WTRTimeLineViewController";
@@ -41,29 +43,38 @@ static NSString* const DeckViewControllerIdentifier = @"WTRDeckViewController";
 
 + (UIViewController *)assembleHomeView {
     WTRBaseViewController *timeLineViewController = [self assembleTimelineView];
-    WTRBaseViewController *messageViewController = [self assembleMessageView];
-    WTRBaseViewController *exploreViewController = [self assembleExploreView];
-    WTRBaseViewController *settingViewController = [self assembleSettingView];
+//    WTRBaseViewController *messageViewController = [self assembleMessageView];
+//    WTRBaseViewController *exploreViewController = [self assembleExploreView];
+//    WTRBaseViewController *settingViewController = [self assembleSettingView];
     
     UINavigationController *timelineNav = [self wrapWithDefaultNavigationController:timeLineViewController];
+   
+//    UINavigationController *messageNav = [self wrapWithDefaultNavigationController:messageViewController];
+//    UINavigationController *exploreNav = [self wrapWithDefaultNavigationController:exploreViewController];
+//    UINavigationController *settingNav = [self wrapWithDefaultNavigationController:settingViewController];
+//    UIViewController *tabViewController = [self wrapWithDefaultTabBarController:@[
+//                                                                                  timelineNav,
+//                                                                                  messageNav,
+//                                                                                  exploreNav,
+//                                                                                  settingNav
+//                                                                                  ]];
+    //MMDrawerViewController lib suggest that center vc can't support centerVC as tabBarViewController
+//    UINavigationController *centerVC = [self wrapWithDefaultNavigationController:tabViewController];
     
-    UINavigationController *messageNav = [self wrapWithDefaultNavigationController:messageViewController];
-    UINavigationController *exploreNav = [self wrapWithDefaultNavigationController:exploreViewController];
-    UINavigationController *settingNav = [self wrapWithDefaultNavigationController:settingViewController];
-    UIViewController *tabViewController = [self wrapWithDefaultTabBarController:@[
-                                                                                  timelineNav,
-                                                                                  messageNav,
-                                                                                  exploreNav,
-                                                                                  settingNav
-                                                                                  ]];
-    
-    tabViewController.modalPresentationStyle = UIModalPresentationCustom;
-    CurrentTransitionDelegate = [WTRTransitionDelegate delegateForPresentFromTop:YES];
-    tabViewController.transitioningDelegate = CurrentTransitionDelegate;
-    
-    NSLog(@"initial timeline:viewcontrollers in navigationviewcontroller count:%d",[timelineNav.navigationController.viewControllers count]);
+    WTRBaseViewController *leftDeckViewController = [self assembleDeckView];
+    MMDrawerController *centerViewController = [[MMDrawerController alloc] initWithCenterViewController:timelineNav leftDrawerViewController:leftDeckViewController];
+    [centerViewController setDrawerVisualStateBlock:[MMDrawerVisualState parallaxVisualStateBlockWithParallaxFactor:2.5f]];
+    [centerViewController setMaximumLeftDrawerWidth:160.0];
+    [centerViewController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeAll];
+    [centerViewController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
+    //TODO:not sure to remain this code here
+//    centerViewController.modalPresentationStyle = UIModalPresentationCustom;
+//    CurrentTransitionDelegate = [WTRTransitionDelegate delegateForPresentFrom:WTRTransitionFromTop viewController:centerViewController];
+//    centerViewController.transitioningDelegate = CurrentTransitionDelegate;
+//    
+    NSLog(@"initial timeline:viewcontrollers in navigationviewcontroller count:%lu",[timelineNav.navigationController.viewControllers count]);
 
-    return tabViewController;
+    return centerViewController;
 }
 
 + (WTRBaseViewController *)assembleTimelineView {
@@ -111,15 +122,10 @@ static NSString* const DeckViewControllerIdentifier = @"WTRDeckViewController";
 
 + (WTRBaseViewController *)assembleDeckView {
     WTRDeckViewController *viewController = [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:DeckViewControllerIdentifier];
-    viewController.navigationPresenter = [self buildNavigationPresenter];
+    viewController.deckListPresenter = [self buildDeckListPresenter];
     
     viewController.modalPresentationStyle = UIModalPresentationCustom;
-    CurrentTransitionDelegate = [WTRTransitionDelegate delegateForPresentFromTop:YES];
-    CurrentSwipeTransition = [WTRSwipeHorizontalInteractiveTransition new];
-    [CurrentSwipeTransition wireToViewController:viewController];
-    viewController.transitioningDelegate = CurrentTransitionDelegate;
-    
-    
+    viewController.transitioningDelegate = [WTRTransitionDelegate delegateForPresentFrom:WTRTransitionFromBottom viewController:viewController];
     return viewController;
 }
 
@@ -148,6 +154,12 @@ static NSString* const DeckViewControllerIdentifier = @"WTRDeckViewController";
 + (WTRNavigationPresenter *)buildNavigationPresenter {
     WTRNavigationPresenter *navigationPresenter = [WTRNavigationPresenter new];
     return navigationPresenter;
+}
+
+//deck presenter
++ (WTRDeckPresenter *)buildDeckListPresenter {
+    WTRDeckPresenter *deckListPresenter = [WTRDeckPresenter new];
+    return deckListPresenter;
 }
 
 + (WTRTimeLineListPresenter *)buildTimelinePresenter {
