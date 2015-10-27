@@ -61,4 +61,6 @@ typedef enum {
 //extern NSString *const UserDefaultesKeyIntroSkip;
 //extern NSString *const UserDefaultesKeySelectionSkip;
 
+extern NSString *const WeiboAppKey;
+extern NSString *const kRedirectURI;
 extern NSString *const SettingKeyLastWeiboContentUpdateTimestamp;

@@ -40,9 +40,6 @@
                                                 <exclude reference="kak-BT-Y8c"/>
                                             </mask>
                                         </variation>
-                                        <connections>
-                                            <action selector="backButtonTouchUpInside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="9Vc-64-TYy"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0wc-qP-U64">
                                         <rect key="frame" x="554" y="25" width="46" height="30"/>
@@ -57,7 +54,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="loginButtonTouchUpInside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="1dz-BD-aNO"/>
+                                            <action selector="loginWeiboButtonTouchUpInside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="H7A-J0-hTe"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vmH-QV-QzL">
@@ -73,7 +70,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="getTimelineAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="sCs-Op-8T9"/>
+                                            <action selector="timelineButtonTouchUpInside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="trZ-dL-Vwp"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log in Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fe7-qK-TQn">
@@ -96,20 +93,6 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2gU-XA-4lC">
-                                        <rect key="frame" x="549" y="46" width="51" height="30"/>
-                                        <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="1zw-kM-aJJ"/>
-                                            <constraint firstAttribute="width" constant="51" id="YeQ-Yr-Sxv"/>
-                                        </constraints>
-                                        <state key="normal" title="change">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="changeButtonTouchUpInside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="cIm-es-7nq"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -117,10 +100,8 @@
                                     <constraint firstItem="0wc-qP-U64" firstAttribute="leading" secondItem="vmH-QV-QzL" secondAttribute="trailing" constant="4" id="0SG-CE-XUU"/>
                                     <constraint firstItem="01Y-PJ-M7d" firstAttribute="leading" secondItem="mz6-WV-iym" secondAttribute="leading" constant="8" id="19d-Yu-GXG"/>
                                     <constraint firstAttribute="centerY" secondItem="vmH-QV-QzL" secondAttribute="centerY" id="1Ed-zN-6nl"/>
-                                    <constraint firstAttribute="bottom" secondItem="2gU-XA-4lC" secondAttribute="bottom" constant="4" id="1Rc-Y2-rEH"/>
                                     <constraint firstItem="vmH-QV-QzL" firstAttribute="leading" secondItem="wtk-jJ-feV" secondAttribute="trailing" id="9Iy-dM-dbO"/>
                                     <constraint firstItem="vmH-QV-QzL" firstAttribute="leading" secondItem="Fe7-qK-TQn" secondAttribute="trailing" id="DCy-s3-ZIq"/>
-                                    <constraint firstAttribute="trailing" secondItem="2gU-XA-4lC" secondAttribute="trailing" id="FFv-tL-tNE"/>
                                     <constraint firstAttribute="centerY" secondItem="0wc-qP-U64" secondAttribute="centerY" id="MEy-LV-FC5"/>
                                     <constraint firstAttribute="bottom" secondItem="wtk-jJ-feV" secondAttribute="bottom" id="NGN-so-To0"/>
                                     <constraint firstItem="Fe7-qK-TQn" firstAttribute="top" secondItem="mz6-WV-iym" secondAttribute="top" constant="8" id="NIK-Ta-Hz6"/>

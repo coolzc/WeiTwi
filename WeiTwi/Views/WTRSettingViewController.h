@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "WTRBaseViewController.h"
 
-@interface WTRSettingViewController : WTRBaseViewController
+@interface WTRSettingViewController : WTRBaseViewController 
 
 @end

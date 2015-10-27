@@ -12,17 +12,21 @@
 #if TARGET_OS_IPHONE
 #import <Twitter/Twitter.h> // iOS 5
 #endif
+#import "STHTTPRequest.h"
 #import "NSString+STTwitter.h"
 #import "NSError+STTwitter.h"
 
-typedef void (^completion_block_t)(id request, NSDictionary *requestHeaders, NSDictionary *responseHeaders, id response);
-typedef void (^error_block_t)(id request, NSDictionary *requestHeaders, NSDictionary *responseHeaders, NSError *error);
+typedef void (^completion_block_t)(NSObject<STTwitterRequestProtocol> *request, NSDictionary *requestHeaders, NSDictionary *responseHeaders, id response);
+typedef void (^error_block_t)(NSObject<STTwitterRequestProtocol> *request, NSDictionary *requestHeaders, NSDictionary *responseHeaders, NSError *error);
 typedef void (^upload_progress_block_t)(NSInteger bytesWritten, NSInteger totalBytesWritten, NSInteger totalBytesExpectedToWrite);
+typedef void (^stream_block_t)(NSObject<STTwitterRequestProtocol> *request, NSData *data);
 
 @interface STTwitterOSRequest ()
 @property (nonatomic, copy) completion_block_t completionBlock;
 @property (nonatomic, copy) error_block_t errorBlock;
 @property (nonatomic, copy) upload_progress_block_t uploadProgressBlock;
+@property (nonatomic, copy) stream_block_t streamBlock;
+@property (nonatomic, retain) NSURLConnection *connection;
 @property (nonatomic, retain) NSHTTPURLResponse *httpURLResponse; // only used with streaming API
 @property (nonatomic, retain) NSMutableData *data; // only used with non-streaming API
 @property (nonatomic, retain) ACAccount *account;
@@ -36,15 +40,16 @@ typedef void (^upload_progress_block_t)(NSInteger bytesWritten, NSInteger totalB
 
 @implementation STTwitterOSRequest
 
-- (id)initWithAPIResource:(NSString *)resource
-            baseURLString:(NSString *)baseURLString
-               httpMethod:(NSInteger)httpMethod
-               parameters:(NSDictionary *)params
-                  account:(ACAccount *)account
-         timeoutInSeconds:(NSTimeInterval)timeoutInSeconds
-      uploadProgressBlock:(void(^)(NSInteger bytesWritten, NSInteger totalBytesWritten, NSInteger totalBytesExpectedToWrite))uploadProgressBlock
-          completionBlock:(void(^)(id request, NSDictionary *requestHeaders, NSDictionary *responseHeaders, id response))completionBlock
-               errorBlock:(void(^)(id request, NSDictionary *requestHeaders, NSDictionary *responseHeaders, NSError *error))errorBlock {
+- (instancetype)initWithAPIResource:(NSString *)resource
+                      baseURLString:(NSString *)baseURLString
+                         httpMethod:(NSInteger)httpMethod
+                         parameters:(NSDictionary *)params
+                            account:(ACAccount *)account
+                   timeoutInSeconds:(NSTimeInterval)timeoutInSeconds
+                uploadProgressBlock:(void(^)(NSInteger bytesWritten, NSInteger totalBytesWritten, NSInteger totalBytesExpectedToWrite))uploadProgressBlock
+                        streamBlock:(void(^)(NSObject<STTwitterRequestProtocol> *request, NSData *data))streamBlock
+                    completionBlock:(void(^)(NSObject<STTwitterRequestProtocol> *request, NSDictionary *requestHeaders, NSDictionary *responseHeaders, id response))completionBlock
+                         errorBlock:(void(^)(NSObject<STTwitterRequestProtocol> *request, NSDictionary *requestHeaders, NSDictionary *responseHeaders, NSError *error))errorBlock {
     
     NSAssert(completionBlock, @"completionBlock is missing");
     NSAssert(errorBlock, @"errorBlock is missing");
@@ -59,6 +64,7 @@ typedef void (^upload_progress_block_t)(NSInteger bytesWritten, NSInteger totalB
     self.completionBlock = completionBlock;
     self.errorBlock = errorBlock;
     self.uploadProgressBlock = uploadProgressBlock;
+    self.streamBlock = streamBlock;
     self.timeoutInSeconds = timeoutInSeconds;
     
     return self;
@@ -111,22 +117,36 @@ typedef void (^upload_progress_block_t)(NSInteger bytesWritten, NSInteger totalB
 #else
     preparedURLRequest = [request preparedURLRequest];
 #endif
-
+    
     return preparedURLRequest;
 }
 
-- (NSURLConnection *)startRequest {
+- (void)startRequest {
     
     NSURLRequest *preparedURLRequest = [self preparedURLRequest];
-
+    
     NSMutableURLRequest *mutablePreparedURLRequest = [preparedURLRequest mutableCopy];
     mutablePreparedURLRequest.timeoutInterval = _timeoutInSeconds;
     
-    NSURLConnection *connection = [NSURLConnection connectionWithRequest:mutablePreparedURLRequest delegate:self];
+    if (_connection) {
+        [self cancel];
+    }
+    _connection = [NSURLConnection connectionWithRequest:mutablePreparedURLRequest delegate:self];
     
-    [connection start];
+    [_connection start];
+}
+
+- (void)cancel {
+    [_connection cancel];
     
-    return connection;
+    NSURLRequest *request = [_connection currentRequest];
+    
+    NSString *s = @"Connection was cancelled.";
+    NSDictionary *userInfo = @{NSLocalizedDescriptionKey: s};
+    NSError *error = [NSError errorWithDomain:NSStringFromClass([self class])
+                                         code:kSTHTTPRequestCancellationError
+                                     userInfo:userInfo];
+    self.errorBlock(self, [self requestHeadersForRequest:request], [_httpURLResponse allHeaderFields], error);
 }
 
 - (NSDictionary *)requestHeadersForRequest:(id)request {
@@ -146,47 +166,6 @@ typedef void (^upload_progress_block_t)(NSInteger bytesWritten, NSInteger totalB
 #endif
 }
 
-- (void)handleStreamingResponse:(NSHTTPURLResponse *)urlResponse request:(id)request data:(NSData *)responseData {
-    
-    if(responseData == nil) {
-        self.errorBlock(request, [self requestHeadersForRequest:request], [urlResponse allHeaderFields], nil);
-        return;
-    }
-    
-    NSError *jsonError = nil;
-    NSJSONSerialization *json = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:&jsonError];
-    
-    if([json valueForKey:@"error"]) {
-        
-        NSString *message = [json valueForKey:@"error"];
-        NSDictionary *userInfo = [NSDictionary dictionaryWithObject:message forKey:NSLocalizedDescriptionKey];
-        NSError *jsonErrorFromResponse = [NSError errorWithDomain:NSStringFromClass([self class]) code:0 userInfo:userInfo];
-        
-        self.errorBlock(request, [self requestHeadersForRequest:request], [urlResponse allHeaderFields], jsonErrorFromResponse);
-        
-        return;
-    }
-    
-    // we can receive several dictionaries in the same data chunk
-    // such as '{..}\r\n{..}\r\n{..}' which is not valid JSON
-    // so we split them up into a 'jsonChunks' array such as [{..},{..},{..}]
-    
-    NSString *jsonString = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
-    
-    NSArray *jsonChunks = [jsonString componentsSeparatedByString:@"\r\n"];
-    
-    for(NSString *jsonChunk in jsonChunks) {
-        if([jsonChunk length] == 0) continue;
-        NSData *data = [jsonChunk dataUsingEncoding:NSUTF8StringEncoding];
-        NSError *jsonError = nil;
-        id json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonError];
-        if(json) {
-            self.completionBlock(request, [self requestHeadersForRequest:request], [urlResponse allHeaderFields], json);
-        }
-    }
-
-}
-
 #pragma mark NSURLConnectionDataDelegate
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
@@ -203,7 +182,7 @@ typedef void (^upload_progress_block_t)(NSInteger bytesWritten, NSInteger totalB
     BOOL isStreaming = [[[[connection originalRequest] URL] host] rangeOfString:@"stream"].location != NSNotFound;
     
     if(isStreaming) {
-        [self handleStreamingResponse:_httpURLResponse request:[connection currentRequest] data:data];
+        self.streamBlock(self, data);
     } else {
         [self.data appendData:data];
     }
@@ -215,7 +194,7 @@ typedef void (^upload_progress_block_t)(NSInteger bytesWritten, NSInteger totalB
     NSDictionary *requestHeaders = [request allHTTPHeaderFields];
     NSDictionary *responseHeaders = [_httpURLResponse allHeaderFields];
     
-    self.errorBlock(request, requestHeaders, responseHeaders, error);
+    self.errorBlock(self, requestHeaders, responseHeaders, error);
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -223,14 +202,14 @@ typedef void (^upload_progress_block_t)(NSInteger bytesWritten, NSInteger totalB
     NSURLRequest *request = [connection currentRequest];
     
     if(_data == nil) {
-        self.errorBlock(request, [self requestHeadersForRequest:request], [_httpURLResponse allHeaderFields], nil);
+        self.errorBlock(self, [self requestHeadersForRequest:request], [_httpURLResponse allHeaderFields], nil);
         return;
     }
     
     NSError *error = [NSError st_twitterErrorFromResponseData:_data responseHeaders:[_httpURLResponse allHeaderFields] underlyingError:nil];
     
     if(error) {
-        self.errorBlock(request, [self requestHeadersForRequest:request], [_httpURLResponse allHeaderFields], error);
+        self.errorBlock(self, [self requestHeadersForRequest:request], [_httpURLResponse allHeaderFields], error);
         return;
     }
     
@@ -244,9 +223,9 @@ typedef void (^upload_progress_block_t)(NSInteger bytesWritten, NSInteger totalB
     }
     
     if(response) {
-        self.completionBlock(request, [self requestHeadersForRequest:request], [_httpURLResponse allHeaderFields], response);
+        self.completionBlock(self, [self requestHeadersForRequest:request], [_httpURLResponse allHeaderFields], response);
     } else {
-        self.errorBlock(request, [self requestHeadersForRequest:request], [_httpURLResponse allHeaderFields], jsonError);
+        self.errorBlock(self, [self requestHeadersForRequest:request], [_httpURLResponse allHeaderFields], jsonError);
     }
 }
 

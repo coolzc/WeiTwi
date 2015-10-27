@@ -17,12 +17,13 @@
 #import "WTRDeckViewController.h"
 
 #import "WTRDataSyncInteractor.h"
+#import "WTRWeiboManagerInteractor.h"
+#import "WTRTwitterManagerInteractor.h"
 #import "WTRTransitionDelegate.h"
 #import "WTRSwipeHorizontalInteractiveTransition.h"
 
 #import "MMDrawerController.h"
 #import "MMDrawerVisualState.h"
-
 static WTRTransitionDelegate *CurrentTransitionDelegate = nil;
 
 static NSString* const SplashScreenIdentifier = @"WTRSplashScreenViewController";
@@ -80,7 +81,8 @@ static NSString* const DeckViewControllerIdentifier = @"WTRDeckViewController";
 + (WTRBaseViewController *)assembleTimelineView {
     WTRTimeLineViewController *viewController = [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:TimeLineViewController];
     viewController.navigationPresenter = [self buildNavigationPresenter];
-    viewController.timelineListPresenter = [self buildTimelinePresenter];
+    viewController.weiboTimelineListPresenter = [self buildWeiboTimelinePresenter];
+    viewController.twitterTimelinePresenter = [self buildTwitterTimelinePresenter];
     
     viewController.title = NSLocalizedString(@"tab-bar-item-timeline", nil);
     viewController.tabBarItem.image = [UIImage imageNamed:@"tab_item_timeline"];
@@ -162,10 +164,19 @@ static NSString* const DeckViewControllerIdentifier = @"WTRDeckViewController";
     return deckListPresenter;
 }
 
-+ (WTRTimeLineListPresenter *)buildTimelinePresenter {
-    WTRTimeLineListPresenter *timelinePresenter = [WTRTimeLineListPresenter new];
++ (WTRWeiboTimeLinePresenter *)buildWeiboTimelinePresenter {
+    WTRWeiboTimeLinePresenter *timelinePresenter = [WTRWeiboTimeLinePresenter new];
+    timelinePresenter.weiboInteractor = [WTRWeiboManagerInteractor new];
+    timelinePresenter.weiboInteractor.delegate = timelinePresenter;
+    
     return timelinePresenter;
 }
 
++ (WTRTwitterTimelinePresenter *)buildTwitterTimelinePresenter {
+    WTRTwitterTimelinePresenter *twitterTimelinePresenter = [WTRTwitterTimelinePresenter new];
+    twitterTimelinePresenter.twitterInteractor = [WTRTwitterManagerInteractor new];
+    twitterTimelinePresenter.twitterInteractor.delegate = twitterTimelinePresenter;
+    return twitterTimelinePresenter;
+}
 
 @end

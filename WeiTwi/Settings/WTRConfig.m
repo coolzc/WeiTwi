@@ -9,6 +9,13 @@
 #import "WTRConfig.h"
 
 NSString *const ThirdPartyServiceFlurryToken = @"GV2FC72YXDJZY2NTW5X7"; // Test
+NSString *const WeiboAppKey = @"1425082483";
+NSString *const kRedirectURI = @"https://api.weibo.com/oauth2/default.html";
+
+//weibo demo
+//NSString *const kRedirectURI = @"http://www.sina.com";
+//NSString *const WeiboAppKey = @"2045436852";
+
 //NSString *const ThirdPartyServiceFlurryToken = @"CFYYJJWFQMCR2MTRW8K9"; // Prod
 
 //NSString *const ParamKeyCardInfo = @"ParamCardInfo";

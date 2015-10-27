@@ -8,8 +8,11 @@
 
 #import "AppDelegate.h"
 #import "WTRWireframe.h"
-
+#import "WTRWeiboManagerInteractor.h"
+#import "WTRConfig.h"
 @interface AppDelegate ()
+
+@property (nonatomic, strong) WTRWeiboManagerInteractor *weiboManagerInteractor;
 
 @end
 
@@ -17,7 +20,11 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [WeiboSDK enableDebugMode:YES];
+    [WeiboSDK registerApp:WeiboAppKey];
+    
     // Override point for customization after application launch.
+    self.weiboManagerInteractor = [WTRWeiboManagerInteractor new];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = [WTRWireframe entryScreen];
     [self.window makeKeyAndVisible];
@@ -45,5 +52,16 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    NSLog(@"openURL:%@",url);
+    return [WeiboSDK handleOpenURL:url delegate:self.weiboManagerInteractor];
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    NSLog(@"handleOpenURL:%@",url);
+    return [WeiboSDK handleOpenURL:url delegate:self.weiboManagerInteractor];
+}
+
 
 @end
