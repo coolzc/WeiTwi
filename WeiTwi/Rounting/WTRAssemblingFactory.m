@@ -8,7 +8,7 @@
 
 #import "WTRAssemblingFactory.h"
 #import "UIStoryboard+WeiTwi.h"
-
+#import "AppDelegate.h"
 #import "WTRSplashScreenViewController.h"
 #import "WTRTimeLineViewController.h"
 #import "WTRMessageViewController.h"
@@ -73,7 +73,7 @@ static NSString* const DeckViewControllerIdentifier = @"WTRDeckViewController";
 //    CurrentTransitionDelegate = [WTRTransitionDelegate delegateForPresentFrom:WTRTransitionFromTop viewController:centerViewController];
 //    centerViewController.transitioningDelegate = CurrentTransitionDelegate;
 //    
-    NSLog(@"initial timeline:viewcontrollers in navigationviewcontroller count:%lu",[timelineNav.navigationController.viewControllers count]);
+    NSLog(@"initial timeline:viewcontrollers in navigationviewcontroller count:%u",[timelineNav.navigationController.viewControllers count]);
 
     return centerViewController;
 }
@@ -81,7 +81,10 @@ static NSString* const DeckViewControllerIdentifier = @"WTRDeckViewController";
 + (WTRBaseViewController *)assembleTimelineView {
     WTRTimeLineViewController *viewController = [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:TimeLineViewController];
     viewController.navigationPresenter = [self buildNavigationPresenter];
+    
     viewController.weiboTimelineListPresenter = [self buildWeiboTimelinePresenter];
+    viewController.weiboTimelineListPresenter.weiboTimelineDisplay = viewController;
+    
     viewController.twitterTimelinePresenter = [self buildTwitterTimelinePresenter];
     
     viewController.title = NSLocalizedString(@"tab-bar-item-timeline", nil);
@@ -167,6 +170,8 @@ static NSString* const DeckViewControllerIdentifier = @"WTRDeckViewController";
 + (WTRWeiboTimeLinePresenter *)buildWeiboTimelinePresenter {
     WTRWeiboTimeLinePresenter *timelinePresenter = [WTRWeiboTimeLinePresenter new];
     timelinePresenter.weiboInteractor = [WTRWeiboManagerInteractor new];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    appDelegate.weiboSDKDelegate.delegate = timelinePresenter.weiboInteractor;
     timelinePresenter.weiboInteractor.delegate = timelinePresenter;
     
     return timelinePresenter;

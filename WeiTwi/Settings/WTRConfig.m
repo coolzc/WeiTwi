@@ -9,10 +9,16 @@
 #import "WTRConfig.h"
 
 NSString *const ThirdPartyServiceFlurryToken = @"GV2FC72YXDJZY2NTW5X7"; // Test
+//weibo
 NSString *const WeiboAppKey = @"1425082483";
 NSString *const kRedirectURI = @"https://api.weibo.com/oauth2/default.html";
+//twitter
+NSString *const ConsumerKey = @"C3SleTImiuZn5OfoDieHyoonJ";
+NSString *const ConsumerSecret = @"oqXgij1sz9ejPaSZ53KFfj92X9lwQsQvQLfPNUnm3Rd2bdcDaP";
 
-//weibo demo
+NSString *const SettingKeyLastWeiboContentUpdateTimestamp = @"timestamp.last.update.weibo.content";
+
+//weibo sina demo
 //NSString *const kRedirectURI = @"http://www.sina.com";
 //NSString *const WeiboAppKey = @"2045436852";
 
@@ -50,5 +56,4 @@ NSString *const kRedirectURI = @"https://api.weibo.com/oauth2/default.html";
 //NSString *const UserDefaultesKeyIntroSkip = @"flag.intro.skip";
 //NSString *const UserDefaultesKeySelectionSkip = @"flag.selection.skip";
 
-NSString *const SettingKeyLastWeiboContentUpdateTimestamp = @"timestamp.last.update.weibo.content";
 

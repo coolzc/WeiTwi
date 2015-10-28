@@ -51,6 +51,7 @@
 
 - (void)weiboServiceDidFinishRequestWithResponse:(id)responseObject {
     self.timelineInfo = responseObject;
+    [self.weiboTimelineDisplay displayWeiboTimeline:responseObject];
     NSLog(@"weibo status:%@",responseObject);
 }
 

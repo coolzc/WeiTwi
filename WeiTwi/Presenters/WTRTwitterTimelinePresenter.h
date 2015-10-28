@@ -8,9 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "WTRTwitterManagerInteractor.h"
-
-@interface WTRTwitterTimelinePresenter : NSObject <WTRTwitterManagerDelegate>
+#import "WTRTwitterTimelineDisplayInterface.h"
+#import "WTRBasePresenter.h"
+@interface WTRTwitterTimelinePresenter : WTRBasePresenter <WTRTwitterManagerDelegate>
 
 @property (nonatomic, strong) WTRTwitterManagerInteractor *twitterInteractor;
+@property (nonatomic, weak) id<WTRTwitterTimelineDisplayInterface> twitterTimelineDisplay;
+
+-(void)logInTwitter;
 
 @end

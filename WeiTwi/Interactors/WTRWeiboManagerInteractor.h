@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "WeiboSDK.h"
+#import "WTRWeiboSDKDelegate.h"
 
 typedef enum {
     WTRWeiboRequestSSO,
@@ -23,12 +24,11 @@ typedef enum {
 
 @protocol WTRWeiboManagerDelegate;
 
-@interface WTRWeiboManagerInteractor : NSObject <WeiboSDKDelegate>
+@interface WTRWeiboManagerInteractor : NSObject <WeiboUserInfoDelegate>
 
 @property (nonatomic, strong) NSString *wbtoken;
-@property (strong, nonatomic) NSString *wbRefreshToken;
+@property (nonatomic, strong) NSString *wbRefreshToken;
 @property (nonatomic, strong) NSString* wbCurrentUserID;
-
 @property (nonatomic, weak) id<WTRWeiboManagerDelegate> delegate;
 
 + (id)weiboInteractorWithDeleate:(id <WTRWeiboManagerDelegate>)delegate;

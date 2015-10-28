@@ -14,20 +14,16 @@
 #import "WeiboSDK.h"
 #import "WTRPageMessenger.h"
 #import "MMDrawerBarButtonItem.h"
+
 //twitter
 static NSString *const TwitterCellReuseIdentifier = @"TwitterCellReusedId";
-static NSString *const ConsumerKey = @"C3SleTImiuZn5OfoDieHyoonJ";
-static NSString *const ConsumerSecret = @"oqXgij1sz9ejPaSZ53KFfj92X9lwQsQvQLfPNUnm3Rd2bdcDaP";
-//weibo
-static NSString *const WeiboAppKey = @"1425082483";
-static NSString *const WeiboAppSecret = @"2d3f9fcf083316cc12066edae8ffc408";
 
 typedef void (^accountChooserBlock_t)(ACAccount *account, NSString *errorMessage); // don't bother with NSError for that
 @interface WTRTimeLineViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) NSMutableArray* twitterFeed;
-@property (nonatomic, strong) NSMutableArray* weiboFeed;
-@property (nonatomic, strong) NSMutableArray* tableSoucreFeed;
+@property (nonatomic, strong) NSArray* twitterFeed;
+@property (nonatomic, strong) NSArray* weiboFeed;
+@property (nonatomic, strong) NSArray* tableSoucreFeed;
 @property (nonatomic, strong) STTwitterAPI *twitter;
 @property (nonatomic, strong) NSArray *iOSAccounts;
 @property (nonatomic, strong) accountChooserBlock_t accountChooserBlock;
@@ -41,10 +37,11 @@ typedef void (^accountChooserBlock_t)(ACAccount *account, NSString *errorMessage
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configureView];
+    [self configureProperties];
 }
 
 - (NSArray *)presenters {
-   return @[self.navigationPresenter, self.timelineListPresenter];
+   return @[self.navigationPresenter, self.weiboTimelineListPresenter, self.twitterTimelinePresenter];
 }
 
 #pragma mark - UITableViewDataSource
@@ -59,9 +56,7 @@ typedef void (^accountChooserBlock_t)(ACAccount *account, NSString *errorMessage
         [cell updateCellContent:@"first cell"];
     }
 
-    if (self.weiboFeed) {
-        [cell updateCellContent:@""];
-    } else {
+    if ([self.tableSoucreFeed count]) {
         NSDictionary *t = self.tableSoucreFeed[indexPath.row];
         [cell updateCellContent:t[@"text"]];
     }
@@ -69,20 +64,47 @@ typedef void (^accountChooserBlock_t)(ACAccount *account, NSString *errorMessage
     return cell;
 }
 
+#pragma mark - WTRTwitterTimelineDisplayInterface
+
+- (void)displayTwtitterTimeline:(NSArray *)timeline {
+    self.twitterFeed = timeline;
+}
+
+- (void)displayWeiboTimeline:(NSArray *)timeline {
+    self.weiboFeed = timeline;
+    self.tableSoucreFeed = self.weiboFeed;
+    [self.tableView reloadData];
+}
+
 #pragma mark - Action
 
 - (IBAction)loginWeiboButtonTouchUpInside:(id)sender {
-    [self.timelineListPresenter loginWeibo];
+    if (self.weiboTwitterSwitch.on) {
+        [self.weiboTimelineListPresenter loginWeibo];
+    } else {
+        
+    }
 }
 
 - (IBAction)timelineButtonTouchUpInside:(id)sender {
-    [self.timelineListPresenter viewDetailOfTimelineWeibo];
+    [self.weiboTimelineListPresenter viewDetailOfTimelineWeibo];
+}
+- (IBAction)weiboTwitterSwitchValueChanged:(id)sender {
 }
 
 #pragma mark - Private Methods
 
 - (void)configureView {
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
+}
 
+- (void)configureProperties {
+    self.twitterFeed = [NSArray new];
+    self.weiboFeed = [NSArray new];
+    self.tableSoucreFeed = [NSArray new];
+    [self.tableView registerNib:[UINib nibWithNibName:@"WTRTwitterCell" bundle:nil] forCellReuseIdentifier:TwitterCellReuseIdentifier];
 }
 
 @end

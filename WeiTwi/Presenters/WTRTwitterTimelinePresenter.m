@@ -10,4 +10,12 @@
 
 @implementation WTRTwitterTimelinePresenter
 
+- (void)logInTwitter {
+    [self.twitterInteractor sendRequest:WTRTwitterRequestLogin];
+}
+
+- (void)twitterServiceDidFinishRequestWithResponse:(id)responseObject {
+    [self.twitterTimelineDisplay displayTwtitterTimeline:responseObject];
+}
+
 @end

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "917C77FA7180EF652A1F48DA"
+               BlueprintIdentifier = "0D66C08A65BEA0D00AF07131"
                BuildableName = "libPods-WeiTwi.a"
                BlueprintName = "Pods-WeiTwi"
                ReferencedContainer = "container:Pods.xcodeproj">

@@ -25,7 +25,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
-  - STTwitter
+  - STTwitter (~> 0.2.2)
   - WeiboSDK (from `https://github.com/sinaweibosdk/weibo_ios_sdk.git`)
 
 EXTERNAL SOURCES:

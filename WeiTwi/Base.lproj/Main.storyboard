@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mz6-WV-iym">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mz6-WV-iym" userLabel="Top View">
                                 <rect key="frame" x="0.0" y="64" width="600" height="80"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="01Y-PJ-M7d">
@@ -93,6 +93,13 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uR7-Je-hl8">
+                                        <rect key="frame" x="551" y="0.0" width="51" height="31"/>
+                                        <animations/>
+                                        <connections>
+                                            <action selector="weiboTwitterSwitchValueChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="o29-EL-qwW"/>
+                                        </connections>
+                                    </switch>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -106,7 +113,9 @@
                                     <constraint firstAttribute="bottom" secondItem="wtk-jJ-feV" secondAttribute="bottom" id="NGN-so-To0"/>
                                     <constraint firstItem="Fe7-qK-TQn" firstAttribute="top" secondItem="mz6-WV-iym" secondAttribute="top" constant="8" id="NIK-Ta-Hz6"/>
                                     <constraint firstAttribute="height" constant="80" id="Umd-f4-lkK"/>
+                                    <constraint firstItem="uR7-Je-hl8" firstAttribute="top" secondItem="mz6-WV-iym" secondAttribute="top" id="eQw-xD-m7H"/>
                                     <constraint firstItem="wtk-jJ-feV" firstAttribute="leading" secondItem="01Y-PJ-M7d" secondAttribute="trailing" id="lUW-2N-ymB"/>
+                                    <constraint firstAttribute="trailing" secondItem="uR7-Je-hl8" secondAttribute="trailing" id="mez-gH-Shg"/>
                                     <constraint firstItem="Fe7-qK-TQn" firstAttribute="leading" secondItem="01Y-PJ-M7d" secondAttribute="trailing" id="rwY-IF-Jd6"/>
                                     <constraint firstAttribute="centerY" secondItem="01Y-PJ-M7d" secondAttribute="centerY" id="uJt-7D-mNS"/>
                                     <constraint firstAttribute="trailing" secondItem="0wc-qP-U64" secondAttribute="trailing" id="uTh-Kr-fQt"/>
@@ -148,6 +157,7 @@
                         <outlet property="loginStatusLabel" destination="Fe7-qK-TQn" id="Tpu-lN-5Il"/>
                         <outlet property="tableView" destination="lSg-kt-twH" id="MgB-J4-diy"/>
                         <outlet property="timelineStatusLabel" destination="wtk-jJ-feV" id="8rS-3D-VsX"/>
+                        <outlet property="weiboTwitterSwitch" destination="uR7-Je-hl8" id="wAr-bU-cSj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
