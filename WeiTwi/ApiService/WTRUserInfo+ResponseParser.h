@@ -1,9 +1,9 @@
 
 
 
-#import "WTRUserInfo.h"
+#import "WTRWeiboUserInfo.h"
 
-@interface WTRUserInfo (ResponseParser)
+@interface WTRWeiboUserInfo (ResponseParser)
 
 + (instancetype)infoFromDictionaryData:(NSDictionary *)data;
 

@@ -8,7 +8,7 @@
 
 
 #import "WTRTimeLineViewController.h"
-#import "WTRTwitterCell.h"
+#import "WTRTimelineCell.h"
 #import "STTwitter.h"
 #import "WTRWireframe.h"
 #import "WeiboSDK.h"
@@ -16,7 +16,7 @@
 #import "MMDrawerBarButtonItem.h"
 
 //twitter
-static NSString *const TwitterCellReuseIdentifier = @"TwitterCellReusedId";
+static NSString *const TimelineCellReuseIdentifier = @"TimelineCellReusedId";
 
 typedef void (^accountChooserBlock_t)(ACAccount *account, NSString *errorMessage); // don't bother with NSError for that
 @interface WTRTimeLineViewController () <UITableViewDataSource, UITableViewDelegate>
@@ -51,14 +51,11 @@ typedef void (^accountChooserBlock_t)(ACAccount *account, NSString *errorMessage
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    WTRTwitterCell *cell = [tableView dequeueReusableCellWithIdentifier:TwitterCellReuseIdentifier forIndexPath:indexPath];
-    if(0 == indexPath.row) {
-        [cell updateCellContent:@"first cell"];
-    }
+    WTRTimelineCell *cell = [tableView dequeueReusableCellWithIdentifier:TimelineCellReuseIdentifier forIndexPath:indexPath];
 
     if ([self.tableSoucreFeed count]) {
-        NSDictionary *t = self.tableSoucreFeed[indexPath.row];
-        [cell updateCellContent:t[@"text"]];
+        NSDictionary *timelineContent = self.tableSoucreFeed[indexPath.row];
+        [cell updateCellContent:timelineContent];
     }
     
     return cell;
@@ -97,14 +94,13 @@ typedef void (^accountChooserBlock_t)(ACAccount *account, NSString *errorMessage
 - (void)configureView {
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
+    [self.tableView registerNib:[UINib nibWithNibName:@"WTRTimelineCell" bundle:nil] forCellReuseIdentifier:TimelineCellReuseIdentifier];
 }
 
 - (void)configureProperties {
     self.twitterFeed = [NSArray new];
     self.weiboFeed = [NSArray new];
     self.tableSoucreFeed = [NSArray new];
-    [self.tableView registerNib:[UINib nibWithNibName:@"WTRTwitterCell" bundle:nil] forCellReuseIdentifier:TwitterCellReuseIdentifier];
 }
 
 @end

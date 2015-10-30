@@ -9,7 +9,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MagicalRecord.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-WeiTwi.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -27,12 +37,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3DD44342DE466226A935B2F6CBB51949</key>
+		<key>5352D432641F0656C90741034E32F31E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8024C85E78B91C652E0CBB4B5861CDBF</key>
+		<key>5ABF419678572323CCE8E74AD8B91A88</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>83CFB1FEB8C6467655912BB5CE6D9FAB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CE7E1649667E8277CE4C62135181A821</key>
 		<dict>
 			<key>primary</key>
 			<true/>

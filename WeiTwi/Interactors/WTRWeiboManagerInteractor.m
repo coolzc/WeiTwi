@@ -10,14 +10,17 @@
 #import "WBHttprequest.h"
 #import "WTRConfig.h"
 #import "WTRWeiboSDKDelegate.h"
+#import "WTRAuthorizedUserInfo.h"
 
 static NSString *const BaseUrl = @"https://api.weibo.com/2";
-static NSString *const HomeTimelinePath = @"/statuses/public_timeline.json";
+static NSString *const HomeTimelinePath = @"/statuses/home_timeline.json";
+static NSString *const UserTimelinPath = @"/statuses/user_timeline.json";
 
 @interface WTRWeiboManagerInteractor ()
 
 @property (nonatomic, strong) NSArray *receivedData;
 @property (nonatomic, strong) NSString *url;
+@property (nonatomic, strong) WTRAuthorizedUserInfo *authorizedUserInfo;
 
 @end
 
@@ -71,7 +74,7 @@ static NSString *const HomeTimelinePath = @"/statuses/public_timeline.json";
     [alert show];
 }
 
-#pragma mark - WeiboUserInfoDelegate
+#pragma mark - WeiboUserAuthorizedDelegate
 
 - (void)authorizedWeiboUserToken:(NSString *)wbToken wbRefreshToken:(NSString *)wbRefreshToken wbCurrentUserID:(NSString *)wbCurrentUserID {
     self.wbtoken = wbToken;
@@ -97,6 +100,10 @@ static NSString *const HomeTimelinePath = @"/statuses/public_timeline.json";
 }
 
 #pragma mark - Private Methods
+
+- (void)saveAuthorizedUser {
+    
+}
 
 - (void)ssoAuthorizedRequest {
     WBAuthorizeRequest *request = [WBAuthorizeRequest request];
@@ -125,6 +132,8 @@ static NSString *const HomeTimelinePath = @"/statuses/public_timeline.json";
                     }
                 }
             }];
-    }
+}
+
+
 
 @end

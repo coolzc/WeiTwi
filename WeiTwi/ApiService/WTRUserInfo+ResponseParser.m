@@ -3,14 +3,14 @@
 #import "WTRUserInfo+ResponseParser.h"
 #import "NSDictionary+WTRUtility.h"
 
-@implementation WTRUserInfo (ResponseParser)
+@implementation WTRWeiboUserInfo (ResponseParser)
 
 + (instancetype)infoFromDictionaryData:(NSDictionary *)data {
-  WTRUserInfo *userInfo = [WTRUserInfo new];
-  userInfo.email = [data stringForKey:@"email"];
+  WTRWeiboUserInfo *userInfo = [WTRWeiboUserInfo new];
+  userInfo.userId = [data stringForKey:@"email"];
   userInfo.userId = [data stringForKey:@"id"];
-  userInfo.ttl = [data stringForKey:@"ttl"];
-  userInfo.createdTime = [data stringForKey:@"created"];
+  userInfo.userName = [data stringForKey:@"ttl"];
+  userInfo.userScreenName = [data stringForKey:@"created"];
   
   return userInfo;
 }

@@ -2,9 +2,11 @@
 platform :ios, '8.0'
 
 target 'WeiTwi' do
-  pod 'STTwitter', '~> 0.2.2'
+  pod 'STTwitter'
   pod 'AFNetworking'
   pod "WeiboSDK", :git => "https://github.com/sinaweibosdk/weibo_ios_sdk.git"
+  pod 'SDWebImage', '~>3.7'
+  pod 'MagicalRecord'
 end
 
 target 'WeiTwiTests' do

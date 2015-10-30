@@ -2,7 +2,7 @@
 #import "WTRApiRequest+BuildFactory.h"
 #import "NSDictionary+WTRUtility.h"
 #import "WTRUserInfo+ResponseParser.h"
-#import "WTRUserInfo.h"
+#import "WTRWeiboUserInfo.h"
 
 static NSString *const CreateAccountPath = @"/users";
 static NSString *const LoginPath = @"/users/login";
@@ -18,7 +18,7 @@ NSString *const APIServerHost = @"https://api.weibo.com/2";
   NSDictionary *data = @{@"email" : account, @"password" : password};
   request.body = [self rawJSONDataOfObject:data];
   request.responseParser = ^id(NSDictionary *data) {
-    return [WTRUserInfo infoFromDictionaryData:data];
+    return [WTRWeiboUserInfo infoFromDictionaryData:data];
   };
   return request;
 }
@@ -28,7 +28,7 @@ NSString *const APIServerHost = @"https://api.weibo.com/2";
   NSDictionary *data = @{@"email" : email, @"password" : password};
   request.body = [self rawJSONDataOfObject:data];
   request.responseParser = ^id(NSDictionary *data) {
-    return [WTRUserInfo infoFromDictionaryData:data];
+    return [WTRWeiboUserInfo infoFromDictionaryData:data];
   };
   return request;
 }

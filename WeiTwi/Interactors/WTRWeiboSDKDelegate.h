@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "WeiboSDK.h"
 
-@protocol WeiboUserInfoDelegate;
+@protocol WeiboUserAuthorizedDelegate;
 
 @interface WTRWeiboSDKDelegate : NSObject <WeiboSDKDelegate>
 
@@ -17,11 +17,11 @@
 @property (nonatomic, strong) NSString *wbRefreshToken;
 @property (nonatomic, strong) NSString* wbCurrentUserID;
 
-@property (nonatomic, weak) id<WeiboUserInfoDelegate> delegate;
+@property (nonatomic, weak) id<WeiboUserAuthorizedDelegate> delegate;
 
 @end
 
-@protocol WeiboUserInfoDelegate <NSObject>
+@protocol WeiboUserAuthorizedDelegate <NSObject>
 
 - (void)authorizedWeiboUserToken:(NSString *)wbToken wbRefreshToken:(NSString *)wbRefreshToken wbCurrentUserID:(NSString *)wbCurrentUserID;
 
