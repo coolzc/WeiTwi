@@ -39,6 +39,10 @@
 		37AA3FE91BCB7F1A00F1133D /* NSBundle+WeiTwi.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA3FE81BCB7F1A00F1133D /* NSBundle+WeiTwi.m */; };
 		37AA3FEC1BCB7F9900F1133D /* UINib+WeiTwi.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA3FEB1BCB7F9900F1133D /* UINib+WeiTwi.m */; };
 		37B5AFAF1BE475E000E6F97A /* WTRWeiboGeoInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B5AFAE1BE475E000E6F97A /* WTRWeiboGeoInfo.m */; };
+		37B5AFB31BE4BD9A00E6F97A /* WTRAuthorizedUser+DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B5AFB21BE4BD9A00E6F97A /* WTRAuthorizedUser+DataManager.m */; };
+		37B5AFB71BE4E8B500E6F97A /* WTRWeiboUser+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B5AFB61BE4E8B500E6F97A /* WTRWeiboUser+Utility.m */; };
+		37B5AFBA1BE4E9C400E6F97A /* WTRAuthorizedUser+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B5AFB91BE4E9C400E6F97A /* WTRAuthorizedUser+Utility.m */; };
+		37B5AFBD1BE502CA00E6F97A /* WTRWeiboStatus+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B5AFBC1BE502CA00E6F97A /* WTRWeiboStatus+Utility.m */; };
 		37BCAEE01BC6756700CB2D14 /* UIStoryboard+WeiTwi.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BCAEDF1BC6756700CB2D14 /* UIStoryboard+WeiTwi.m */; };
 		37C935E51B48D4F700160224 /* WTRApiRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C935DC1B48D4F700160224 /* WTRApiRequest.m */; };
 		37C935E61B48D4F700160224 /* WTRApiRequest+BuildFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C935DE1B48D4F700160224 /* WTRApiRequest+BuildFactory.m */; };
@@ -158,6 +162,14 @@
 		37AE551C1B7DDAA500681904 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		37B5AFAD1BE475E000E6F97A /* WTRWeiboGeoInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRWeiboGeoInfo.h; path = DTOs/WTRWeiboGeoInfo.h; sourceTree = "<group>"; };
 		37B5AFAE1BE475E000E6F97A /* WTRWeiboGeoInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRWeiboGeoInfo.m; path = DTOs/WTRWeiboGeoInfo.m; sourceTree = "<group>"; };
+		37B5AFB11BE4BD9A00E6F97A /* WTRAuthorizedUser+DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WTRAuthorizedUser+DataManager.h"; path = "Models/WTRAuthorizedUser+DataManager.h"; sourceTree = "<group>"; };
+		37B5AFB21BE4BD9A00E6F97A /* WTRAuthorizedUser+DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "WTRAuthorizedUser+DataManager.m"; path = "Models/WTRAuthorizedUser+DataManager.m"; sourceTree = "<group>"; };
+		37B5AFB51BE4E8B500E6F97A /* WTRWeiboUser+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WTRWeiboUser+Utility.h"; path = "DTOs/WTRWeiboUser+Utility.h"; sourceTree = "<group>"; };
+		37B5AFB61BE4E8B500E6F97A /* WTRWeiboUser+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "WTRWeiboUser+Utility.m"; path = "DTOs/WTRWeiboUser+Utility.m"; sourceTree = "<group>"; };
+		37B5AFB81BE4E9C400E6F97A /* WTRAuthorizedUser+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WTRAuthorizedUser+Utility.h"; path = "Models/WTRAuthorizedUser+Utility.h"; sourceTree = "<group>"; };
+		37B5AFB91BE4E9C400E6F97A /* WTRAuthorizedUser+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "WTRAuthorizedUser+Utility.m"; path = "Models/WTRAuthorizedUser+Utility.m"; sourceTree = "<group>"; };
+		37B5AFBB1BE502CA00E6F97A /* WTRWeiboStatus+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WTRWeiboStatus+Utility.h"; path = "Models/WTRWeiboStatus+Utility.h"; sourceTree = "<group>"; };
+		37B5AFBC1BE502CA00E6F97A /* WTRWeiboStatus+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "WTRWeiboStatus+Utility.m"; path = "Models/WTRWeiboStatus+Utility.m"; sourceTree = "<group>"; };
 		37BCAEDF1BC6756700CB2D14 /* UIStoryboard+WeiTwi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIStoryboard+WeiTwi.m"; path = "Rounting/UIStoryboard+WeiTwi.m"; sourceTree = "<group>"; };
 		37C935DB1B48D4F700160224 /* WTRApiRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRApiRequest.h; path = ApiService/WTRApiRequest.h; sourceTree = "<group>"; };
 		37C935DC1B48D4F700160224 /* WTRApiRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRApiRequest.m; path = ApiService/WTRApiRequest.m; sourceTree = "<group>"; };
@@ -579,6 +591,26 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		37B5AFB01BE48DC300E6F97A /* Data Managers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Data Managers";
+			sourceTree = "<group>";
+		};
+		37B5AFB41BE4E86600E6F97A /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				37B5AFB51BE4E8B500E6F97A /* WTRWeiboUser+Utility.h */,
+				37B5AFB61BE4E8B500E6F97A /* WTRWeiboUser+Utility.m */,
+				37B5AFB81BE4E9C400E6F97A /* WTRAuthorizedUser+Utility.h */,
+				37B5AFB91BE4E9C400E6F97A /* WTRAuthorizedUser+Utility.m */,
+				37B5AFBB1BE502CA00E6F97A /* WTRWeiboStatus+Utility.h */,
+				37B5AFBC1BE502CA00E6F97A /* WTRWeiboStatus+Utility.m */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
 		37C935DA1B48D4DF00160224 /* ApiService */ = {
 			isa = PBXGroup;
 			children = (
@@ -614,6 +646,7 @@
 				37C935F91B4918A700160224 /* WTRWeiboStatusInfo.m */,
 				37B5AFAD1BE475E000E6F97A /* WTRWeiboGeoInfo.h */,
 				37B5AFAE1BE475E000E6F97A /* WTRWeiboGeoInfo.m */,
+				37B5AFB01BE48DC300E6F97A /* Data Managers */,
 			);
 			name = DTOs;
 			sourceTree = "<group>";
@@ -644,7 +677,24 @@
 			isa = PBXGroup;
 			children = (
 				37F6D0CD1BE33C6E00E1E611 /* WeiTwi.xcdatamodeld */,
+				37F6D0D11BE33FEC00E1E611 /* WTRAuthorizedUser.h */,
+				37F6D0D21BE33FEC00E1E611 /* WTRAuthorizedUser.m */,
+				37F6D0D41BE3412300E1E611 /* WTRWeiboUser.h */,
+				37F6D0D51BE3412300E1E611 /* WTRWeiboUser.m */,
+				37F6D0D71BE35C5800E1E611 /* WTRWeiboStatus.h */,
+				37F6D0D81BE35C5800E1E611 /* WTRWeiboStatus.m */,
+				37F6D0DD1BE3643800E1E611 /* WTRWeiboComment.h */,
+				37F6D0DE1BE3643800E1E611 /* WTRWeiboComment.m */,
+				37F6D0E01BE365CF00E1E611 /* WTRWeiboPrivacy.h */,
+				37F6D0E11BE365CF00E1E611 /* WTRWeiboPrivacy.m */,
+				37F6D0E31BE365ED00E1E611 /* WTRWeiboRemind.h */,
+				37F6D0E41BE365ED00E1E611 /* WTRWeiboRemind.m */,
+				37F6D0E61BE3660400E1E611 /* WTRWeiboUrlShort.h */,
+				37F6D0E71BE3660400E1E611 /* WTRWeiboUrlShort.m */,
+				37F6D0DA1BE361F700E1E611 /* WTRWeiboGeo.h */,
+				37F6D0DB1BE361F700E1E611 /* WTRWeiboGeo.m */,
 				37F6D0D01BE33FC000E1E611 /* Managed Objects */,
+				37B5AFB41BE4E86600E6F97A /* Utility */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -668,22 +718,8 @@
 		37F6D0D01BE33FC000E1E611 /* Managed Objects */ = {
 			isa = PBXGroup;
 			children = (
-				37F6D0D11BE33FEC00E1E611 /* WTRAuthorizedUser.h */,
-				37F6D0D21BE33FEC00E1E611 /* WTRAuthorizedUser.m */,
-				37F6D0D41BE3412300E1E611 /* WTRWeiboUser.h */,
-				37F6D0D51BE3412300E1E611 /* WTRWeiboUser.m */,
-				37F6D0D71BE35C5800E1E611 /* WTRWeiboStatus.h */,
-				37F6D0D81BE35C5800E1E611 /* WTRWeiboStatus.m */,
-				37F6D0DD1BE3643800E1E611 /* WTRWeiboComment.h */,
-				37F6D0DE1BE3643800E1E611 /* WTRWeiboComment.m */,
-				37F6D0E01BE365CF00E1E611 /* WTRWeiboPrivacy.h */,
-				37F6D0E11BE365CF00E1E611 /* WTRWeiboPrivacy.m */,
-				37F6D0E31BE365ED00E1E611 /* WTRWeiboRemind.h */,
-				37F6D0E41BE365ED00E1E611 /* WTRWeiboRemind.m */,
-				37F6D0E61BE3660400E1E611 /* WTRWeiboUrlShort.h */,
-				37F6D0E71BE3660400E1E611 /* WTRWeiboUrlShort.m */,
-				37F6D0DA1BE361F700E1E611 /* WTRWeiboGeo.h */,
-				37F6D0DB1BE361F700E1E611 /* WTRWeiboGeo.m */,
+				37B5AFB11BE4BD9A00E6F97A /* WTRAuthorizedUser+DataManager.h */,
+				37B5AFB21BE4BD9A00E6F97A /* WTRAuthorizedUser+DataManager.m */,
 			);
 			name = "Managed Objects";
 			sourceTree = "<group>";
@@ -853,12 +889,15 @@
 				37657CF31B45660500E37CF8 /* WTRTimelineCell.m in Sources */,
 				37C935FA1B4918A700160224 /* WTRWeiboStatusInfo.m in Sources */,
 				37C935FD1B491D7500160224 /* WTRWeiboStatuses+ResponseParser.m in Sources */,
+				37B5AFB31BE4BD9A00E6F97A /* WTRAuthorizedUser+DataManager.m in Sources */,
 				37223AEE1BC8BEE80090AF3C /* WTRConfig.m in Sources */,
+				37B5AFBD1BE502CA00E6F97A /* WTRWeiboStatus+Utility.m in Sources */,
 				37C935F01B48DBB700160224 /* NSDictionary+WTRUtility.m in Sources */,
 				379101A31BD4B0DE00AC8E1C /* WTRDeckPresenter.m in Sources */,
 				37F514761BD8B4E700D151AF /* MMDrawerBarButtonItem.m in Sources */,
 				37CBF5EC1BD0B21800E01554 /* WTRTransitionDelegate.m in Sources */,
 				37C935E51B48D4F700160224 /* WTRApiRequest.m in Sources */,
+				37B5AFB71BE4E8B500E6F97A /* WTRWeiboUser+Utility.m in Sources */,
 				37F6D0CF1BE33C6E00E1E611 /* WeiTwi.xcdatamodeld in Sources */,
 				37F514771BD8B4E700D151AF /* MMDrawerController.m in Sources */,
 				37F6D0DC1BE361F700E1E611 /* WTRWeiboGeo.m in Sources */,
@@ -867,6 +906,7 @@
 				377CE1131B45417300C28A90 /* AppDelegate.m in Sources */,
 				37223AF21BC8C2C70090AF3C /* WTRBasePresenter.m in Sources */,
 				37C935EF1B48DBB700160224 /* NSString+WTRUtility.m in Sources */,
+				37B5AFBA1BE4E9C400E6F97A /* WTRAuthorizedUser+Utility.m in Sources */,
 				37C935E61B48D4F700160224 /* WTRApiRequest+BuildFactory.m in Sources */,
 				37CBF5F51BD0FC4100E01554 /* WTRSettingViewController.m in Sources */,
 				375BD3091BCCC3D300A3EF90 /* WTRDataSyncInteractor.m in Sources */,

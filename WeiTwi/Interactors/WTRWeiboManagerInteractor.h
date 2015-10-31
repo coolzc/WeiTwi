@@ -26,9 +26,6 @@ typedef enum {
 
 @interface WTRWeiboManagerInteractor : NSObject <WeiboUserAuthorizedDelegate>
 
-@property (nonatomic, strong) NSString *wbtoken;
-@property (nonatomic, strong) NSString *wbRefreshToken;
-@property (nonatomic, strong) NSString* wbCurrentUserID;
 @property (nonatomic, weak) id<WTRWeiboManagerDelegate> delegate;
 
 + (id)weiboInteractorWithDeleate:(id <WTRWeiboManagerDelegate>)delegate;

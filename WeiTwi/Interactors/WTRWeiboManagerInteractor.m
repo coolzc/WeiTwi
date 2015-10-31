@@ -10,7 +10,7 @@
 #import "WBHttprequest.h"
 #import "WTRConfig.h"
 #import "WTRWeiboSDKDelegate.h"
-#import "WTRAuthorizedUserInfo.h"
+#import "WTRAuthorizedUser+DataManager.h"
 
 static NSString *const BaseUrl = @"https://api.weibo.com/2";
 static NSString *const HomeTimelinePath = @"/statuses/home_timeline.json";
@@ -22,6 +22,7 @@ static NSString *const UserTimelinPath = @"/statuses/user_timeline.json";
 @property (nonatomic, strong) NSString *url;
 @property (nonatomic, strong) WTRAuthorizedUserInfo *authorizedUserInfo;
 
+
 @end
 
 @implementation WTRWeiboManagerInteractor
@@ -31,9 +32,7 @@ static NSString *const UserTimelinPath = @"/statuses/user_timeline.json";
     if (self) {
         _receivedData = [NSArray new];
         _url = [NSString new];
-        _wbRefreshToken = [NSString new];
-        _wbtoken = [NSString new];
-        _wbCurrentUserID = [NSString new];
+        _authorizedUserInfo = [WTRAuthorizedUserInfo new];
     }
     return self;
 }
@@ -77,9 +76,10 @@ static NSString *const UserTimelinPath = @"/statuses/user_timeline.json";
 #pragma mark - WeiboUserAuthorizedDelegate
 
 - (void)authorizedWeiboUserToken:(NSString *)wbToken wbRefreshToken:(NSString *)wbRefreshToken wbCurrentUserID:(NSString *)wbCurrentUserID {
-    self.wbtoken = wbToken;
-    self.wbCurrentUserID = wbCurrentUserID;
-    self.wbRefreshToken = wbRefreshToken;
+    self.authorizedUserInfo.wbtoken = wbToken;
+    self.authorizedUserInfo.wbCurrentUserID = wbCurrentUserID;
+    self.authorizedUserInfo.wbRefreshToken = wbRefreshToken;
+    [self saveAuthorizedUser];
 }
 
 #pragma mark - Public Methods
@@ -102,7 +102,7 @@ static NSString *const UserTimelinPath = @"/statuses/user_timeline.json";
 #pragma mark - Private Methods
 
 - (void)saveAuthorizedUser {
-    
+    [WTRAuthorizedUser saveLoginUserInfo:self.authorizedUserInfo completion:nil];
 }
 
 - (void)ssoAuthorizedRequest {
@@ -117,7 +117,7 @@ static NSString *const UserTimelinPath = @"/statuses/user_timeline.json";
 }
 
 - (void)homeTimelineRequest {
-    NSDictionary *dicFormat = @{@"source":WeiboAppKey,@"access_token":self.wbtoken,@"count":@"30"};
+    NSDictionary *dicFormat = @{@"source":WeiboAppKey,@"access_token":self.authorizedUserInfo.wbtoken,@"count":@"30"};
     [WBHttpRequest requestWithURL:self.url
                        httpMethod:@"GET"
                            params:dicFormat
