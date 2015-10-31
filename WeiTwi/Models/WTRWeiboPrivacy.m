@@ -6,9 +6,9 @@
 //  Copyright © 2015 XYZ. All rights reserved.
 //
 
-#import "WTRWeiboPrivacey.h"
+#import "WTRWeiboPrivacy.h"
 
-@implementation WTRWeiboPrivacey
+@implementation WTRWeiboPrivacy
 
 @dynamic  comment;
 @dynamic  geo;

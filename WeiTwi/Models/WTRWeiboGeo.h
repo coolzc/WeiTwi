@@ -20,5 +20,4 @@
 @property (nonatomic, retain) NSString *pinyin;
 @property (nonatomic, retain) NSString *more;
 
-
 @end

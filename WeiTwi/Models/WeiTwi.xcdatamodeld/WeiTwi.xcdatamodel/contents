@@ -5,7 +5,52 @@
         <attribute name="wbRefreshToken" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="wbtoken" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="WTRWeiboGeo" syncable="YES"/>
+    <entity name="WTRWeiboComment" syncable="YES">
+        <attribute name="commentId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="commentMid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="created_at" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="idstr" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="source" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WTRWeiboComment" syncable="YES"/>
+        <relationship name="status" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WTRWeiboStatus" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WTRWeiboUser" syncable="YES"/>
+    </entity>
+    <entity name="WTRWeiboGeo" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cityName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="more" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pinyin" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="province" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="provinceName" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="WTRWeiboPrivacy" syncable="YES">
+        <attribute name="badage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="geo" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="message" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mobile" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="realname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="webim" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="WTRWeiboRemind" syncable="YES">
+        <attribute name="badge" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="cmt" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="dm" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="follower" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="group" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="invite" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mentionCmt" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="mentionStatus" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="msgbox" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="notice" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="photo" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="privateGroup" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+    </entity>
     <entity name="WTRWeiboStatus" syncable="YES">
         <attribute name="attitudesCount" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="bmiddlePic" optional="YES" attributeType="String" syncable="YES"/>
@@ -27,6 +72,12 @@
         <relationship name="geo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WTRWeiboGeo" syncable="YES"/>
         <relationship name="retweetedStatus" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WTRWeiboStatus" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WTRAuthorizedUser" syncable="YES"/>
+    </entity>
+    <entity name="WTRWeiboUrlShort" syncable="YES">
+        <attribute name="result" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="urlLong" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="urlShort" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="WTRWeiboUser" syncable="YES">
         <attribute name="allowAllActMsg" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -55,7 +106,7 @@
         <attribute name="statusesCount" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="userDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="userIdstr" optional="YES" syncable="YES"/>
+        <attribute name="userIdstr" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userScreenName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="verified" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="verifiedReason" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -65,8 +116,12 @@
     </entity>
     <elements>
         <element name="WTRAuthorizedUser" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="WTRWeiboGeo" positionX="-36" positionY="144" width="128" height="180"/>
         <element name="WTRWeiboStatus" positionX="-54" positionY="135" width="128" height="345"/>
         <element name="WTRWeiboUser" positionX="-54" positionY="-9" width="128" height="540"/>
-        <element name="WTRWeiboGeo" positionX="-36" positionY="144" width="128" height="45"/>
+        <element name="WTRWeiboComment" positionX="-45" positionY="135" width="128" height="180"/>
+        <element name="WTRWeiboRemind" positionX="-36" positionY="144" width="128" height="240"/>
+        <element name="WTRWeiboUrlShort" positionX="-27" positionY="153" width="128" height="105"/>
+        <element name="WTRWeiboPrivacy" positionX="-18" positionY="162" width="128" height="150"/>
     </elements>
 </model>

@@ -8,7 +8,7 @@
 
 #import <CoreData/CoreData.h>
 
-@interface WTRWeiboPrivacey : NSManagedObject
+@interface WTRWeiboPrivacy : NSManagedObject
 
 @property (nonatomic, assign) NSInteger comment;
 @property (nonatomic, assign) NSInteger geo;

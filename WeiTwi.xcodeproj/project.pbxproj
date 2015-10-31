@@ -38,6 +38,7 @@
 		37A7ACBA1BCCB5CB00243B25 /* Generic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37A7ACB81BCCB5CB00243B25 /* Generic.storyboard */; };
 		37AA3FE91BCB7F1A00F1133D /* NSBundle+WeiTwi.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA3FE81BCB7F1A00F1133D /* NSBundle+WeiTwi.m */; };
 		37AA3FEC1BCB7F9900F1133D /* UINib+WeiTwi.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA3FEB1BCB7F9900F1133D /* UINib+WeiTwi.m */; };
+		37B5AFAF1BE475E000E6F97A /* WTRWeiboGeoInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 37B5AFAE1BE475E000E6F97A /* WTRWeiboGeoInfo.m */; };
 		37BCAEE01BC6756700CB2D14 /* UIStoryboard+WeiTwi.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BCAEDF1BC6756700CB2D14 /* UIStoryboard+WeiTwi.m */; };
 		37C935E51B48D4F700160224 /* WTRApiRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C935DC1B48D4F700160224 /* WTRApiRequest.m */; };
 		37C935E61B48D4F700160224 /* WTRApiRequest+BuildFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C935DE1B48D4F700160224 /* WTRApiRequest+BuildFactory.m */; };
@@ -47,8 +48,7 @@
 		37C935EF1B48DBB700160224 /* NSString+WTRUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C935EB1B48DBB700160224 /* NSString+WTRUtility.m */; };
 		37C935F01B48DBB700160224 /* NSDictionary+WTRUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C935EE1B48DBB700160224 /* NSDictionary+WTRUtility.m */; };
 		37C935F41B48E00300160224 /* WTRWeiboUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C935F31B48E00300160224 /* WTRWeiboUserInfo.m */; };
-		37C935F71B49020000160224 /* WTRWeiboFriendsTimeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C935F61B49020000160224 /* WTRWeiboFriendsTimeline.m */; };
-		37C935FA1B4918A700160224 /* WTRWeiboStatuses.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C935F91B4918A700160224 /* WTRWeiboStatuses.m */; };
+		37C935FA1B4918A700160224 /* WTRWeiboStatusInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C935F91B4918A700160224 /* WTRWeiboStatusInfo.m */; };
 		37C935FD1B491D7500160224 /* WTRWeiboStatuses+ResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C935FC1B491D7500160224 /* WTRWeiboStatuses+ResponseParser.m */; };
 		37CBF5E91BD0B20800E01554 /* WTRModalViewTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CBF5E81BD0B20800E01554 /* WTRModalViewTransition.m */; };
 		37CBF5EC1BD0B21800E01554 /* WTRTransitionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CBF5EB1BD0B21800E01554 /* WTRTransitionDelegate.m */; };
@@ -70,7 +70,7 @@
 		37F6D0D91BE35C5800E1E611 /* WTRWeiboStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F6D0D81BE35C5800E1E611 /* WTRWeiboStatus.m */; };
 		37F6D0DC1BE361F700E1E611 /* WTRWeiboGeo.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F6D0DB1BE361F700E1E611 /* WTRWeiboGeo.m */; };
 		37F6D0DF1BE3643800E1E611 /* WTRWeiboComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F6D0DE1BE3643800E1E611 /* WTRWeiboComment.m */; };
-		37F6D0E21BE365CF00E1E611 /* WTRWeiboPrivacey.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F6D0E11BE365CF00E1E611 /* WTRWeiboPrivacey.m */; };
+		37F6D0E21BE365CF00E1E611 /* WTRWeiboPrivacy.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F6D0E11BE365CF00E1E611 /* WTRWeiboPrivacy.m */; };
 		37F6D0E51BE365ED00E1E611 /* WTRWeiboRemind.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F6D0E41BE365ED00E1E611 /* WTRWeiboRemind.m */; };
 		37F6D0E81BE3660400E1E611 /* WTRWeiboUrlShort.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F6D0E71BE3660400E1E611 /* WTRWeiboUrlShort.m */; };
 		37FBE0EB1B46310D00813B36 /* WTRTimelineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37FBE0EA1B46310D00813B36 /* WTRTimelineCell.xib */; };
@@ -156,6 +156,8 @@
 		37AA3FEA1BCB7F9900F1133D /* UINib+WeiTwi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINib+WeiTwi.h"; path = "Rounting/UINib+WeiTwi.h"; sourceTree = "<group>"; };
 		37AA3FEB1BCB7F9900F1133D /* UINib+WeiTwi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINib+WeiTwi.m"; path = "Rounting/UINib+WeiTwi.m"; sourceTree = "<group>"; };
 		37AE551C1B7DDAA500681904 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		37B5AFAD1BE475E000E6F97A /* WTRWeiboGeoInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRWeiboGeoInfo.h; path = DTOs/WTRWeiboGeoInfo.h; sourceTree = "<group>"; };
+		37B5AFAE1BE475E000E6F97A /* WTRWeiboGeoInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRWeiboGeoInfo.m; path = DTOs/WTRWeiboGeoInfo.m; sourceTree = "<group>"; };
 		37BCAEDF1BC6756700CB2D14 /* UIStoryboard+WeiTwi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIStoryboard+WeiTwi.m"; path = "Rounting/UIStoryboard+WeiTwi.m"; sourceTree = "<group>"; };
 		37C935DB1B48D4F700160224 /* WTRApiRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRApiRequest.h; path = ApiService/WTRApiRequest.h; sourceTree = "<group>"; };
 		37C935DC1B48D4F700160224 /* WTRApiRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRApiRequest.m; path = ApiService/WTRApiRequest.m; sourceTree = "<group>"; };
@@ -173,10 +175,8 @@
 		37C935EE1B48DBB700160224 /* NSDictionary+WTRUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+WTRUtility.m"; path = "Tools/NSDictionary+WTRUtility.m"; sourceTree = "<group>"; };
 		37C935F21B48E00300160224 /* WTRWeiboUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRWeiboUserInfo.h; path = DTOs/WTRWeiboUserInfo.h; sourceTree = "<group>"; };
 		37C935F31B48E00300160224 /* WTRWeiboUserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRWeiboUserInfo.m; path = DTOs/WTRWeiboUserInfo.m; sourceTree = "<group>"; };
-		37C935F51B49020000160224 /* WTRWeiboFriendsTimeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRWeiboFriendsTimeline.h; path = DTOs/WTRWeiboFriendsTimeline.h; sourceTree = "<group>"; };
-		37C935F61B49020000160224 /* WTRWeiboFriendsTimeline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRWeiboFriendsTimeline.m; path = DTOs/WTRWeiboFriendsTimeline.m; sourceTree = "<group>"; };
-		37C935F81B4918A700160224 /* WTRWeiboStatuses.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRWeiboStatuses.h; path = DTOs/WTRWeiboStatuses.h; sourceTree = "<group>"; };
-		37C935F91B4918A700160224 /* WTRWeiboStatuses.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRWeiboStatuses.m; path = DTOs/WTRWeiboStatuses.m; sourceTree = "<group>"; };
+		37C935F81B4918A700160224 /* WTRWeiboStatusInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRWeiboStatusInfo.h; path = DTOs/WTRWeiboStatusInfo.h; sourceTree = "<group>"; };
+		37C935F91B4918A700160224 /* WTRWeiboStatusInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRWeiboStatusInfo.m; path = DTOs/WTRWeiboStatusInfo.m; sourceTree = "<group>"; };
 		37C935FB1B491D7500160224 /* WTRWeiboStatuses+ResponseParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WTRWeiboStatuses+ResponseParser.h"; path = "ApiService/WTRWeiboStatuses+ResponseParser.h"; sourceTree = "<group>"; };
 		37C935FC1B491D7500160224 /* WTRWeiboStatuses+ResponseParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "WTRWeiboStatuses+ResponseParser.m"; path = "ApiService/WTRWeiboStatuses+ResponseParser.m"; sourceTree = "<group>"; };
 		37CBF5E71BD0B20800E01554 /* WTRModalViewTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRModalViewTransition.h; path = Rounting/WTRModalViewTransition.h; sourceTree = "<group>"; };
@@ -219,8 +219,8 @@
 		37F6D0DB1BE361F700E1E611 /* WTRWeiboGeo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRWeiboGeo.m; path = Models/WTRWeiboGeo.m; sourceTree = "<group>"; };
 		37F6D0DD1BE3643800E1E611 /* WTRWeiboComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRWeiboComment.h; path = Models/WTRWeiboComment.h; sourceTree = "<group>"; };
 		37F6D0DE1BE3643800E1E611 /* WTRWeiboComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRWeiboComment.m; path = Models/WTRWeiboComment.m; sourceTree = "<group>"; };
-		37F6D0E01BE365CF00E1E611 /* WTRWeiboPrivacey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRWeiboPrivacey.h; path = Models/WTRWeiboPrivacey.h; sourceTree = "<group>"; };
-		37F6D0E11BE365CF00E1E611 /* WTRWeiboPrivacey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRWeiboPrivacey.m; path = Models/WTRWeiboPrivacey.m; sourceTree = "<group>"; };
+		37F6D0E01BE365CF00E1E611 /* WTRWeiboPrivacy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRWeiboPrivacy.h; path = Models/WTRWeiboPrivacy.h; sourceTree = "<group>"; };
+		37F6D0E11BE365CF00E1E611 /* WTRWeiboPrivacy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRWeiboPrivacy.m; path = Models/WTRWeiboPrivacy.m; sourceTree = "<group>"; };
 		37F6D0E31BE365ED00E1E611 /* WTRWeiboRemind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRWeiboRemind.h; path = Models/WTRWeiboRemind.h; sourceTree = "<group>"; };
 		37F6D0E41BE365ED00E1E611 /* WTRWeiboRemind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRWeiboRemind.m; path = Models/WTRWeiboRemind.m; sourceTree = "<group>"; };
 		37F6D0E61BE3660400E1E611 /* WTRWeiboUrlShort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRWeiboUrlShort.h; path = Models/WTRWeiboUrlShort.h; sourceTree = "<group>"; };
@@ -610,10 +610,10 @@
 				37F6D0CB1BE32CA800E1E611 /* WTRAuthorizedUserInfo.m */,
 				37C935F21B48E00300160224 /* WTRWeiboUserInfo.h */,
 				37C935F31B48E00300160224 /* WTRWeiboUserInfo.m */,
-				37C935F51B49020000160224 /* WTRWeiboFriendsTimeline.h */,
-				37C935F61B49020000160224 /* WTRWeiboFriendsTimeline.m */,
-				37C935F81B4918A700160224 /* WTRWeiboStatuses.h */,
-				37C935F91B4918A700160224 /* WTRWeiboStatuses.m */,
+				37C935F81B4918A700160224 /* WTRWeiboStatusInfo.h */,
+				37C935F91B4918A700160224 /* WTRWeiboStatusInfo.m */,
+				37B5AFAD1BE475E000E6F97A /* WTRWeiboGeoInfo.h */,
+				37B5AFAE1BE475E000E6F97A /* WTRWeiboGeoInfo.m */,
 			);
 			name = DTOs;
 			sourceTree = "<group>";
@@ -676,8 +676,8 @@
 				37F6D0D81BE35C5800E1E611 /* WTRWeiboStatus.m */,
 				37F6D0DD1BE3643800E1E611 /* WTRWeiboComment.h */,
 				37F6D0DE1BE3643800E1E611 /* WTRWeiboComment.m */,
-				37F6D0E01BE365CF00E1E611 /* WTRWeiboPrivacey.h */,
-				37F6D0E11BE365CF00E1E611 /* WTRWeiboPrivacey.m */,
+				37F6D0E01BE365CF00E1E611 /* WTRWeiboPrivacy.h */,
+				37F6D0E11BE365CF00E1E611 /* WTRWeiboPrivacy.m */,
 				37F6D0E31BE365ED00E1E611 /* WTRWeiboRemind.h */,
 				37F6D0E41BE365ED00E1E611 /* WTRWeiboRemind.m */,
 				37F6D0E61BE3660400E1E611 /* WTRWeiboUrlShort.h */,
@@ -848,9 +848,10 @@
 			files = (
 				379101AB1BD4DCFC00AC8E1C /* WTRDecListTableViewCell.m in Sources */,
 				37F652811BCFABFF00109CDF /* WTRNavigationPresenter.m in Sources */,
+				37B5AFAF1BE475E000E6F97A /* WTRWeiboGeoInfo.m in Sources */,
 				37F6D0D91BE35C5800E1E611 /* WTRWeiboStatus.m in Sources */,
 				37657CF31B45660500E37CF8 /* WTRTimelineCell.m in Sources */,
-				37C935FA1B4918A700160224 /* WTRWeiboStatuses.m in Sources */,
+				37C935FA1B4918A700160224 /* WTRWeiboStatusInfo.m in Sources */,
 				37C935FD1B491D7500160224 /* WTRWeiboStatuses+ResponseParser.m in Sources */,
 				37223AEE1BC8BEE80090AF3C /* WTRConfig.m in Sources */,
 				37C935F01B48DBB700160224 /* NSDictionary+WTRUtility.m in Sources */,
@@ -861,7 +862,6 @@
 				37F6D0CF1BE33C6E00E1E611 /* WeiTwi.xcdatamodeld in Sources */,
 				37F514771BD8B4E700D151AF /* MMDrawerController.m in Sources */,
 				37F6D0DC1BE361F700E1E611 /* WTRWeiboGeo.m in Sources */,
-				37C935F71B49020000160224 /* WTRWeiboFriendsTimeline.m in Sources */,
 				374ADFDD1BC7A5E20055AEB5 /* WTRDeckViewController.m in Sources */,
 				37A0BFC51BDF345900BBCF4D /* WTRTwitterManagerInteractor.m in Sources */,
 				377CE1131B45417300C28A90 /* AppDelegate.m in Sources */,
@@ -892,7 +892,7 @@
 				3706DE7A1BD61B40007C0072 /* SlideMotion+Calculation.m in Sources */,
 				37F6D0E51BE365ED00E1E611 /* WTRWeiboRemind.m in Sources */,
 				378478A91BD68A96009A2F6B /* WTRSwipeHorizontalInteractiveTransition.m in Sources */,
-				37F6D0E21BE365CF00E1E611 /* WTRWeiboPrivacey.m in Sources */,
+				37F6D0E21BE365CF00E1E611 /* WTRWeiboPrivacy.m in Sources */,
 				37F6D0D61BE3412300E1E611 /* WTRWeiboUser.m in Sources */,
 				37223AEA1BC8B9D20090AF3C /* WTRPageMessenger.m in Sources */,
 				37223AF61BC8CA050090AF3C /* WTRBaseViewController.m in Sources */,
