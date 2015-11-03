@@ -13,13 +13,6 @@
 
 @class WTRWeiboUser;
 
-typedef enum {
-    ordinaryWeibo,
-    privateWeibo,
-    preferredGroupWeibo,
-    closeFriendWeibo
-} statusVisible;
-
 @interface WTRWeiboStatus : NSManagedObject
 
 @property (nonatomic, retain) NSString *createdAt;
@@ -39,7 +32,7 @@ typedef enum {
 @property (nonatomic, assign) NSInteger repostsCount;
 @property (nonatomic, assign) NSInteger commentsCount;
 @property (nonatomic, assign) NSInteger attitudesCount;
-@property (nonatomic, assign) statusVisible visible;
+@property (nonatomic, assign) NSInteger visible;
 //TODO  type not sure
 @property (nonatomic, retain) NSString *picIds;
 @property (nonatomic, retain) NSString *weiboAd;

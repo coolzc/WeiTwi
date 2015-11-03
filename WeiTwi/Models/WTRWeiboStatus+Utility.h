@@ -12,6 +12,6 @@
 
 @interface WTRWeiboStatus (Utility)
 
-- (void)updateWeiboStatusInfo:(WTRWeiboUserInfo *)statusInfo;
+- (void)updateWeiboStatusInfo:(WTRWeiboStatusInfo *)statusInfo;
 
 @end

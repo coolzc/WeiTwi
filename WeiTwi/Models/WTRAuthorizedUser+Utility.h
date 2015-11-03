@@ -13,5 +13,6 @@
 @interface WTRAuthorizedUser (Utility)
 
 - (void)updateWithAuthorizedInfo:(WTRAuthorizedUserInfo *)userinfo;
+- (WTRAuthorizedUserInfo *)authorizedUserInfo;
 
 @end

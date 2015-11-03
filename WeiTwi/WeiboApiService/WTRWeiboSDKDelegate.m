@@ -51,12 +51,14 @@
             [user setObject:@"1" forKey:@"login"];
             [user synchronize];
         }
-        
+        //TODO:clean the code here,later when finish this app
         self.wbtoken = [(WBAuthorizeResponse *)response accessToken];
         self.wbCurrentUserID = [(WBAuthorizeResponse *)response userID];
         self.wbRefreshToken = [(WBAuthorizeResponse *)response refreshToken];
         
-        [self.delegate authorizedWeiboUserToken:self.wbtoken wbRefreshToken:self.wbCurrentUserID wbCurrentUserID:self.wbRefreshToken];
+        if ([self.delegate respondsToSelector:@selector(weiboAuthorizedWithUserToken:wbRefreshToken:wbCurrentUserID:)]) {
+            [self.delegate weiboAuthorizedWithUserToken:self.wbtoken wbRefreshToken:self.wbRefreshToken wbCurrentUserID:self.wbCurrentUserID];
+        }
         
         [alert show];
     } else if ([response isKindOfClass:WBSDKAppRecommendResponse.class]) {

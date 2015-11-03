@@ -13,6 +13,6 @@
 
 @property (nonatomic, retain) NSString *wbtoken;
 @property (nonatomic, retain) NSString *wbRefreshToken;
-@property (nonatomic, retain) NSString* wbCurrentUserID;
+@property (nonatomic, retain) NSString *wbCurrentUserID;
 
 @end

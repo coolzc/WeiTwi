@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "WTRWeiboStatusInfo.h"
 
+@class WTRWeiboStatusInfo;
+
 @interface WTRWeiboUserInfo : NSObject
 
 @property (nonatomic, assign) NSInteger userId;

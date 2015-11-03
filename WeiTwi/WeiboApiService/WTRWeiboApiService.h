@@ -22,18 +22,18 @@ typedef enum {
     WTRWeiboRequestMethodPut,
 } WTRWeiboRequestMethod;
 
-@protocol WTRWeiboManagerDelegate;
+@protocol WTRWeiboApiServiceDelegate;
 
-@interface WTRWeiboManagerInteractor : NSObject <WeiboUserAuthorizedDelegate>
+@interface WTRWeiboApiService : NSObject 
 
-@property (nonatomic, weak) id<WTRWeiboManagerDelegate> delegate;
+@property (nonatomic, weak) id<WTRWeiboApiServiceDelegate> delegate;
 
-+ (id)weiboInteractorWithDeleate:(id <WTRWeiboManagerDelegate>)delegate;
++ (id)weiboApiServiceWithDeleate:(id <WTRWeiboApiServiceDelegate>)delegate;
 - (void)sendRequest:(WTRWeiboRequestType)apiRequest;
 
 @end
 
-@protocol WTRWeiboManagerDelegate <NSObject>
+@protocol WTRWeiboApiServiceDelegate <NSObject>
 
 - (void)weiboServiceDidFinishRequestWithResponse:(id)responseObject;
 

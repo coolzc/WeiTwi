@@ -8,11 +8,14 @@
 
 #import "WTRBasePresenter.h"
 #import "WTRProgressViewInterface.h"
-#import "WTRDataSyncInteractor.h"
+#import "WTRWeiboApiService.h"
+#import "WTRLoginSyncInteracotr.h"
 
-@interface WTRInitializationPresenter : WTRBasePresenter <WTRDataSyncInteractorDelegate>
+@interface WTRInitializationPresenter : WTRBasePresenter <WTRWeiboLoginInteractorDelegate>
 
-@property (nonatomic, weak) id<WTRProgressViewInterface>progressView;
-@property (nonatomic, strong) WTRDataSyncInteractor *dataSyncInteractor;
+- (void)loginWeiboAuthorizedUser;
+
+@property (nonatomic, weak) id<WTRProgressViewInterface> progressView;
+@property (nonatomic, strong) WTRLoginSyncInteracotr *loginSyncInteractor;
 
 @end

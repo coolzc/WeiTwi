@@ -22,4 +22,9 @@
     } completion:completion];
 }
 
++ (WTRAuthorizedUserInfo *)currentAuthorizedUserInfo {
+    WTRAuthorizedUser *user = [WTRAuthorizedUser MR_findFirst];
+    return user ? [user authorizedUserInfo] : nil;
+}
+
 @end

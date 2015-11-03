@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSUserDefaults (CFUtility)
+@interface NSUserDefaults (WRUtility)
 
 + (NSNumber *)getTimestampByKey:(NSString *)key;
 + (void)saveTimestamp:(NSNumber *)timestamp forKey:(NSString *)key;

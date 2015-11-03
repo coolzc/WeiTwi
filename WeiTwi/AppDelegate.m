@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "WTRWireframe.h"
 #import "WTRConfig.h"
+#import <MagicalRecord/MagicalRecord.h>
+
 @interface AppDelegate ()
 
 @end
@@ -19,6 +21,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [WeiboSDK enableDebugMode:YES];
     [WeiboSDK registerApp:WeiboAppKey];
+    
+    // Core Data
+    [MagicalRecord setupCoreDataStack];
     
     // Override point for customization after application launch.
     self.weiboSDKDelegate = [WTRWeiboSDKDelegate new];

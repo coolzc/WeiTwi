@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="15A284" minimumToolsVersion="Xcode 7.0">
-    <entity name="WTRAuthorizedUser" syncable="YES">
+    <entity name="WTRAuthorizedUser" representedClassName="WTRAuthorizedUser" syncable="YES">
         <attribute name="wbCurrentUserID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="wbRefreshToken" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="wbtoken" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="WTRWeiboComment" syncable="YES">
+    <entity name="WTRWeiboComment" representedClassName="WTRWeiboComment" syncable="YES">
         <attribute name="commentId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="commentMid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="created_at" optional="YES" attributeType="String" syncable="YES"/>
@@ -16,7 +16,7 @@
         <relationship name="status" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WTRWeiboStatus" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WTRWeiboUser" syncable="YES"/>
     </entity>
-    <entity name="WTRWeiboGeo" syncable="YES">
+    <entity name="WTRWeiboGeo" representedClassName="WTRWeiboGeo" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="cityName" optional="YES" attributeType="String" syncable="YES"/>
@@ -27,7 +27,7 @@
         <attribute name="province" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="provinceName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="WTRWeiboPrivacy" syncable="YES">
+    <entity name="WTRWeiboPrivacy" representedClassName="WTRWeiboPrivacy" syncable="YES">
         <attribute name="badage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="geo" optional="YES" attributeType="String" syncable="YES"/>
@@ -36,7 +36,7 @@
         <attribute name="realname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="webim" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="WTRWeiboRemind" syncable="YES">
+    <entity name="WTRWeiboRemind" representedClassName="WTRWeiboRemind" syncable="YES">
         <attribute name="badge" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="cmt" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="dm" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -51,7 +51,7 @@
         <attribute name="privateGroup" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
     </entity>
-    <entity name="WTRWeiboStatus" syncable="YES">
+    <entity name="WTRWeiboStatus" representedClassName="WTRWeiboStatus" syncable="YES">
         <attribute name="attitudesCount" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="bmiddlePic" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="commentsCount" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
@@ -73,13 +73,13 @@
         <relationship name="retweetedStatus" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WTRWeiboStatus" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WTRAuthorizedUser" syncable="YES"/>
     </entity>
-    <entity name="WTRWeiboUrlShort" syncable="YES">
+    <entity name="WTRWeiboUrlShort" representedClassName="WTRWeiboUrlShort" syncable="YES">
         <attribute name="result" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="urlLong" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="urlShort" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="WTRWeiboUser" syncable="YES">
+    <entity name="WTRWeiboUser" representedClassName="WTRWeiboUser" syncable="YES">
         <attribute name="allowAllActMsg" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="allowAllComment" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="avatarHdUrl" optional="YES" attributeType="String" syncable="YES"/>
@@ -116,12 +116,12 @@
     </entity>
     <elements>
         <element name="WTRAuthorizedUser" positionX="-63" positionY="-18" width="128" height="90"/>
-        <element name="WTRWeiboGeo" positionX="-36" positionY="144" width="128" height="180"/>
-        <element name="WTRWeiboStatus" positionX="-54" positionY="135" width="128" height="345"/>
-        <element name="WTRWeiboUser" positionX="-54" positionY="-9" width="128" height="540"/>
         <element name="WTRWeiboComment" positionX="-45" positionY="135" width="128" height="180"/>
-        <element name="WTRWeiboRemind" positionX="-36" positionY="144" width="128" height="240"/>
-        <element name="WTRWeiboUrlShort" positionX="-27" positionY="153" width="128" height="105"/>
+        <element name="WTRWeiboGeo" positionX="-36" positionY="144" width="128" height="180"/>
         <element name="WTRWeiboPrivacy" positionX="-18" positionY="162" width="128" height="150"/>
+        <element name="WTRWeiboRemind" positionX="-36" positionY="144" width="128" height="240"/>
+        <element name="WTRWeiboStatus" positionX="-54" positionY="135" width="128" height="345"/>
+        <element name="WTRWeiboUrlShort" positionX="-27" positionY="153" width="128" height="105"/>
+        <element name="WTRWeiboUser" positionX="-54" positionY="-9" width="128" height="540"/>
     </elements>
 </model>

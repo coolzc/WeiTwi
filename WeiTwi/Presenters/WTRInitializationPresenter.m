@@ -7,7 +7,6 @@
 //
 
 #import "WTRInitializationPresenter.h"
-#import "WTRDataSyncInteractor.h"
 #import "WTRWireframe.h"
 #import "NSUserDefaults+CFUtility.h"
 #import "WTRConfig.h"
@@ -35,18 +34,17 @@
         sleep(2.5);
     });
     //TODO
-    [self.dataSyncInteractor syncDataAfterTimestamp:[NSUserDefaults getTimestampByKey:SettingKeyLastWeiboContentUpdateTimestamp]];
-     
+    
 }
 
-#pragma mark - WTRDataSyncInteractorDelegate
+#pragma mark - WTRWeiboLoginInteractorDelegate
 
-- (void)dataSyncInteractorDidStartSync:(WTRDataSyncInteractor *)dataSyncInteractor {
+- (void)loginSyncInteractorDidStartSync:(WTRLoginSyncInteracotr *)loginSyncInteractor {
     CGFloat randomStartProgress = (arc4random() % 5 + 1) / 100.f;
     [self.progressView updateProgress:randomStartProgress message:NSLocalizedString(@"init-progress-text-begin", nil)];
 }
 
-- (void)dataSyncInteractorDidFinishSync:(WTRDataSyncInteractor *)dataSyncInteractor {
+- (void)loginSyncInteractorDidFinishSync:(WTRLoginSyncInteracotr *)loginSyncInteractor {
     [self.progressView updateProgress:1.f message:NSLocalizedString(@"init-progress-text-end", nil)];
     [self.progressView endProgress];
     //TODO
@@ -55,6 +53,12 @@
             [WTRWireframe moveToNextPageOfViewController:self.mainViewController];
         });
     });
+}
+
+#pragma mark - Public Methods
+
+- (void)loginWeiboAuthorizedUser {
+    [self.loginSyncInteractor syncLoginWeiboAuthorized];
 }
 
 @end

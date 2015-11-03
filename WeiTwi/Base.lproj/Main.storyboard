@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
         <!--Time Line View Controller-->
@@ -18,10 +18,10 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mz6-WV-iym" userLabel="Top View">
-                                <rect key="frame" x="0.0" y="64" width="600" height="80"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="36"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="01Y-PJ-M7d">
-                                        <rect key="frame" x="8" y="25" width="46" height="30"/>
+                                        <rect key="frame" x="8" y="3" width="46" height="30"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="iMN-mF-RCd"/>
@@ -41,58 +41,6 @@
                                             </mask>
                                         </variation>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0wc-qP-U64">
-                                        <rect key="frame" x="554" y="25" width="46" height="30"/>
-                                        <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="GKN-ip-tab"/>
-                                            <constraint firstAttribute="width" constant="46" id="I7j-hh-vZM"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="Login">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="loginWeiboButtonTouchUpInside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="H7A-J0-hTe"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vmH-QV-QzL">
-                                        <rect key="frame" x="482" y="25" width="68" height="30"/>
-                                        <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="Dpk-oi-KtN"/>
-                                            <constraint firstAttribute="width" constant="68" id="sA7-Cl-4Ga"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="Timeline">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="timelineButtonTouchUpInside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="trZ-dL-Vwp"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log in Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fe7-qK-TQn">
-                                        <rect key="frame" x="54" y="8" width="428" height="34"/>
-                                        <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="34" id="T9U-9d-mPK"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time line Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wtk-jJ-feV">
-                                        <rect key="frame" x="54" y="46" width="428" height="34"/>
-                                        <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="34" id="lcD-vm-C8V"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uR7-Je-hl8">
                                         <rect key="frame" x="551" y="0.0" width="51" height="31"/>
                                         <animations/>
@@ -100,29 +48,51 @@
                                             <action selector="weiboTwitterSwitchValueChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="o29-EL-qwW"/>
                                         </connections>
                                     </switch>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vmH-QV-QzL">
+                                        <rect key="frame" x="443" y="0.0" width="100" height="30"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Dpk-oi-KtN"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="QWl-dx-KxE"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="cf4-pj-fzJ"/>
+                                            <constraint firstAttribute="width" constant="100" id="sA7-Cl-4Ga"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Timeline">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="QWl-dx-KxE"/>
+                                                <exclude reference="cf4-pj-fzJ"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <action selector="timelineButtonTouchUpInside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="trZ-dL-Vwp"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="0wc-qP-U64" firstAttribute="leading" secondItem="vmH-QV-QzL" secondAttribute="trailing" constant="4" id="0SG-CE-XUU"/>
                                     <constraint firstItem="01Y-PJ-M7d" firstAttribute="leading" secondItem="mz6-WV-iym" secondAttribute="leading" constant="8" id="19d-Yu-GXG"/>
                                     <constraint firstAttribute="centerY" secondItem="vmH-QV-QzL" secondAttribute="centerY" id="1Ed-zN-6nl"/>
-                                    <constraint firstItem="vmH-QV-QzL" firstAttribute="leading" secondItem="wtk-jJ-feV" secondAttribute="trailing" id="9Iy-dM-dbO"/>
-                                    <constraint firstItem="vmH-QV-QzL" firstAttribute="leading" secondItem="Fe7-qK-TQn" secondAttribute="trailing" id="DCy-s3-ZIq"/>
-                                    <constraint firstAttribute="centerY" secondItem="0wc-qP-U64" secondAttribute="centerY" id="MEy-LV-FC5"/>
-                                    <constraint firstAttribute="bottom" secondItem="wtk-jJ-feV" secondAttribute="bottom" id="NGN-so-To0"/>
-                                    <constraint firstItem="Fe7-qK-TQn" firstAttribute="top" secondItem="mz6-WV-iym" secondAttribute="top" constant="8" id="NIK-Ta-Hz6"/>
-                                    <constraint firstAttribute="height" constant="80" id="Umd-f4-lkK"/>
+                                    <constraint firstAttribute="height" constant="36" id="Umd-f4-lkK"/>
                                     <constraint firstItem="uR7-Je-hl8" firstAttribute="top" secondItem="mz6-WV-iym" secondAttribute="top" id="eQw-xD-m7H"/>
-                                    <constraint firstItem="wtk-jJ-feV" firstAttribute="leading" secondItem="01Y-PJ-M7d" secondAttribute="trailing" id="lUW-2N-ymB"/>
+                                    <constraint firstItem="vmH-QV-QzL" firstAttribute="top" secondItem="mz6-WV-iym" secondAttribute="top" id="mFK-Kg-8dd"/>
                                     <constraint firstAttribute="trailing" secondItem="uR7-Je-hl8" secondAttribute="trailing" id="mez-gH-Shg"/>
-                                    <constraint firstItem="Fe7-qK-TQn" firstAttribute="leading" secondItem="01Y-PJ-M7d" secondAttribute="trailing" id="rwY-IF-Jd6"/>
+                                    <constraint firstItem="uR7-Je-hl8" firstAttribute="leading" secondItem="vmH-QV-QzL" secondAttribute="trailing" constant="8" id="qui-3n-ksT"/>
                                     <constraint firstAttribute="centerY" secondItem="01Y-PJ-M7d" secondAttribute="centerY" id="uJt-7D-mNS"/>
-                                    <constraint firstAttribute="trailing" secondItem="0wc-qP-U64" secondAttribute="trailing" id="uTh-Kr-fQt"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="1Ed-zN-6nl"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lSg-kt-twH">
-                                <rect key="frame" x="0.0" y="144" width="600" height="456"/>
+                                <rect key="frame" x="0.0" y="100" width="600" height="500"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -154,9 +124,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="loginStatusLabel" destination="Fe7-qK-TQn" id="Tpu-lN-5Il"/>
                         <outlet property="tableView" destination="lSg-kt-twH" id="MgB-J4-diy"/>
-                        <outlet property="timelineStatusLabel" destination="wtk-jJ-feV" id="8rS-3D-VsX"/>
                         <outlet property="weiboTwitterSwitch" destination="uR7-Je-hl8" id="wAr-bU-cSj"/>
                     </connections>
                 </viewController>

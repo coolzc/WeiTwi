@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 ChaseFuture. All rights reserved.
 //
 
-#import "NSUserDefaults+CFUtility.h"
+#import "NSUserDefaults+WRUtility.h"
 
-@implementation NSUserDefaults (CFUtility)
+@implementation NSUserDefaults (WRUtility)
 
 + (NSNumber *)getTimestampByKey:(NSString *)key {
   NSNumber *timestamp = [[self standardUserDefaults] objectForKey:key];

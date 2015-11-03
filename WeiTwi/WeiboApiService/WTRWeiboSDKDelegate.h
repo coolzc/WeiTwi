@@ -23,6 +23,6 @@
 
 @protocol WeiboUserAuthorizedDelegate <NSObject>
 
-- (void)authorizedWeiboUserToken:(NSString *)wbToken wbRefreshToken:(NSString *)wbRefreshToken wbCurrentUserID:(NSString *)wbCurrentUserID;
+- (void)weiboAuthorizedWithUserToken:(NSString *)wbToken wbRefreshToken:(NSString *)wbRefreshToken wbCurrentUserID:(NSString *)wbCurrentUserID;
 
 @end

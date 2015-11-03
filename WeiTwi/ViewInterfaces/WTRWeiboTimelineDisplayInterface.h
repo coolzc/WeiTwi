@@ -12,6 +12,6 @@
 
 @optional
 
-- (void)displayWeiboTimeline:(NSArray *)timeline;
+- (void)displayWeiboTimelineContentText:(NSArray *)contentTextInfo PostUserName:(NSArray *)nameInfo postTime:(NSArray *)timeInfo originSource:(NSArray *)originSourceInfo praiseCount:(NSArray *)praiseCountInfo repostCount:(NSArray *)repostCountInfo commentCount:(NSArray *)commentCountInfo;
 
 @end

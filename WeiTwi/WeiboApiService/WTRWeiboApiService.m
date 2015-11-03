@@ -6,41 +6,41 @@
 //  Copyright © 2015 XYZ. All rights reserved.
 //
 
-#import "WTRWeiboManagerInteractor.h"
+#import "WTRWeiboApiService.h"
 #import "WBHttprequest.h"
 #import "WTRConfig.h"
 #import "WTRWeiboSDKDelegate.h"
+#import "WTRAuthorizedUser.h"
 #import "WTRAuthorizedUser+DataManager.h"
+#import "WTRWeiboStatusInfo+ResponseParser.h"
 
 static NSString *const BaseUrl = @"https://api.weibo.com/2";
 static NSString *const HomeTimelinePath = @"/statuses/home_timeline.json";
 static NSString *const UserTimelinPath = @"/statuses/user_timeline.json";
 
-@interface WTRWeiboManagerInteractor ()
+@interface WTRWeiboApiService ()
 
 @property (nonatomic, strong) NSArray *receivedData;
 @property (nonatomic, strong) NSString *url;
-@property (nonatomic, strong) WTRAuthorizedUserInfo *authorizedUserInfo;
 
 
 @end
 
-@implementation WTRWeiboManagerInteractor
+@implementation WTRWeiboApiService
 
 - (instancetype)init {
     self = [super init];
     if (self) {
         _receivedData = [NSArray new];
         _url = [NSString new];
-        _authorizedUserInfo = [WTRAuthorizedUserInfo new];
     }
     return self;
 }
 
-+ (id)weiboInteractorWithDeleate:(id <WTRWeiboManagerDelegate>)delegate {
-    WTRWeiboManagerInteractor *weiboInteractor = [self new];
-    weiboInteractor.delegate = delegate;
-    return weiboInteractor;
++ (id)weiboApiServiceWithDeleate:(id <WTRWeiboApiServiceDelegate>)delegate {
+    WTRWeiboApiService *weiboApiService = [self new];
+    weiboApiService.delegate = delegate;
+    return weiboApiService;
 }
 
 #pragma WBHttpRequestDelegate
@@ -73,22 +73,10 @@ static NSString *const UserTimelinPath = @"/statuses/user_timeline.json";
     [alert show];
 }
 
-#pragma mark - WeiboUserAuthorizedDelegate
-
-- (void)authorizedWeiboUserToken:(NSString *)wbToken wbRefreshToken:(NSString *)wbRefreshToken wbCurrentUserID:(NSString *)wbCurrentUserID {
-    self.authorizedUserInfo.wbtoken = wbToken;
-    self.authorizedUserInfo.wbCurrentUserID = wbCurrentUserID;
-    self.authorizedUserInfo.wbRefreshToken = wbRefreshToken;
-    [self saveAuthorizedUser];
-}
-
 #pragma mark - Public Methods
 
 - (void)sendRequest:(WTRWeiboRequestType)apiRequest {
     switch (apiRequest) {
-        case WTRWeiboRequestSSO:
-            [self ssoAuthorizedRequest];
-            break;
         case WTRWeiboRequestHomeTimeline:
             self.url = [BaseUrl stringByAppendingString:HomeTimelinePath];
             [self homeTimelineRequest];
@@ -100,24 +88,10 @@ static NSString *const UserTimelinPath = @"/statuses/user_timeline.json";
 }
 
 #pragma mark - Private Methods
-
-- (void)saveAuthorizedUser {
-    [WTRAuthorizedUser saveLoginUserInfo:self.authorizedUserInfo completion:nil];
-}
-
-- (void)ssoAuthorizedRequest {
-    WBAuthorizeRequest *request = [WBAuthorizeRequest request];
-    request.redirectURI = kRedirectURI;
-    request.scope = @"all";
-//    request.userInfo = @{@"SSO_From": @"WTRWeiboManagerInteractor",
-//                         @"Other_Info_1": [NSNumber numberWithInt:123],
-//                         @"Other_Info_2": @[@"obj1", @"obj2"],
-//                         @"Other_Info_3": @{@"key1": @"obj1", @"key2": @"obj2"}};
-    [WeiboSDK sendRequest:request];
-}
-
+//TODO: to get from coredata authorizedUserInfo
 - (void)homeTimelineRequest {
-    NSDictionary *dicFormat = @{@"source":WeiboAppKey,@"access_token":self.authorizedUserInfo.wbtoken,@"count":@"30"};
+   WTRAuthorizedUserInfo *currentAuthorizedUser = [WTRAuthorizedUser currentAuthorizedUserInfo];
+    NSDictionary *dicFormat = @{@"source":WeiboAppKey,@"access_token":currentAuthorizedUser.wbtoken,@"count":@"30"};
     [WBHttpRequest requestWithURL:self.url
                        httpMethod:@"GET"
                            params:dicFormat
@@ -126,9 +100,8 @@ static NSString *const UserTimelinPath = @"/statuses/user_timeline.json";
                 if (error) {
                     NSLog(@"%@",error);
                 } else {
-                    self.receivedData = result[@"statuses"];
                     if ([self.delegate respondsToSelector:@selector(weiboServiceDidFinishRequestWithResponse:)]) {
-                        [self.delegate weiboServiceDidFinishRequestWithResponse:self.receivedData];
+                        [self.delegate weiboServiceDidFinishRequestWithResponse:result];
                     }
                 }
             }];

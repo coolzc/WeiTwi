@@ -15,20 +15,18 @@
 #import "WTRPageMessenger.h"
 #import "MMDrawerBarButtonItem.h"
 
-//twitter
 static NSString *const TimelineCellReuseIdentifier = @"TimelineCellReusedId";
+static NSInteger const TimelineDisplayCount = 25;
 
-typedef void (^accountChooserBlock_t)(ACAccount *account, NSString *errorMessage); // don't bother with NSError for that
 @interface WTRTimeLineViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) NSArray* twitterFeed;
-@property (nonatomic, strong) NSArray* weiboFeed;
-@property (nonatomic, strong) NSArray* tableSoucreFeed;
-@property (nonatomic, strong) STTwitterAPI *twitter;
-@property (nonatomic, strong) NSArray *iOSAccounts;
-@property (nonatomic, strong) accountChooserBlock_t accountChooserBlock;
-
-@property (nonatomic, strong) UIView *circleView;
+@property (nonatomic, strong) NSArray* postTime;
+@property (nonatomic, strong) NSArray* posterName;
+@property (nonatomic, strong) NSArray* contentText;
+@property (nonatomic, strong) NSArray* originSource;
+@property (nonatomic, strong) NSArray* praiseCount;
+@property (nonatomic, strong) NSArray* repostCount;
+@property (nonatomic, strong) NSArray* commentCount;
 
 @end
 
@@ -47,16 +45,11 @@ typedef void (^accountChooserBlock_t)(ACAccount *account, NSString *errorMessage
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.tableSoucreFeed.count;
+    return TimelineDisplayCount;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     WTRTimelineCell *cell = [tableView dequeueReusableCellWithIdentifier:TimelineCellReuseIdentifier forIndexPath:indexPath];
-
-    if ([self.tableSoucreFeed count]) {
-        NSDictionary *timelineContent = self.tableSoucreFeed[indexPath.row];
-        [cell updateCellContent:timelineContent];
-    }
     
     return cell;
 }
@@ -64,24 +57,12 @@ typedef void (^accountChooserBlock_t)(ACAccount *account, NSString *errorMessage
 #pragma mark - WTRTwitterTimelineDisplayInterface
 
 - (void)displayTwtitterTimeline:(NSArray *)timeline {
-    self.twitterFeed = timeline;
 }
 
-- (void)displayWeiboTimeline:(NSArray *)timeline {
-    self.weiboFeed = timeline;
-    self.tableSoucreFeed = self.weiboFeed;
-    [self.tableView reloadData];
+- (void)displayWeiboTimelineContentText:(NSArray *)contentTextInfo PostUserName:(NSArray *)nameInfo postTime:(NSArray *)timeInfo originSource:(NSArray *)originSourceInfo praiseCount:(NSArray *)praiseCountInfo repostCount:(NSArray *)repostCountInfo commentCount:(NSArray *)commentCountInfo {
 }
 
 #pragma mark - Action
-
-- (IBAction)loginWeiboButtonTouchUpInside:(id)sender {
-    if (self.weiboTwitterSwitch.on) {
-        [self.weiboTimelineListPresenter loginWeibo];
-    } else {
-        
-    }
-}
 
 - (IBAction)timelineButtonTouchUpInside:(id)sender {
     [self.weiboTimelineListPresenter viewDetailOfTimelineWeibo];
@@ -98,9 +79,13 @@ typedef void (^accountChooserBlock_t)(ACAccount *account, NSString *errorMessage
 }
 
 - (void)configureProperties {
-    self.twitterFeed = [NSArray new];
-    self.weiboFeed = [NSArray new];
-    self.tableSoucreFeed = [NSArray new];
+    self.postTime = [NSArray new];
+    self.posterName = [NSArray new];
+    self.contentText = [NSArray new];
+    self.originSource = [NSArray new];
+    self.praiseCount = [NSArray new];
+    self.repostCount = [NSArray new];
+    self.commentCount = [NSArray new];
 }
 
 @end

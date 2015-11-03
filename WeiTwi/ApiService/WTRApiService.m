@@ -34,7 +34,6 @@
   [self.operationManager.operationQueue addOperation:requestOperation];
 }
 
-
 #pragma mark - Private Methods
 
 - (void)finishRequest:(WTRApiRequest *)apiRequest withResponseObject:(id)responseObject error:(NSError *)error {

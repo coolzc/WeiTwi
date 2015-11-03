@@ -8,16 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import "WTRBasePresenter.h"
-#import "WTRWeiboManagerInteractor.h"
+#import "WTRWeiboApiService.h"
 #import "WTRWeiboTimelineDisplayInterface.h"
+#import "WTRProgressViewInterface.h"
 
-@interface WTRWeiboTimeLinePresenter : WTRBasePresenter <WTRWeiboManagerDelegate>
+@interface WTRWeiboTimeLinePresenter : WTRBasePresenter <WTRWeiboApiServiceDelegate>
 
-- (void)loginWeibo;
 - (void)viewDetailOfTimelineWeibo;
 - (void)viewGroupDeckListDetail;
 
+@property (nonatomic, weak) id<WTRProgressViewInterface> progressView;
 @property (nonatomic, weak) id<WTRWeiboTimelineDisplayInterface> weiboTimelineDisplay;
-@property (nonatomic, strong) WTRWeiboManagerInteractor *weiboInteractor;
 
 @end

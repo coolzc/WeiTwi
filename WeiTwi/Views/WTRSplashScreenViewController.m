@@ -31,6 +31,12 @@
     return @[self.initializaitonPresenter];
 }
 
+#pragma mark - Actions
+
+- (IBAction)loginButtonTouchUpInside:(id)sender {
+    [self.initializaitonPresenter loginWeiboAuthorizedUser];
+}
+
 #pragma mark - WTRProgressViewInterface
 
 - (void)beginProgress {

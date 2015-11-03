@@ -11,9 +11,17 @@
 @implementation WTRAuthorizedUser (Utility)
 
 - (void)updateWithAuthorizedInfo:(WTRAuthorizedUserInfo *)userinfo {
-    self.wbRefreshToken = userinfo.wbtoken;
+    self.wbRefreshToken = userinfo.wbRefreshToken;
     self.wbCurrentUserID =userinfo.wbCurrentUserID;
     self.wbtoken = userinfo.wbtoken;
+}
+
+- (WTRAuthorizedUserInfo *)authorizedUserInfo {
+    WTRAuthorizedUserInfo *authorizedUserInfo = [WTRAuthorizedUserInfo new];
+    authorizedUserInfo.wbtoken = self.wbtoken;
+    authorizedUserInfo.wbRefreshToken = self.wbRefreshToken;
+    authorizedUserInfo.wbCurrentUserID = self.wbCurrentUserID;
+    return authorizedUserInfo;
 }
 
 @end

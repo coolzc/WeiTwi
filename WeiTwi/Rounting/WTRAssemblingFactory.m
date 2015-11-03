@@ -8,7 +8,6 @@
 
 #import "WTRAssemblingFactory.h"
 #import "UIStoryboard+WeiTwi.h"
-#import "AppDelegate.h"
 #import "WTRSplashScreenViewController.h"
 #import "WTRTimeLineViewController.h"
 #import "WTRMessageViewController.h"
@@ -17,7 +16,8 @@
 #import "WTRDeckViewController.h"
 
 #import "WTRDataSyncInteractor.h"
-#import "WTRWeiboManagerInteractor.h"
+#import "WTRLoginSyncInteracotr.h"
+#import "WTRWeiboApiService.h"
 #import "WTRTwitterManagerInteractor.h"
 #import "WTRTransitionDelegate.h"
 #import "WTRSwipeHorizontalInteractiveTransition.h"
@@ -73,7 +73,7 @@ static NSString* const DeckViewControllerIdentifier = @"WTRDeckViewController";
 //    CurrentTransitionDelegate = [WTRTransitionDelegate delegateForPresentFrom:WTRTransitionFromTop viewController:centerViewController];
 //    centerViewController.transitioningDelegate = CurrentTransitionDelegate;
 //    
-    NSLog(@"initial timeline:viewcontrollers in navigationviewcontroller count:%u",[timelineNav.navigationController.viewControllers count]);
+    NSLog(@"initial timeline:viewcontrollers in navigationviewcontroller count:%lu",[timelineNav.navigationController.viewControllers count]);
 
     return centerViewController;
 }
@@ -149,9 +149,9 @@ static NSString* const DeckViewControllerIdentifier = @"WTRDeckViewController";
 
 + (WTRInitializationPresenter *)buildInitializationPresenter {
     WTRInitializationPresenter *initializationPresenter = [WTRInitializationPresenter new];
-    WTRDataSyncInteractor *dataSyncInteractor = [WTRDataSyncInteractor new];
-    initializationPresenter.dataSyncInteractor = dataSyncInteractor;
-    dataSyncInteractor.delegate = initializationPresenter;
+    WTRLoginSyncInteracotr *loginSyncInteractor = [WTRLoginSyncInteracotr new];
+    initializationPresenter.loginSyncInteractor = loginSyncInteractor;
+    loginSyncInteractor.loginDelegate = initializationPresenter;
     return initializationPresenter;
 }
 
@@ -169,11 +169,9 @@ static NSString* const DeckViewControllerIdentifier = @"WTRDeckViewController";
 
 + (WTRWeiboTimeLinePresenter *)buildWeiboTimelinePresenter {
     WTRWeiboTimeLinePresenter *timelinePresenter = [WTRWeiboTimeLinePresenter new];
-    timelinePresenter.weiboInteractor = [WTRWeiboManagerInteractor new];
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    appDelegate.weiboSDKDelegate.delegate = timelinePresenter.weiboInteractor;
-    timelinePresenter.weiboInteractor.delegate = timelinePresenter;
-    
+    //TODO : this delegate should be assembled later in presenter itself
+//    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+//    appDelegate.weiboSDKDelegate.delegate = timelinePresenter.weiboInteractor;
     return timelinePresenter;
 }
 

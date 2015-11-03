@@ -13,5 +13,6 @@
 @interface WTRAuthorizedUser (DataManager)
 
 + (void)saveLoginUserInfo:(WTRAuthorizedUserInfo *)userInfo completion:(void(^)(BOOL success, NSError *error))completion;
++ (WTRAuthorizedUserInfo *)currentAuthorizedUserInfo;
 
 @end
