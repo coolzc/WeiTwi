@@ -9,18 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "WeiboSDK.h"
 #import "WTRWeiboSDKDelegate.h"
-
-typedef enum {
-    WTRWeiboRequestSSO,
-    WTRWeiboRequestHomeTimeline,
-} WTRWeiboRequestType;
-
-typedef enum {
-    WTRWeiboRequestMethodGet,
-    WTRWeiboRequestMethodPost,
-    WTRWeiboRequestMethodDelete,
-    WTRWeiboRequestMethodPut,
-} WTRWeiboRequestMethod;
+#import "WTRWeiboRequest.h"
+#import "WTRWeiboResponse.h"
 
 @protocol WTRWeiboApiServiceDelegate;
 
@@ -29,12 +19,12 @@ typedef enum {
 @property (nonatomic, weak) id<WTRWeiboApiServiceDelegate> delegate;
 
 + (id)weiboApiServiceWithDeleate:(id <WTRWeiboApiServiceDelegate>)delegate;
-- (void)sendRequest:(WTRWeiboRequestType)apiRequest;
+- (void)sendRequest:(WTRWeiboRequest *)apiRequest;
 
 @end
 
 @protocol WTRWeiboApiServiceDelegate <NSObject>
 
-- (void)weiboServiceDidFinishRequestWithResponse:(id)responseObject;
+- (void)weiboServiceDidFinishRequest:(WTRWeiboRequest *)request withResponse:(WTRWeiboResponse *)response;
 
 @end

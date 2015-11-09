@@ -27,7 +27,7 @@
 @property (nonatomic, strong) NSString *originalPic;
 @property (nonatomic, strong) WTRWeiboGeoInfo *geo;
 @property (nonatomic, strong) WTRWeiboUserInfo *user;
-@property (nonatomic, strong) WTRWeiboStatusInfo *retweetedStatus;
+@property (nonatomic, strong) id retweetedStatus;
 @property (nonatomic, assign) NSInteger repostsCount;
 @property (nonatomic, assign) NSInteger commentsCount;
 @property (nonatomic, assign) NSInteger attitudesCount;

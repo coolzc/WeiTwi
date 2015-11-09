@@ -7,7 +7,84 @@
 //
 
 #import "WTRWeiboRequest.h"
+#import "WTRConfig.h"
+#import "WTRAuthorizedUser+DataManager.h"
+#import "WTRAuthorizedUserInfo.h"
+#import "NSDictionary+WTRUtility.h"
+#import "WTRWeiboStatusInfo+ResponseParser.h"
+
+static NSString *const HomeTimelinePath = @"/statuses/home_timeline.json";
+static NSString *const UserTimelinPath = @"/statuses/user_timeline.json";
 
 @implementation WTRWeiboRequest
+
+- (id)init {
+    if (self = [super init]) {
+        _parameters = [NSMutableDictionary dictionary];
+    }
+    return self;
+}
+
+#pragma mark - Public Methods
+
++ (instancetype)requestForHometimelineCount:(NSInteger)count {
+   WTRWeiboRequest *weiboRequest = [self requestForPath:HomeTimelinePath type:WTRWeiboRequestHomeTimeline method:WTRWeiboRequestMethodGet];
+    [weiboRequest addParameter:@"count" value:[NSString stringWithFormat:@"%ld",(long)count]];
+    weiboRequest.responseParser = ^id(NSDictionary *data) {
+        NSArray *statusesData = [data arrayForKey:@"statuses"];
+        NSMutableArray *statuses = [NSMutableArray arrayWithCapacity:[statusesData count]];
+        for (NSDictionary *statusData in statusesData) {
+            [statuses addObject:[WTRWeiboStatusInfo infoFromDictionaryData:statusData]];
+        }
+        return statuses;
+    };
+    return weiboRequest;
+}
+
+#pragma mark - Private Methods
+
++ (instancetype)requestForPath:(NSString *)path type:(WTRWeiboRequestType)type method:(WTRWeiboRequestMethod)method {
+    WTRWeiboRequest *request = [self requestToPath:path];
+    switch (method) {
+        case WTRWeiboRequestMethodGet:
+            request.method = @"Get";
+            break;
+        case WTRWeiboRequestMethodPost:
+            request.method = @"Post";
+            break;
+        case WTRWeiboRequestMethodPut:
+            request.method = @"Put";
+            break;
+        case WTRWeiboRequestMethodDelete:
+            request.method = @"Delete";
+            break;
+        default:
+            break;
+    }
+    return request;
+}
+
++ (instancetype)requestToPath:(NSString *)path {
+    WTRWeiboRequest *request = [self requestWithAccessToken];
+    request.url = [NSString stringWithFormat:@"%@%@", WeiboAPIServerHost, path];
+    return request;
+}
+
++ (instancetype)requestWithAccessToken {
+    WTRWeiboRequest *request = [WTRWeiboRequest new];
+    WTRAuthorizedUserInfo *currentAuthorizedUser = [WTRAuthorizedUser currentAuthorizedUserInfo];
+    [request.parameters setObject:WeiboAppKey forKey:@"source"];
+    [request.parameters setObject:currentAuthorizedUser.wbtoken forKey:@"access_token"];
+    return request;
+}
+
+- (void)addParameter:(NSString *)name value:(id)value {
+    [self.parameters setObject:value forKey:name];
+}
+
+- (void)addParameters:(NSDictionary *)parameters {
+    [self.parameters addEntriesFromDictionary:parameters];
+}
+
 
 @end

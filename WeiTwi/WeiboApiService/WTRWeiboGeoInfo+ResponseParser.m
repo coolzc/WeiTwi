@@ -12,7 +12,7 @@
 
 @implementation WTRWeiboGeoInfo (ResponseParser)
 
-+(instancetype)infoFromDictionaryData:(NSDictionary *)data {
++ (instancetype)infoFromDictionaryData:(NSDictionary *)data {
     WTRWeiboGeoInfo *geoInfo = [WTRWeiboGeoInfo new];
     geoInfo.longitude = [data stringForKey:@"longitude"];
     geoInfo.latitude = [data stringForKey:@"latitude"];

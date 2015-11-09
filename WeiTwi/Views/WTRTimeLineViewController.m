@@ -9,24 +9,15 @@
 
 #import "WTRTimeLineViewController.h"
 #import "WTRTimelineCell.h"
-#import "STTwitter.h"
 #import "WTRWireframe.h"
-#import "WeiboSDK.h"
 #import "WTRPageMessenger.h"
 #import "MMDrawerBarButtonItem.h"
 
 static NSString *const TimelineCellReuseIdentifier = @"TimelineCellReusedId";
-static NSInteger const TimelineDisplayCount = 25;
 
 @interface WTRTimeLineViewController () <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) NSArray* postTime;
-@property (nonatomic, strong) NSArray* posterName;
-@property (nonatomic, strong) NSArray* contentText;
-@property (nonatomic, strong) NSArray* originSource;
-@property (nonatomic, strong) NSArray* praiseCount;
-@property (nonatomic, strong) NSArray* repostCount;
-@property (nonatomic, strong) NSArray* commentCount;
+@property (nonatomic, strong) NSArray* weiboStatuses;
 
 @end
 
@@ -35,7 +26,7 @@ static NSInteger const TimelineDisplayCount = 25;
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configureView];
-    [self configureProperties];
+    [self initProperties];
 }
 
 - (NSArray *)presenters {
@@ -45,30 +36,33 @@ static NSInteger const TimelineDisplayCount = 25;
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return TimelineDisplayCount;
+    return [self.weiboStatuses count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     WTRTimelineCell *cell = [tableView dequeueReusableCellWithIdentifier:TimelineCellReuseIdentifier forIndexPath:indexPath];
-    
+    [cell updateCellStatuses:self.weiboStatuses[indexPath.row]];
+
+    [cell setNeedsUpdateConstraints];
+    [cell updateConstraintsIfNeeded];
+
     return cell;
 }
+
+
 
 #pragma mark - WTRTwitterTimelineDisplayInterface
 
 - (void)displayTwtitterTimeline:(NSArray *)timeline {
 }
 
-- (void)displayWeiboTimelineContentText:(NSArray *)contentTextInfo PostUserName:(NSArray *)nameInfo postTime:(NSArray *)timeInfo originSource:(NSArray *)originSourceInfo praiseCount:(NSArray *)praiseCountInfo repostCount:(NSArray *)repostCountInfo commentCount:(NSArray *)commentCountInfo {
+- (void)displayWeiboTimelineStatuses:(NSArray *)statuses {
+    self.weiboStatuses = statuses;
+    [self.tableView reloadData];
 }
 
 #pragma mark - Action
 
-- (IBAction)timelineButtonTouchUpInside:(id)sender {
-    [self.weiboTimelineListPresenter viewDetailOfTimelineWeibo];
-}
-- (IBAction)weiboTwitterSwitchValueChanged:(id)sender {
-}
 
 #pragma mark - Private Methods
 
@@ -76,16 +70,13 @@ static NSInteger const TimelineDisplayCount = 25;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"WTRTimelineCell" bundle:nil] forCellReuseIdentifier:TimelineCellReuseIdentifier];
+    
+    self.tableView.estimatedRowHeight = 150;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
 
-- (void)configureProperties {
-    self.postTime = [NSArray new];
-    self.posterName = [NSArray new];
-    self.contentText = [NSArray new];
-    self.originSource = [NSArray new];
-    self.praiseCount = [NSArray new];
-    self.repostCount = [NSArray new];
-    self.commentCount = [NSArray new];
+- (void)initProperties {
+    self.weiboStatuses = self.weiboStatuses ?: @[];
 }
 
 @end

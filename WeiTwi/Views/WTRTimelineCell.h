@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WTRWeiboStatusInfo.h"
 
 @interface WTRTimelineCell : UITableViewCell
 
@@ -17,8 +18,9 @@
 
 @property (weak, nonatomic) IBOutlet UIView *timelineContentView;
 @property (weak, nonatomic) IBOutlet UILabel *contentTextLabel;
+@property (weak, nonatomic) IBOutlet UIView *subTextView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *userContentTextLabelHeightContraint;
 
-- (void)updateCellContent:(NSDictionary *)content;
+- (void)updateCellStatuses:(WTRWeiboStatusInfo *)statusesInfo;
 
 @end

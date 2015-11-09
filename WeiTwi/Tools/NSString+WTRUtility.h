@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIkit.h>
+
 
 @interface NSString (WTRUtility)
 
@@ -17,5 +19,7 @@
 
 - (BOOL)isNotBlank;
 - (BOOL)isContain:(NSString *)subString;
+
+- (CGFloat)heightOfTextInLabelWithWidth:(CGFloat)width;
 
 @end

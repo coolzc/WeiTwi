@@ -6,17 +6,14 @@
 //  Copyright © 2015 XYZ. All rights reserved.
 //
 
+/**
+*   weibo authorized function is moved to WTRLoginSyncInteracotr,
+*   because weibo login authorized code is very apart from the weibo open api source code
+**/
+
 #import "WTRWeiboApiService.h"
 #import "WBHttprequest.h"
-#import "WTRConfig.h"
 #import "WTRWeiboSDKDelegate.h"
-#import "WTRAuthorizedUser.h"
-#import "WTRAuthorizedUser+DataManager.h"
-#import "WTRWeiboStatusInfo+ResponseParser.h"
-
-static NSString *const BaseUrl = @"https://api.weibo.com/2";
-static NSString *const HomeTimelinePath = @"/statuses/home_timeline.json";
-static NSString *const UserTimelinPath = @"/statuses/user_timeline.json";
 
 @interface WTRWeiboApiService ()
 
@@ -75,38 +72,36 @@ static NSString *const UserTimelinPath = @"/statuses/user_timeline.json";
 
 #pragma mark - Public Methods
 
-- (void)sendRequest:(WTRWeiboRequestType)apiRequest {
-    switch (apiRequest) {
-        case WTRWeiboRequestHomeTimeline:
-            self.url = [BaseUrl stringByAppendingString:HomeTimelinePath];
-            [self homeTimelineRequest];
-            break;
-            
-        default:
-            break;
-    }
-}
-
-#pragma mark - Private Methods
-//TODO: to get from coredata authorizedUserInfo
-- (void)homeTimelineRequest {
-   WTRAuthorizedUserInfo *currentAuthorizedUser = [WTRAuthorizedUser currentAuthorizedUserInfo];
-    NSDictionary *dicFormat = @{@"source":WeiboAppKey,@"access_token":currentAuthorizedUser.wbtoken,@"count":@"30"};
-    [WBHttpRequest requestWithURL:self.url
-                       httpMethod:@"GET"
-                           params:dicFormat
+- (void)sendRequest:(WTRWeiboRequest *)apiRequest {
+    [WBHttpRequest requestWithURL:apiRequest.url
+                       httpMethod:apiRequest.method
+                           params:apiRequest.parameters
                             queue:nil
             withCompletionHandler:^(WBHttpRequest *httpRequest, id result, NSError *error) {
-                if (error) {
-                    NSLog(@"%@",error);
+                if (!error) {
+                    [self finishRequest:apiRequest withResponseObject:result error:nil];
                 } else {
-                    if ([self.delegate respondsToSelector:@selector(weiboServiceDidFinishRequestWithResponse:)]) {
-                        [self.delegate weiboServiceDidFinishRequestWithResponse:result];
-                    }
+                    [self finishRequest:apiRequest withResponseObject:nil error:error];
                 }
             }];
 }
 
+#pragma mark - Private Methods
 
+- (void)finishRequest:(WTRWeiboRequest *)apiRequest withResponseObject:(id)responseObject error:(NSError *)error {
+    WTRWeiboResponse *apiResponse = nil;
+    if (responseObject && [responseObject isKindOfClass:[NSDictionary class]]) {
+        apiResponse = [WTRWeiboResponse responseWithResponseData:responseObject];
+        if (apiRequest.responseParser) {
+            apiResponse.responseObject = apiRequest.responseParser((NSDictionary *)responseObject);
+        }
+    } else {
+        apiResponse = [WTRWeiboResponse responseWithErrorMessage:[error description]];
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(weiboServiceDidFinishRequest:withResponse:)]) {
+        [self.delegate weiboServiceDidFinishRequest:apiRequest withResponse:apiResponse];
+    }
+}
 
 @end

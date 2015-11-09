@@ -8,8 +8,7 @@
 
 #import "WTRInitializationPresenter.h"
 #import "WTRWireframe.h"
-#import "NSUserDefaults+CFUtility.h"
-#import "WTRConfig.h"
+#import "NSUserDefaults+WRUtility.h"
 
 @interface WTRInitializationPresenter ()
 

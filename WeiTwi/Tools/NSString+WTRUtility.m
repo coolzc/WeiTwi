@@ -46,4 +46,17 @@
   return [self rangeOfString:subString].location == NSNotFound ? NO : YES;
 }
 
+
+
+- (CGFloat)heightOfTextInLabelWithWidth:(CGFloat)width {
+    NSDictionary *attributes = @{NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue" size:18]};
+    // NSString class method: boundingRectWithSize:options:attributes:context is
+    // available only on ios7.0 sdk.
+    CGRect rect = [self boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
+                                              options:NSStringDrawingUsesLineFragmentOrigin
+                                           attributes:attributes
+                                              context:nil];
+    return rect.size.height;
+}
+
 @end

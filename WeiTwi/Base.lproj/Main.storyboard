@@ -17,82 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mz6-WV-iym" userLabel="Top View">
-                                <rect key="frame" x="0.0" y="64" width="600" height="36"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="01Y-PJ-M7d">
-                                        <rect key="frame" x="8" y="3" width="46" height="30"/>
-                                        <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="iMN-mF-RCd"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="46" id="kak-BT-Y8c"/>
-                                            <constraint firstAttribute="width" constant="46" id="lu5-O1-TRH"/>
-                                            <constraint firstAttribute="height" constant="30" id="nOs-rt-ZUc"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="Deck">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="iMN-mF-RCd"/>
-                                                <exclude reference="kak-BT-Y8c"/>
-                                            </mask>
-                                        </variation>
-                                    </button>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uR7-Je-hl8">
-                                        <rect key="frame" x="551" y="0.0" width="51" height="31"/>
-                                        <animations/>
-                                        <connections>
-                                            <action selector="weiboTwitterSwitchValueChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="o29-EL-qwW"/>
-                                        </connections>
-                                    </switch>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vmH-QV-QzL">
-                                        <rect key="frame" x="443" y="0.0" width="100" height="30"/>
-                                        <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="Dpk-oi-KtN"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="QWl-dx-KxE"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="cf4-pj-fzJ"/>
-                                            <constraint firstAttribute="width" constant="100" id="sA7-Cl-4Ga"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="Timeline">
-                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="QWl-dx-KxE"/>
-                                                <exclude reference="cf4-pj-fzJ"/>
-                                            </mask>
-                                        </variation>
-                                        <connections>
-                                            <action selector="timelineButtonTouchUpInside:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="trZ-dL-Vwp"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="01Y-PJ-M7d" firstAttribute="leading" secondItem="mz6-WV-iym" secondAttribute="leading" constant="8" id="19d-Yu-GXG"/>
-                                    <constraint firstAttribute="centerY" secondItem="vmH-QV-QzL" secondAttribute="centerY" id="1Ed-zN-6nl"/>
-                                    <constraint firstAttribute="height" constant="36" id="Umd-f4-lkK"/>
-                                    <constraint firstItem="uR7-Je-hl8" firstAttribute="top" secondItem="mz6-WV-iym" secondAttribute="top" id="eQw-xD-m7H"/>
-                                    <constraint firstItem="vmH-QV-QzL" firstAttribute="top" secondItem="mz6-WV-iym" secondAttribute="top" id="mFK-Kg-8dd"/>
-                                    <constraint firstAttribute="trailing" secondItem="uR7-Je-hl8" secondAttribute="trailing" id="mez-gH-Shg"/>
-                                    <constraint firstItem="uR7-Je-hl8" firstAttribute="leading" secondItem="vmH-QV-QzL" secondAttribute="trailing" constant="8" id="qui-3n-ksT"/>
-                                    <constraint firstAttribute="centerY" secondItem="01Y-PJ-M7d" secondAttribute="centerY" id="uJt-7D-mNS"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="1Ed-zN-6nl"/>
-                                    </mask>
-                                </variation>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lSg-kt-twH">
-                                <rect key="frame" x="0.0" y="100" width="600" height="500"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -111,21 +37,25 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="lSg-kt-twH" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="4yb-hX-oKn"/>
+                            <constraint firstItem="lSg-kt-twH" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="64" id="BvL-Ez-hxo"/>
                             <constraint firstItem="nvA-IW-bSK" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="HcF-SS-Vto"/>
                             <constraint firstAttribute="trailing" secondItem="nvA-IW-bSK" secondAttribute="trailing" id="ICK-jG-ZbZ"/>
+                            <constraint firstItem="lSg-kt-twH" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="64" id="JDN-yj-ZD8"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="lSg-kt-twH" secondAttribute="bottom" id="Ked-i2-vfa"/>
-                            <constraint firstItem="mz6-WV-iym" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="64" id="NhW-sf-j4K"/>
                             <constraint firstAttribute="bottom" secondItem="nvA-IW-bSK" secondAttribute="bottom" id="Oue-dd-9Nc"/>
-                            <constraint firstAttribute="trailing" secondItem="mz6-WV-iym" secondAttribute="trailing" id="Qk8-MJ-Ggz"/>
-                            <constraint firstItem="mz6-WV-iym" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="d7k-J3-PNu"/>
-                            <constraint firstItem="lSg-kt-twH" firstAttribute="top" secondItem="mz6-WV-iym" secondAttribute="bottom" id="pLX-1g-UW8"/>
                             <constraint firstAttribute="trailing" secondItem="lSg-kt-twH" secondAttribute="trailing" id="vwA-dA-YzP"/>
                             <constraint firstItem="lSg-kt-twH" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="wwu-fM-yIE"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="BvL-Ez-hxo"/>
+                                <exclude reference="JDN-yj-ZD8"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="lSg-kt-twH" id="MgB-J4-diy"/>
-                        <outlet property="weiboTwitterSwitch" destination="uR7-Je-hl8" id="wAr-bU-cSj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

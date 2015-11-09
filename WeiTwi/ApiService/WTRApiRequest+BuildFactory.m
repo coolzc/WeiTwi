@@ -1,7 +1,7 @@
 
 #import "WTRApiRequest+BuildFactory.h"
 #import "NSDictionary+WTRUtility.h"
-#import "WTRUserInfo+ResponseParser.h"
+#import "WTRWeiboUserInfo+ResponseParser.h"
 #import "WTRWeiboUserInfo.h"
 
 static NSString *const CreateAccountPath = @"/users";
