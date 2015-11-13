@@ -33,7 +33,8 @@
     self.attitudesCount = statusInfo.attitudesCount;
     self.visible = statusInfo.visible;
     //TODO  type not sure
-    self.picIds = statusInfo.picIds;
+
+    self.picUrls = statusInfo.picUrls;
     self.weiboAd = statusInfo.weiboAd;
 }
 

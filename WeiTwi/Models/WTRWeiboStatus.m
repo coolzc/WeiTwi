@@ -28,7 +28,7 @@
 @dynamic commentsCount;
 @dynamic attitudesCount;
 @dynamic visible;
-@dynamic picIds;
+@dynamic picUrls;
 @dynamic weiboAd;
 
 @end

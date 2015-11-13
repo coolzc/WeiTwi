@@ -59,7 +59,7 @@
         <attribute name="favorited" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="idStr" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="originalPic" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="picIds" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="picUrls" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="repostsCount" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="source" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="statusId" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>

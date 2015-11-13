@@ -16,7 +16,7 @@
     dateFormatter.locale=[[NSLocale alloc]initWithLocaleIdentifier:@"en_US"];
     NSDate *weiboDate = [dateFormatter dateFromString:weiboTime];
     
-    dateFormatter.dateFormat = @"HH:mm d/m";
+    dateFormatter.dateFormat = @"HH:mm d/MM";
     return [dateFormatter stringFromDate:weiboDate];
 }
 

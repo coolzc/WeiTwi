@@ -18,9 +18,29 @@
 
 @property (weak, nonatomic) IBOutlet UIView *timelineContentView;
 @property (weak, nonatomic) IBOutlet UILabel *contentTextLabel;
-@property (weak, nonatomic) IBOutlet UIView *subTextView;
+@property (weak, nonatomic) IBOutlet UIView *subStatusView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *userContentTextLabelHeightContraint;
 
+@property (weak, nonatomic) IBOutlet UILabel *subStatusTextLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *subStatusTextLabelHeightConstraint;
+
+@property (weak, nonatomic) IBOutlet UIImageView *image1View;
+@property (weak, nonatomic) IBOutlet UIImageView *image2View;
+@property (weak, nonatomic) IBOutlet UIImageView *image3View;
+@property (weak, nonatomic) IBOutlet UIImageView *image4View;
+@property (weak, nonatomic) IBOutlet UIImageView *image5View;
+@property (weak, nonatomic) IBOutlet UIImageView *image6View;
+@property (weak, nonatomic) IBOutlet UIImageView *image7View;
+@property (weak, nonatomic) IBOutlet UIImageView *image8View;
+@property (weak, nonatomic) IBOutlet UIImageView *image9View;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftVerticalLineToLeftConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightVerticalLineToRightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topHorizontalLineToTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomHorizontalLineToBottomConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *picturesViewHeightConstraint;
+
 - (void)updateCellStatuses:(WTRWeiboStatusInfo *)statusesInfo;
+- (void)updateCellHeightConstraintValues:(CGFloat)cellHeight statusTextHeightValue:(CGFloat)statusTextHeight reTweetTextHeightValue:(CGFloat)reTweetTextHeight picturesViewConstraintsValues:(NSArray *)viewConstraints;
 
 @end

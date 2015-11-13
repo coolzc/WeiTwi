@@ -15,6 +15,7 @@
 
 - (void)viewDetailOfTimelineWeibo;
 - (void)viewGroupDeckListDetail;
+- (void)reloadWeiboTimelineData;
 
 @property (nonatomic, weak) id<WTRProgressViewInterface> progressView;
 @property (nonatomic, weak) id<WTRWeiboTimelineDisplayInterface> weiboTimelineDisplay;

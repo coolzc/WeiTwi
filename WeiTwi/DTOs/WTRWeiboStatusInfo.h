@@ -27,12 +27,12 @@
 @property (nonatomic, strong) NSString *originalPic;
 @property (nonatomic, strong) WTRWeiboGeoInfo *geo;
 @property (nonatomic, strong) WTRWeiboUserInfo *user;
-@property (nonatomic, strong) id retweetedStatus;
+@property (nonatomic, strong) WTRWeiboStatusInfo *retweetedStatus;
 @property (nonatomic, assign) NSInteger repostsCount;
 @property (nonatomic, assign) NSInteger commentsCount;
 @property (nonatomic, assign) NSInteger attitudesCount;
 @property (nonatomic, assign) NSInteger visible;
 //TODO  type not sure
-@property (nonatomic, strong) NSString *picIds;
+@property (nonatomic, strong) NSArray *picUrls;
 @property (nonatomic, strong) NSString *weiboAd;
 @end

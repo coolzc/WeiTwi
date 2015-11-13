@@ -18,7 +18,6 @@
 @property(nonatomic, strong) WTRMyView *myView;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UISwitch *weiboTwitterSwitch;
 
 @property (nonatomic, strong) WTRNavigationPresenter *navigationPresenter;
 @property (nonatomic, strong) WTRWeiboTimeLinePresenter *weiboTimelineListPresenter;

@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIkit.h>
 
-
 @interface NSString (WTRUtility)
 
 - (NSString *)conj:(NSString *)str;
@@ -21,5 +20,7 @@
 - (BOOL)isContain:(NSString *)subString;
 
 - (CGFloat)heightOfTextInLabelWithWidth:(CGFloat)width;
+
+- (NSString *)sourceDataProcess:(NSString *)source;
 
 @end

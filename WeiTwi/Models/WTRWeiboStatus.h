@@ -34,7 +34,7 @@
 @property (nonatomic, assign) NSInteger attitudesCount;
 @property (nonatomic, assign) NSInteger visible;
 //TODO  type not sure
-@property (nonatomic, retain) NSString *picIds;
+@property (nonatomic, retain) NSString *picUrls;
 @property (nonatomic, retain) NSString *weiboAd;
 
 @end

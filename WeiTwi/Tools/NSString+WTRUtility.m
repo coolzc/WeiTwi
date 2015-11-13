@@ -59,4 +59,21 @@
     return rect.size.height;
 }
 
+/**
+ *  the source should be like this style
+ *  source = "<a href=\"http://weibo.com/\" rel=\"nofollow\">\U5fae\U535a weibo.com</a>";
+**/
+
+- (NSString *)sourceDataProcess:(NSString *)source {
+    NSArray *seperateString = [source componentsSeparatedByString:@">"];
+    if (1 < [seperateString count]) {
+        NSString *firstPartSource = [seperateString objectAtIndex:1];
+        NSArray *secondPartSource = [firstPartSource componentsSeparatedByString:@"<"];
+        if (1 < [secondPartSource count]) {
+            return [secondPartSource objectAtIndex:0];
+        }
+    }
+    return @"";
+}
+
 @end

@@ -16,6 +16,7 @@
 		37223AF21BC8C2C70090AF3C /* WTRBasePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 37223AF11BC8C2C70090AF3C /* WTRBasePresenter.m */; };
 		37223AF61BC8CA050090AF3C /* WTRBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37223AF51BC8CA050090AF3C /* WTRBaseViewController.m */; };
 		372A6F761BE9DA3D006967FE /* WTRWeiboResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 372A6F751BE9DA3D006967FE /* WTRWeiboResponse.m */; };
+		373FB3091BF335A200CDBF75 /* UIScreen+WTRUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 373FB3081BF335A200CDBF75 /* UIScreen+WTRUtility.m */; };
 		374ADFDD1BC7A5E20055AEB5 /* WTRDeckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 374ADFDC1BC7A5E20055AEB5 /* WTRDeckViewController.m */; };
 		375BD2FA1BCCB99000A3EF90 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 375BD2F91BCCB99000A3EF90 /* Images.xcassets */; };
 		375BD3011BCCC28E00A3EF90 /* WTRInitializationPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 375BD3001BCCC28E00A3EF90 /* WTRInitializationPresenter.m */; };
@@ -30,6 +31,7 @@
 		377CE1191B45417300C28A90 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 377CE1171B45417300C28A90 /* Main.storyboard */; };
 		377CE12A1B45417300C28A90 /* WeiTwiTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 377CE1291B45417300C28A90 /* WeiTwiTests.m */; };
 		378478A91BD68A96009A2F6B /* WTRSwipeHorizontalInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 378478A81BD68A96009A2F6B /* WTRSwipeHorizontalInteractiveTransition.m */; };
+		378A9BA51BF35C10001C5DF3 /* WTRWeiboCellDataPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 378A9BA41BF35C10001C5DF3 /* WTRWeiboCellDataPresenter.m */; };
 		378E94C01BE7510600FA1109 /* WTRLoginSyncInteracotr.m in Sources */ = {isa = PBXBuildFile; fileRef = 378E94BF1BE7510600FA1109 /* WTRLoginSyncInteracotr.m */; };
 		379101A31BD4B0DE00AC8E1C /* WTRDeckPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 379101A21BD4B0DE00AC8E1C /* WTRDeckPresenter.m */; };
 		379101AB1BD4DCFC00AC8E1C /* WTRDecListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 379101A91BD4DCFC00AC8E1C /* WTRDecListTableViewCell.m */; };
@@ -60,6 +62,7 @@
 		37CBF5EF1BD0FC0300E01554 /* WTRMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CBF5EE1BD0FC0300E01554 /* WTRMessageViewController.m */; };
 		37CBF5F21BD0FC1900E01554 /* WTRExploreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CBF5F11BD0FC1900E01554 /* WTRExploreViewController.m */; };
 		37CBF5F51BD0FC4100E01554 /* WTRSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CBF5F41BD0FC4100E01554 /* WTRSettingViewController.m */; };
+		37EE36E71BF1EE8C0094B47B /* UILabel+WTRUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EE36E61BF1EE8C0094B47B /* UILabel+WTRUtility.m */; };
 		37EF7E871BE8B681007434D5 /* WTRWeiboStatusInfo+ResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EF7E7F1BE8B681007434D5 /* WTRWeiboStatusInfo+ResponseParser.m */; };
 		37EF7E881BE8B681007434D5 /* WTRWeiboUserInfo+ResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EF7E811BE8B681007434D5 /* WTRWeiboUserInfo+ResponseParser.m */; };
 		37EF7E891BE8B681007434D5 /* WTRWeiboApiService.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EF7E831BE8B681007434D5 /* WTRWeiboApiService.m */; };
@@ -120,6 +123,8 @@
 		372A6F751BE9DA3D006967FE /* WTRWeiboResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRWeiboResponse.m; path = WeiboApiService/WTRWeiboResponse.m; sourceTree = "<group>"; };
 		373888811BDF7E4A000BE28F /* WTRWeiboTimelineDisplayInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRWeiboTimelineDisplayInterface.h; path = ViewInterfaces/WTRWeiboTimelineDisplayInterface.h; sourceTree = "<group>"; };
 		373888841BDF7E65000BE28F /* WTRTwitterTimelineDisplayInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRTwitterTimelineDisplayInterface.h; path = ViewInterfaces/WTRTwitterTimelineDisplayInterface.h; sourceTree = "<group>"; };
+		373FB3071BF335A200CDBF75 /* UIScreen+WTRUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIScreen+WTRUtility.h"; path = "Tools/UIScreen+WTRUtility.h"; sourceTree = "<group>"; };
+		373FB3081BF335A200CDBF75 /* UIScreen+WTRUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIScreen+WTRUtility.m"; path = "Tools/UIScreen+WTRUtility.m"; sourceTree = "<group>"; };
 		374ADFDB1BC7A5E20055AEB5 /* WTRDeckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRDeckViewController.h; path = Views/WTRDeckViewController.h; sourceTree = "<group>"; };
 		374ADFDC1BC7A5E20055AEB5 /* WTRDeckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRDeckViewController.m; path = Views/WTRDeckViewController.m; sourceTree = "<group>"; };
 		375BD2F91BCCB99000A3EF90 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -150,6 +155,8 @@
 		377CE1291B45417300C28A90 /* WeiTwiTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeiTwiTests.m; sourceTree = "<group>"; };
 		378478A71BD68A96009A2F6B /* WTRSwipeHorizontalInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRSwipeHorizontalInteractiveTransition.h; path = Rounting/WTRSwipeHorizontalInteractiveTransition.h; sourceTree = "<group>"; };
 		378478A81BD68A96009A2F6B /* WTRSwipeHorizontalInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRSwipeHorizontalInteractiveTransition.m; path = Rounting/WTRSwipeHorizontalInteractiveTransition.m; sourceTree = "<group>"; };
+		378A9BA31BF35C10001C5DF3 /* WTRWeiboCellDataPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRWeiboCellDataPresenter.h; path = Presenters/WTRWeiboCellDataPresenter.h; sourceTree = "<group>"; };
+		378A9BA41BF35C10001C5DF3 /* WTRWeiboCellDataPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRWeiboCellDataPresenter.m; path = Presenters/WTRWeiboCellDataPresenter.m; sourceTree = "<group>"; };
 		378E94BE1BE7510600FA1109 /* WTRLoginSyncInteracotr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRLoginSyncInteracotr.h; path = Interactors/WTRLoginSyncInteracotr.h; sourceTree = "<group>"; };
 		378E94BF1BE7510600FA1109 /* WTRLoginSyncInteracotr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRLoginSyncInteracotr.m; path = Interactors/WTRLoginSyncInteracotr.m; sourceTree = "<group>"; };
 		379101A11BD4B0DE00AC8E1C /* WTRDeckPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRDeckPresenter.h; path = Presenters/WTRDeckPresenter.h; sourceTree = "<group>"; };
@@ -209,6 +216,8 @@
 		37CBF5F11BD0FC1900E01554 /* WTRExploreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRExploreViewController.m; path = Views/WTRExploreViewController.m; sourceTree = "<group>"; };
 		37CBF5F31BD0FC4100E01554 /* WTRSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRSettingViewController.h; path = Views/WTRSettingViewController.h; sourceTree = "<group>"; };
 		37CBF5F41BD0FC4100E01554 /* WTRSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRSettingViewController.m; path = Views/WTRSettingViewController.m; sourceTree = "<group>"; };
+		37EE36E51BF1EE8C0094B47B /* UILabel+WTRUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+WTRUtility.h"; path = "Tools/UILabel+WTRUtility.h"; sourceTree = "<group>"; };
+		37EE36E61BF1EE8C0094B47B /* UILabel+WTRUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+WTRUtility.m"; path = "Tools/UILabel+WTRUtility.m"; sourceTree = "<group>"; };
 		37EF7E7F1BE8B681007434D5 /* WTRWeiboStatusInfo+ResponseParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "WTRWeiboStatusInfo+ResponseParser.m"; path = "WeiboApiService/WTRWeiboStatusInfo+ResponseParser.m"; sourceTree = "<group>"; };
 		37EF7E801BE8B681007434D5 /* WTRWeiboUserInfo+ResponseParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "WTRWeiboUserInfo+ResponseParser.h"; path = "WeiboApiService/WTRWeiboUserInfo+ResponseParser.h"; sourceTree = "<group>"; };
 		37EF7E811BE8B681007434D5 /* WTRWeiboUserInfo+ResponseParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "WTRWeiboUserInfo+ResponseParser.m"; path = "WeiboApiService/WTRWeiboUserInfo+ResponseParser.m"; sourceTree = "<group>"; };
@@ -315,6 +324,8 @@
 			children = (
 				3706DE7C1BD62E16007C0072 /* WTRWeiboTimeLinePresenter.h */,
 				3706DE7D1BD62E16007C0072 /* WTRWeiboTimeLinePresenter.m */,
+				378A9BA31BF35C10001C5DF3 /* WTRWeiboCellDataPresenter.h */,
+				378A9BA41BF35C10001C5DF3 /* WTRWeiboCellDataPresenter.m */,
 				37A0BFC61BDF350600BBCF4D /* WTRTwitterTimelinePresenter.h */,
 				37A0BFC71BDF350600BBCF4D /* WTRTwitterTimelinePresenter.m */,
 			);
@@ -424,6 +435,10 @@
 		375BD30A1BCCDCBF00A3EF90 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				37EE36E51BF1EE8C0094B47B /* UILabel+WTRUtility.h */,
+				37EE36E61BF1EE8C0094B47B /* UILabel+WTRUtility.m */,
+				373FB3071BF335A200CDBF75 /* UIScreen+WTRUtility.h */,
+				373FB3081BF335A200CDBF75 /* UIScreen+WTRUtility.m */,
 				37C935EC1B48DBB700160224 /* NSString+WTRUtility.h */,
 				37C935EB1B48DBB700160224 /* NSString+WTRUtility.m */,
 				37C935ED1B48DBB700160224 /* NSDictionary+WTRUtility.h */,
@@ -922,6 +937,7 @@
 			files = (
 				37F4148F1BF0CA8500DC09C0 /* NSDateFormatter+WTRUtility.m in Sources */,
 				37EF7E8A1BE8B681007434D5 /* WTRWeiboSDKDelegate.m in Sources */,
+				378A9BA51BF35C10001C5DF3 /* WTRWeiboCellDataPresenter.m in Sources */,
 				379101AB1BD4DCFC00AC8E1C /* WTRDecListTableViewCell.m in Sources */,
 				37F652811BCFABFF00109CDF /* WTRNavigationPresenter.m in Sources */,
 				37B5AFAF1BE475E000E6F97A /* WTRWeiboGeoInfo.m in Sources */,
@@ -946,6 +962,7 @@
 				374ADFDD1BC7A5E20055AEB5 /* WTRDeckViewController.m in Sources */,
 				37A0BFC51BDF345900BBCF4D /* WTRTwitterManagerInteractor.m in Sources */,
 				377CE1131B45417300C28A90 /* AppDelegate.m in Sources */,
+				373FB3091BF335A200CDBF75 /* UIScreen+WTRUtility.m in Sources */,
 				37223AF21BC8C2C70090AF3C /* WTRBasePresenter.m in Sources */,
 				37AAF2CB1BE6EE7400F95102 /* WTRWeiboGeo+Utility.m in Sources */,
 				37C935EF1B48DBB700160224 /* NSString+WTRUtility.m in Sources */,
@@ -986,6 +1003,7 @@
 				372A6F761BE9DA3D006967FE /* WTRWeiboResponse.m in Sources */,
 				37CBF5F21BD0FC1900E01554 /* WTRExploreViewController.m in Sources */,
 				3706DE7E1BD62E16007C0072 /* WTRWeiboTimeLinePresenter.m in Sources */,
+				37EE36E71BF1EE8C0094B47B /* UILabel+WTRUtility.m in Sources */,
 				37F6D0CC1BE32CA800E1E611 /* WTRAuthorizedUserInfo.m in Sources */,
 				37C935E81B48D4F700160224 /* WTRApiService.m in Sources */,
 				37657CF41B45660500E37CF8 /* WTRMyView.m in Sources */,
@@ -1129,7 +1147,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = WeiTwi/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = coolzc.weitwi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1143,7 +1161,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = WeiTwi/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = coolzc.weitwi;
 				PRODUCT_NAME = "$(TARGET_NAME)";

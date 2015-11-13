@@ -32,16 +32,35 @@
     statusInfo.geo = geoInfo;
     WTRWeiboUserInfo *userInfo = [WTRWeiboUserInfo infoFromDictionaryData:[data dictionaryForKey:@"user"]];
     statusInfo.user = userInfo;
-    //TODO: it may casue definite loop
-    id reTweetStatusInfo = [data dictionaryForKey:@"retweeted_status"];
-    statusInfo.retweetedStatus = reTweetStatusInfo;
+    //TODO: it may casue definite loop,so need to judge if it is @{}
+    statusInfo.retweetedStatus = [self weiboStatusInfoParse:data];
+    
     statusInfo.repostsCount = [[data stringForKey:@"reposts_count"] integerValue];
     statusInfo.commentsCount = [[data stringForKey:@"comments_count"] integerValue];
     statusInfo.attitudesCount = [[data stringForKey:@"attitudes_count"] integerValue];
     statusInfo.visible = [[data stringForKey:@"visible"] integerValue];
-    statusInfo.picIds = [data stringForKey:@"pic_ids"];
+    //pic_id
+    statusInfo.picUrls = [self picUrlsParse:data];
     statusInfo.weiboAd = [data stringForKey:@"ad"];
     return statusInfo;
+}
+
++ (WTRWeiboStatusInfo *)weiboStatusInfoParse:(NSDictionary *)data {
+    id reTweetStatus = [data dictionaryForKey:@"retweeted_status"];
+    WTRWeiboStatusInfo *reTweetStatusInfo = nil;
+    if (![reTweetStatus isEqual: @{}]) {
+        reTweetStatusInfo = [WTRWeiboStatusInfo infoFromDictionaryData:reTweetStatus];
+    }
+    return reTweetStatusInfo;
+}
+
++ (NSArray *)picUrlsParse:(NSDictionary *)data {
+    NSArray *picData = [data arrayForKey:@"pic_urls"];
+    NSMutableArray *picUrls = [NSMutableArray arrayWithCapacity:[picData count]];
+    for (NSDictionary *picUrl in picData) {
+        [picUrls addObject:[picUrl objectForKey:@"thumbnail_pic"]];
+    }
+    return [picUrls copy];
 }
 
 @end

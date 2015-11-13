@@ -74,7 +74,10 @@ static NSString *const UserTimelinPath = @"/statuses/user_timeline.json";
     WTRWeiboRequest *request = [WTRWeiboRequest new];
     WTRAuthorizedUserInfo *currentAuthorizedUser = [WTRAuthorizedUser currentAuthorizedUserInfo];
     [request.parameters setObject:WeiboAppKey forKey:@"source"];
-    [request.parameters setObject:currentAuthorizedUser.wbtoken forKey:@"access_token"];
+    //cancel the authorized processing 
+    if (currentAuthorizedUser.wbtoken) {
+        [request.parameters setObject:currentAuthorizedUser.wbtoken forKey:@"access_token"];
+    }
     return request;
 }
 

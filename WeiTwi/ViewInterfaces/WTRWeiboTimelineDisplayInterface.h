@@ -12,6 +12,6 @@
 
 @optional
 
-- (void)displayWeiboTimelineStatuses:(NSArray *)statuses;
+- (void)displayWeiboTimelineStatuses:(NSArray *)statuses withCellConfigure:(NSArray *)cellHeights statusTextHeight:(NSArray *)statusTextHeights reTweetTextHeight:(NSArray *)reTweetTextHeights pictureViewConfigure:(NSArray *)pictureViewConfigures;
 
 @end
