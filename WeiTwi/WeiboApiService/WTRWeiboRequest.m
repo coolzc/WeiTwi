@@ -28,8 +28,29 @@ static NSString *const UserTimelinPath = @"/statuses/user_timeline.json";
 #pragma mark - Public Methods
 
 + (instancetype)requestForHometimelineCount:(NSInteger)count {
-   WTRWeiboRequest *weiboRequest = [self requestForPath:HomeTimelinePath type:WTRWeiboRequestHomeTimeline method:WTRWeiboRequestMethodGet];
+    WTRWeiboRequest *weiboRequest = [self requestForTimeline:HomeTimelinePath type:WTRWeiboRequestHomeTimeline method:WTRWeiboRequestMethodGet];
     [weiboRequest addParameter:@"count" value:[NSString stringWithFormat:@"%ld",(long)count]];
+    return weiboRequest;
+}
+
++ (instancetype)requestForHometimelineSince:(NSString *)sinceId {
+    WTRWeiboRequest *weiboRequest = [self requestForTimeline:HomeTimelinePath type:WTRWeiboRequestHomeTimeline method:WTRWeiboRequestMethodGet];
+    [weiboRequest addParameter:@"since_id" value:sinceId];
+    [weiboRequest addParameter:@"count" value:[NSString stringWithFormat:@"%d",100]];
+    return weiboRequest;
+}
+
++ (instancetype)requestForHometimelineBefore:(NSString *)maxId {
+    WTRWeiboRequest *weiboRequest = [self requestForTimeline:HomeTimelinePath type:WTRWeiboRequestHomeTimeline method:WTRWeiboRequestMethodGet];
+    [weiboRequest addParameter:@"max_id" value:maxId];
+    [weiboRequest addParameter:@"count" value:[NSString stringWithFormat:@"%d",100]];
+    return weiboRequest;
+}
+
+#pragma mark - Private Methods
+
++ (instancetype)requestForTimeline:(NSString *)path type:(WTRWeiboRequestType)type method:(WTRWeiboRequestMethod)method {
+    WTRWeiboRequest *weiboRequest = [self requestForPath:path type:type method:method];
     weiboRequest.responseParser = ^id(NSDictionary *data) {
         NSArray *statusesData = [data arrayForKey:@"statuses"];
         NSMutableArray *statuses = [NSMutableArray arrayWithCapacity:[statusesData count]];
@@ -41,7 +62,6 @@ static NSString *const UserTimelinPath = @"/statuses/user_timeline.json";
     return weiboRequest;
 }
 
-#pragma mark - Private Methods
 
 + (instancetype)requestForPath:(NSString *)path type:(WTRWeiboRequestType)type method:(WTRWeiboRequestMethod)method {
     WTRWeiboRequest *request = [self requestToPath:path];

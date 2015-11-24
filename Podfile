@@ -7,6 +7,7 @@ target 'WeiTwi' do
   pod "WeiboSDK", :git => "https://github.com/sinaweibosdk/weibo_ios_sdk.git"
   pod 'SDWebImage', '~>3.7'
   pod 'MagicalRecord'
+  pod 'MJRefresh'
 end
 
 target 'WeiTwiTests' do

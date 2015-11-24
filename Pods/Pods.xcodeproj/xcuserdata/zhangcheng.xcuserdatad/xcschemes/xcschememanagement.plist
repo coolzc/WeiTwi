@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MJRefresh.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MagicalRecord.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,22 +42,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>3E8D127F8AA79DA825D0A37F9A8E3640</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4E1E09DE4C50DA9C68B29392E2295281</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>5352D432641F0656C90741034E32F31E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5ABF419678572323CCE8E74AD8B91A88</key>
+		<key>77792904805C8BCE4737276FD1F05F2A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>83CFB1FEB8C6467655912BB5CE6D9FAB</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CE7E1649667E8277CE4C62135181A821</key>
+		<key>F3A51EA33BDF1CBA52B3E5C23550EF17</key>
 		<dict>
 			<key>primary</key>
 			<true/>

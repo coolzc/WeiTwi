@@ -21,6 +21,8 @@
 		375BD2FA1BCCB99000A3EF90 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 375BD2F91BCCB99000A3EF90 /* Images.xcassets */; };
 		375BD3011BCCC28E00A3EF90 /* WTRInitializationPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 375BD3001BCCC28E00A3EF90 /* WTRInitializationPresenter.m */; };
 		375BD3091BCCC3D300A3EF90 /* WTRDataSyncInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 375BD3081BCCC3D300A3EF90 /* WTRDataSyncInteractor.m */; };
+		37610A691BFD7AF600685834 /* WTRTableViewFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 37610A681BFD7AF600685834 /* WTRTableViewFooterView.m */; };
+		37610A6B1BFD7B0E00685834 /* WTRTableViewFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 37610A6A1BFD7B0E00685834 /* WTRTableViewFooterView.xib */; };
 		37657CE71B4565CE00E37CF8 /* WTRWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 37657CE41B4565CE00E37CF8 /* WTRWireframe.m */; };
 		37657CE81B4565CE00E37CF8 /* WTRAssemblingFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 37657CE61B4565CE00E37CF8 /* WTRAssemblingFactory.m */; };
 		37657CF11B45660500E37CF8 /* WTRTimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37657CE91B45660500E37CF8 /* WTRTimeLineViewController.m */; };
@@ -38,6 +40,7 @@
 		379101AC1BD4DCFC00AC8E1C /* WTRDecListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 379101AA1BD4DCFC00AC8E1C /* WTRDecListTableViewCell.xib */; };
 		37A0BFC51BDF345900BBCF4D /* WTRTwitterManagerInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A0BFC41BDF345900BBCF4D /* WTRTwitterManagerInteractor.m */; };
 		37A0BFC81BDF350600BBCF4D /* WTRTwitterTimelinePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A0BFC71BDF350600BBCF4D /* WTRTwitterTimelinePresenter.m */; };
+		37A5B95E1C04892000ADB5D7 /* NSObject+WTRUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A5B95D1C04892000ADB5D7 /* NSObject+WTRUtility.m */; };
 		37A7ACB41BCCB21E00243B25 /* WTRSplashScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A7ACB31BCCB21E00243B25 /* WTRSplashScreenViewController.m */; };
 		37A7ACBA1BCCB5CB00243B25 /* Generic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37A7ACB81BCCB5CB00243B25 /* Generic.storyboard */; };
 		37AA3FE91BCB7F1A00F1133D /* NSBundle+WeiTwi.m in Sources */ = {isa = PBXBuildFile; fileRef = 37AA3FE81BCB7F1A00F1133D /* NSBundle+WeiTwi.m */; };
@@ -133,6 +136,9 @@
 		375BD3001BCCC28E00A3EF90 /* WTRInitializationPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRInitializationPresenter.m; path = Presenters/WTRInitializationPresenter.m; sourceTree = "<group>"; };
 		375BD3071BCCC3D300A3EF90 /* WTRDataSyncInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRDataSyncInteractor.h; path = Interactors/WTRDataSyncInteractor.h; sourceTree = "<group>"; };
 		375BD3081BCCC3D300A3EF90 /* WTRDataSyncInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRDataSyncInteractor.m; path = Interactors/WTRDataSyncInteractor.m; sourceTree = "<group>"; };
+		37610A671BFD7AF600685834 /* WTRTableViewFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRTableViewFooterView.h; path = Views/WTRTableViewFooterView.h; sourceTree = "<group>"; };
+		37610A681BFD7AF600685834 /* WTRTableViewFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRTableViewFooterView.m; path = Views/WTRTableViewFooterView.m; sourceTree = "<group>"; };
+		37610A6A1BFD7B0E00685834 /* WTRTableViewFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WTRTableViewFooterView.xib; path = Views/WTRTableViewFooterView.xib; sourceTree = "<group>"; };
 		37657CE01B45656E00E37CF8 /* UIStoryboard+WeiTwi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIStoryboard+WeiTwi.h"; path = "Rounting/UIStoryboard+WeiTwi.h"; sourceTree = "<group>"; };
 		37657CE31B4565CE00E37CF8 /* WTRWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRWireframe.h; path = Rounting/WTRWireframe.h; sourceTree = "<group>"; };
 		37657CE41B4565CE00E37CF8 /* WTRWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRWireframe.m; path = Rounting/WTRWireframe.m; sourceTree = "<group>"; };
@@ -169,6 +175,8 @@
 		37A0BFC41BDF345900BBCF4D /* WTRTwitterManagerInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRTwitterManagerInteractor.m; path = Interactors/WTRTwitterManagerInteractor.m; sourceTree = "<group>"; };
 		37A0BFC61BDF350600BBCF4D /* WTRTwitterTimelinePresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRTwitterTimelinePresenter.h; path = Presenters/WTRTwitterTimelinePresenter.h; sourceTree = "<group>"; };
 		37A0BFC71BDF350600BBCF4D /* WTRTwitterTimelinePresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRTwitterTimelinePresenter.m; path = Presenters/WTRTwitterTimelinePresenter.m; sourceTree = "<group>"; };
+		37A5B95C1C04892000ADB5D7 /* NSObject+WTRUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSObject+WTRUtility.h"; path = "Tools/NSObject+WTRUtility.h"; sourceTree = "<group>"; };
+		37A5B95D1C04892000ADB5D7 /* NSObject+WTRUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSObject+WTRUtility.m"; path = "Tools/NSObject+WTRUtility.m"; sourceTree = "<group>"; };
 		37A7ACB21BCCB21E00243B25 /* WTRSplashScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRSplashScreenViewController.h; path = Views/WTRSplashScreenViewController.h; sourceTree = "<group>"; };
 		37A7ACB31BCCB21E00243B25 /* WTRSplashScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRSplashScreenViewController.m; path = Views/WTRSplashScreenViewController.m; sourceTree = "<group>"; };
 		37A7ACB91BCCB5CB00243B25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Generic.storyboard; sourceTree = "<group>"; };
@@ -443,10 +451,12 @@
 				37C935EB1B48DBB700160224 /* NSString+WTRUtility.m */,
 				37C935ED1B48DBB700160224 /* NSDictionary+WTRUtility.h */,
 				37C935EE1B48DBB700160224 /* NSDictionary+WTRUtility.m */,
-				37F6527C1BCF794E00109CDF /* NSUserDefaults+WRUtility.m */,
 				37F6527D1BCF794E00109CDF /* NSUserDefaults+WRUtility.h */,
+				37F6527C1BCF794E00109CDF /* NSUserDefaults+WRUtility.m */,
 				37F4148D1BF0CA8500DC09C0 /* NSDateFormatter+WTRUtility.h */,
 				37F4148E1BF0CA8500DC09C0 /* NSDateFormatter+WTRUtility.m */,
+				37A5B95C1C04892000ADB5D7 /* NSObject+WTRUtility.h */,
+				37A5B95D1C04892000ADB5D7 /* NSObject+WTRUtility.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -474,6 +484,9 @@
 			isa = PBXGroup;
 			children = (
 				3706DE741BD61B04007C0072 /* Widgets */,
+				37610A671BFD7AF600685834 /* WTRTableViewFooterView.h */,
+				37610A681BFD7AF600685834 /* WTRTableViewFooterView.m */,
+				37610A6A1BFD7B0E00685834 /* WTRTableViewFooterView.xib */,
 				37A7ACB11BCCB20100243B25 /* Generic */,
 				374ADFDE1BC7C5B00055AEB5 /* DeckList */,
 				3706DE841BD63113007C0072 /* Timeline */,
@@ -879,6 +892,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37610A6B1BFD7B0E00685834 /* WTRTableViewFooterView.xib in Resources */,
 				37A7ACBA1BCCB5CB00243B25 /* Generic.storyboard in Resources */,
 				377CE1191B45417300C28A90 /* Main.storyboard in Resources */,
 				37193BB21BD3E0C900D2733B /* Localizable.strings in Resources */,
@@ -945,6 +959,7 @@
 				37EF7E881BE8B681007434D5 /* WTRWeiboUserInfo+ResponseParser.m in Sources */,
 				37F6D0D91BE35C5800E1E611 /* WTRWeiboStatus.m in Sources */,
 				37657CF31B45660500E37CF8 /* WTRTimelineCell.m in Sources */,
+				37A5B95E1C04892000ADB5D7 /* NSObject+WTRUtility.m in Sources */,
 				37C935FA1B4918A700160224 /* WTRWeiboStatusInfo.m in Sources */,
 				37B5AFB31BE4BD9A00E6F97A /* WTRAuthorizedUser+DataManager.m in Sources */,
 				37223AEE1BC8BEE80090AF3C /* WTRConfig.m in Sources */,
@@ -956,6 +971,7 @@
 				37C935E51B48D4F700160224 /* WTRApiRequest.m in Sources */,
 				37B5AFB71BE4E8B500E6F97A /* WTRWeiboUser+Utility.m in Sources */,
 				37F6D0CF1BE33C6E00E1E611 /* WeiTwi.xcdatamodeld in Sources */,
+				37610A691BFD7AF600685834 /* WTRTableViewFooterView.m in Sources */,
 				37EF7E871BE8B681007434D5 /* WTRWeiboStatusInfo+ResponseParser.m in Sources */,
 				37F514771BD8B4E700D151AF /* MMDrawerController.m in Sources */,
 				37F6D0DC1BE361F700E1E611 /* WTRWeiboGeo.m in Sources */,

@@ -10,7 +10,6 @@
 #import "WTRWireframe.h"
 #import "WTRWeiboUserInfo.h"
 #import "WTRWeiboUser+Utility.h"
-#import "WTRWeiboStatusInfo.h"
 #import "WTRWeiboStatus+Utility.h"
 #import "WTRWeiboGeo+Utility.h"
 #import "WTRWeiboGeoInfo.h"
@@ -18,6 +17,7 @@
 #import "WTRConfig.h"
 #import "NSString+WTRUtility.h"
 #import "UIScreen+WTRUtility.h"
+#import "NSObject+WTRUtility.h"
 
 @interface WTRWeiboTimeLinePresenter () <WTRWeiboApiServiceDelegate>
 
@@ -74,6 +74,14 @@
     [self fetchTimelineInfoFromRemote];
 }
 
+- (void)reloadNewerWeiboTimelineDataSince:(WTRWeiboStatusInfo *)status {
+    [self fetchNewerTimelineInfoFromRemote:status.idStr];
+}
+
+- (void)reloadOlderWeiboTimelineDataBefore:(WTRWeiboStatusInfo *)status {
+    [self fetchOlderTimelineInfoFromRemote:status.idStr];
+}
+
 #pragma mark - WTRWeiboApiServiceDelegate
 
 - (void)weiboServiceDidFinishRequest:(WTRWeiboRequest *)request withResponse:(WTRWeiboResponse *)response {
@@ -81,8 +89,6 @@
     [self.progressView endProgress];
     self.statusesInfo = response.responseObject;
     [self processStatuesDataToFitTimelineCellsConstraints];
-    NSLog(@"****cell height:%@,text:%@ retweet:%@ picture configures:%@",self.cellsHeights,self.statusTextHeights,self.reTweetTextHeights,self.picturesViewConfigures);
-
     [self.weiboTimelineDisplay displayWeiboTimelineStatuses:self.statusesInfo
                                           withCellConfigure:[self.cellsHeights copy]
                                            statusTextHeight:[self.statusTextHeights copy]
@@ -96,6 +102,19 @@
 - (void)fetchTimelineInfoFromRemote {
     WTRWeiboApiService *weiboApiservice = [WTRWeiboApiService weiboApiServiceWithDeleate:self];
     WTRWeiboRequest *apiRequest = [WTRWeiboRequest requestForHometimelineCount:25];
+    [weiboApiservice sendRequest:apiRequest];
+}
+
+- (void)fetchNewerTimelineInfoFromRemote:(NSString *)sinceId {
+    WTRWeiboApiService *weiboApiservice = [WTRWeiboApiService weiboApiServiceWithDeleate:self];
+    WTRWeiboRequest *apiRequest = [WTRWeiboRequest requestForHometimelineSince:sinceId];
+    [weiboApiservice sendRequest:apiRequest];
+}
+
+
+- (void)fetchOlderTimelineInfoFromRemote:(NSString *)beforeId {
+    WTRWeiboApiService *weiboApiservice = [WTRWeiboApiService weiboApiServiceWithDeleate:self];
+    WTRWeiboRequest *apiRequest = [WTRWeiboRequest requestForHometimelineBefore:beforeId];
     [weiboApiservice sendRequest:apiRequest];
 }
 

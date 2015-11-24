@@ -32,5 +32,7 @@ typedef id (^WeiboApiResponseParser)(NSDictionary *data);
 @property (nonatomic, strong) NSMutableDictionary *parameters;
 
 + (instancetype)requestForHometimelineCount:(NSInteger)count;
++ (instancetype)requestForHometimelineSince:(NSString *)sinceId;
++ (instancetype)requestForHometimelineBefore:(NSString *)maxId;
 
 @end

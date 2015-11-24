@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WTRTableViewFooterView.h"
 
 @interface NSBundle (WeiTwi)
+
++ (WTRTableViewFooterView *)loadTableViewFooterView;
 
 @end

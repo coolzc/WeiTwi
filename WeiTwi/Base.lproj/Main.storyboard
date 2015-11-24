@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lSg-kt-twH">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -37,12 +37,12 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="lSg-kt-twH" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="4yb-hX-oKn"/>
+                            <constraint firstItem="lSg-kt-twH" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="64" id="4yb-hX-oKn"/>
                             <constraint firstItem="lSg-kt-twH" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="64" id="BvL-Ez-hxo"/>
                             <constraint firstItem="nvA-IW-bSK" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="HcF-SS-Vto"/>
                             <constraint firstAttribute="trailing" secondItem="nvA-IW-bSK" secondAttribute="trailing" id="ICK-jG-ZbZ"/>
                             <constraint firstItem="lSg-kt-twH" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="64" id="JDN-yj-ZD8"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="lSg-kt-twH" secondAttribute="bottom" id="Ked-i2-vfa"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="lSg-kt-twH" secondAttribute="bottom" constant="49" id="Ked-i2-vfa"/>
                             <constraint firstAttribute="bottom" secondItem="nvA-IW-bSK" secondAttribute="bottom" id="Oue-dd-9Nc"/>
                             <constraint firstAttribute="trailing" secondItem="lSg-kt-twH" secondAttribute="trailing" id="vwA-dA-YzP"/>
                             <constraint firstItem="lSg-kt-twH" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="wwu-fM-yIE"/>
