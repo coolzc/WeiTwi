@@ -121,11 +121,13 @@ static NSString *const TimelineCellReuseIdentifier = @"TimelineCellReusedId";
         }
             break;
         case WTRWeiboTimelineViewTopRefresh: {
-            [self.weiboStatuses insertObject:statuses atIndex:0];
-            [self.cellsHeights insertObject:cellHeights atIndex:0];
-            [self.statusTextHeights insertObject:statusTextHeights atIndex:0];
-            [self.reTweetTextHeights insertObject:reTweetTextHeights atIndex:0];
-            [self.picturesViewConfigures insertObject:pictureViewConfigures atIndex:0];
+            [statuses enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [self.weiboStatuses insertObject:obj atIndex:0];
+                [self.cellsHeights insertObject:cellHeights[idx] atIndex:0];
+                [self.statusTextHeights insertObject:statusTextHeights[idx] atIndex:0];
+                [self.reTweetTextHeights insertObject:reTweetTextHeights[idx] atIndex:0];
+                [self.picturesViewConfigures insertObject:pictureViewConfigures[idx] atIndex:0];
+            }];
         }
             break;
         default:

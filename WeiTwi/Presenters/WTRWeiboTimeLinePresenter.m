@@ -22,7 +22,7 @@
 @interface WTRWeiboTimeLinePresenter () <WTRWeiboApiServiceDelegate>
 
 @property (nonatomic, assign) BOOL needFetchRemoteData;
-@property (nonatomic, strong) NSArray *statusesInfo;
+@property (nonatomic, strong) NSMutableArray *statusesInfo;
 //cells constraint configure
 @property (nonatomic, assign) CGFloat cellHeight;
 @property (nonatomic, strong) NSMutableArray *cellsHeights;
@@ -36,7 +36,6 @@
 
 - (void)viewDidLoad:(UIViewController *)viewController {
     [super viewDidLoad:viewController];
-    self.statusesInfo = self.statusesInfo ? : @[];
     self.needFetchRemoteData = YES;
     self.cellHeight = 0.f;
 }
@@ -46,7 +45,7 @@
     if (self.needFetchRemoteData) {
         //TODO
         if (0 < [self.statusesInfo count]) {
-            [self.weiboTimelineDisplay displayWeiboTimelineStatuses:self.statusesInfo
+            [self.weiboTimelineDisplay displayWeiboTimelineStatuses:[self.statusesInfo copy]
                                                   withCellConfigure:[self.cellsHeights copy]
                                                    statusTextHeight:[self.statusTextHeights copy]
                                                   reTweetTextHeight:[self.reTweetTextHeights copy]
@@ -88,7 +87,7 @@
 - (void)weiboServiceDidFinishRequest:(WTRWeiboRequest *)request withResponse:(WTRWeiboResponse *)response {
     [self.progressView updateProgress:1.f message:NSLocalizedString(@"init-progress-text-end", nil)];
     [self.progressView endProgress];
-    self.statusesInfo = response.responseObject;
+    self.statusesInfo = [NSMutableArray arrayWithArray:response.responseObject];
     [self processStatuesDataToFitTimelineCellsConstraints];
     
     WTRWeiboRefreshDisplayType refreshType;
@@ -96,17 +95,24 @@
         case WTRWeiboRequestHomeTimeline:
             refreshType = WTRWeiboTimelineViewRefresh;
             break;
-        case WTRWeiboRequestHomeTimelineSince:
+        case WTRWeiboRequestHomeTimelineSince: {
             refreshType = WTRWeiboTimelineViewTopRefresh;
+        }
             break;
-        case WTRWeiboRequestHomeTimelineBefore:
+        case WTRWeiboRequestHomeTimelineBefore: {
             refreshType = WTRWeiboTimelineViewBottomRefresh;
+            [self.statusesInfo removeObjectAtIndex:0];
+            [self.cellsHeights removeObjectAtIndex:0];
+            [self.statusTextHeights removeObjectAtIndex:0];
+            [self.reTweetTextHeights removeObjectAtIndex:0];
+            [self.picturesViewConfigures removeObjectAtIndex:0];
+        }
             break;
         default:
             break;
     }
     
-    [self.weiboTimelineDisplay displayWeiboTimelineStatuses:self.statusesInfo
+    [self.weiboTimelineDisplay displayWeiboTimelineStatuses:[self.statusesInfo copy]
                                           withCellConfigure:[self.cellsHeights copy]
                                            statusTextHeight:[self.statusTextHeights copy]
                                           reTweetTextHeight:[self.reTweetTextHeights copy]
@@ -138,6 +144,7 @@
 
 - (void)processStatuesDataToFitTimelineCellsConstraints {
     NSUInteger statusNum = [self.statusesInfo count];
+    
     self.statusTextHeights = [NSMutableArray arrayWithCapacity:statusNum];
     self.reTweetTextHeights = [NSMutableArray arrayWithCapacity:statusNum];
     self.picturesViewConfigures = [NSMutableArray arrayWithCapacity:statusNum];

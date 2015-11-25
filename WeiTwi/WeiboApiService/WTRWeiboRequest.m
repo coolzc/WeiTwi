@@ -62,9 +62,9 @@ static NSString *const UserTimelinPath = @"/statuses/user_timeline.json";
     return weiboRequest;
 }
 
-
 + (instancetype)requestForPath:(NSString *)path type:(WTRWeiboRequestType)type method:(WTRWeiboRequestMethod)method {
     WTRWeiboRequest *request = [self requestToPath:path];
+    request.type = type;
     switch (method) {
         case WTRWeiboRequestMethodGet:
             request.method = @"Get";
