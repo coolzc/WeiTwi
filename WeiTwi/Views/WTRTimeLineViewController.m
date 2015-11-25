@@ -109,12 +109,28 @@ static NSString *const TimelineCellReuseIdentifier = @"TimelineCellReusedId";
 
 #pragma mark - WTRTwitterTimelineDisplayInterface
 
-- (void)displayWeiboTimelineStatuses:(NSArray *)statuses withCellConfigure:(NSArray *)cellHeights statusTextHeight:(NSArray *)statusTextHeights reTweetTextHeight:(NSArray *)reTweetTextHeights pictureViewConfigure:(NSArray *)pictureViewConfigures {
-    [self.weiboStatuses addObjectsFromArray:statuses];
-    [self.cellsHeights addObjectsFromArray:cellHeights];
-    [self.statusTextHeights addObjectsFromArray:statusTextHeights];
-    [self.reTweetTextHeights addObjectsFromArray:reTweetTextHeights];
-    [self.picturesViewConfigures addObjectsFromArray:pictureViewConfigures];
+- (void)displayWeiboTimelineStatuses:(NSArray *)statuses withCellConfigure:(NSArray *)cellHeights statusTextHeight:(NSArray *)statusTextHeights reTweetTextHeight:(NSArray *)reTweetTextHeights pictureViewConfigure:(NSArray *)pictureViewConfigures refreshDisplayType:(WTRWeiboRefreshDisplayType)refreshDisplayType {
+        switch (refreshDisplayType) {
+        case WTRWeiboTimelineViewRefresh:
+        case WTRWeiboTimelineViewBottomRefresh: {
+            [self.weiboStatuses addObjectsFromArray:statuses];
+            [self.cellsHeights addObjectsFromArray:cellHeights];
+            [self.statusTextHeights addObjectsFromArray:statusTextHeights];
+            [self.reTweetTextHeights addObjectsFromArray:reTweetTextHeights];
+            [self.picturesViewConfigures addObjectsFromArray:pictureViewConfigures];
+        }
+            break;
+        case WTRWeiboTimelineViewTopRefresh: {
+            [self.weiboStatuses insertObject:statuses atIndex:0];
+            [self.cellsHeights insertObject:cellHeights atIndex:0];
+            [self.statusTextHeights insertObject:statusTextHeights atIndex:0];
+            [self.reTweetTextHeights insertObject:reTweetTextHeights atIndex:0];
+            [self.picturesViewConfigures insertObject:pictureViewConfigures atIndex:0];
+        }
+            break;
+        default:
+            break;
+    }
 
     [self.tableView reloadData];
 }

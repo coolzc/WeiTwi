@@ -8,10 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum {
+    WTRWeiboTimelineViewRefresh,
+    WTRWeiboTimelineViewTopRefresh,
+    WTRWeiboTimelineViewBottomRefresh,
+} WTRWeiboRefreshDisplayType;
+
 @protocol WTRWeiboTimelineDisplayInterface <NSObject>
 
 @optional
 
-- (void)displayWeiboTimelineStatuses:(NSArray *)statuses withCellConfigure:(NSArray *)cellHeights statusTextHeight:(NSArray *)statusTextHeights reTweetTextHeight:(NSArray *)reTweetTextHeights pictureViewConfigure:(NSArray *)pictureViewConfigures;
+- (void)displayWeiboTimelineStatuses:(NSArray *)statuses withCellConfigure:(NSArray *)cellHeights statusTextHeight:(NSArray *)statusTextHeights reTweetTextHeight:(NSArray *)reTweetTextHeights pictureViewConfigure:(NSArray *)pictureViewConfigures refreshDisplayType:(WTRWeiboRefreshDisplayType)refreshDisplayType;
 
 @end

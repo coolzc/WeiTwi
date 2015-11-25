@@ -51,6 +51,7 @@
                                                    statusTextHeight:[self.statusTextHeights copy]
                                                   reTweetTextHeight:[self.reTweetTextHeights copy]
                                                pictureViewConfigure:[self.picturesViewConfigures copy]
+                                                 refreshDisplayType:WTRWeiboTimelineViewRefresh
              ];
         } else {
             [self.progressView beginProgress];
@@ -89,11 +90,28 @@
     [self.progressView endProgress];
     self.statusesInfo = response.responseObject;
     [self processStatuesDataToFitTimelineCellsConstraints];
+    
+    WTRWeiboRefreshDisplayType refreshType;
+    switch (request.type) {
+        case WTRWeiboRequestHomeTimeline:
+            refreshType = WTRWeiboTimelineViewRefresh;
+            break;
+        case WTRWeiboRequestHomeTimelineSince:
+            refreshType = WTRWeiboTimelineViewTopRefresh;
+            break;
+        case WTRWeiboRequestHomeTimelineBefore:
+            refreshType = WTRWeiboTimelineViewBottomRefresh;
+            break;
+        default:
+            break;
+    }
+    
     [self.weiboTimelineDisplay displayWeiboTimelineStatuses:self.statusesInfo
                                           withCellConfigure:[self.cellsHeights copy]
                                            statusTextHeight:[self.statusTextHeights copy]
                                           reTweetTextHeight:[self.reTweetTextHeights copy]
                                        pictureViewConfigure:[self.picturesViewConfigures copy]
+                                         refreshDisplayType:refreshType
      ];
 }
 

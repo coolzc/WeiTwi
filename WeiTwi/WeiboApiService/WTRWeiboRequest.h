@@ -12,6 +12,8 @@ typedef enum {
     WTRWeiboRequestAuthorized,
     WTRWeiboRequestUnAuthorized,
     WTRWeiboRequestHomeTimeline,
+    WTRWeiboRequestHomeTimelineSince,
+    WTRWeiboRequestHomeTimelineBefore,
 } WTRWeiboRequestType;
 
 typedef enum {
