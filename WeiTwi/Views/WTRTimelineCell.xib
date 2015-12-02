@@ -9,10 +9,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="200" id="SJP-QQ-0N8" customClass="WTRTimelineCell">
-            <rect key="frame" x="0.0" y="0.0" width="380" height="242"/>
+            <rect key="frame" x="0.0" y="0.0" width="380" height="268"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SJP-QQ-0N8" id="eBa-yL-1t4">
-                <rect key="frame" x="0.0" y="0.0" width="380" height="241.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="380" height="267.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y5p-g3-FA9" userLabel="User Image View">
@@ -348,12 +348,98 @@
                         </constraints>
                     </view>
                     <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6JV-JG-th2" userLabel="Bottom Line View">
-                        <rect key="frame" x="0.0" y="240" width="380" height="1"/>
+                        <rect key="frame" x="0.0" y="266" width="380" height="1"/>
                         <animations/>
                         <color key="backgroundColor" red="0.71192999708624705" green="0.71406067890442892" blue="0.72127221736596736" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="Wta-VA-qXn"/>
                         </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bSU-Ej-6sp" userLabel="Bottom Labels View">
+                        <rect key="frame" x="0.0" y="240" width="380" height="27.5"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y1x-9i-0ch">
+                                <rect key="frame" x="289" y="0.0" width="65" height="27.5"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="65" id="L4q-fv-Z91"/>
+                                </constraints>
+                                <state key="normal" title="comment"/>
+                                <connections>
+                                    <action selector="commentButtonTouchUpInside:" destination="SJP-QQ-0N8" eventType="touchUpInside" id="r74-4K-zlq"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K8h-e7-sOt" userLabel="Comment Number Label">
+                                <rect key="frame" x="354" y="0.0" width="24" height="25.5"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="ogQ-RK-pKE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zjt-Vy-kDK">
+                                <rect key="frame" x="192" y="0.0" width="65" height="27.5"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="65" id="QOZ-uS-tga"/>
+                                </constraints>
+                                <state key="normal" title="retweet"/>
+                                <connections>
+                                    <action selector="retweetButtonTouchUpInside:" destination="SJP-QQ-0N8" eventType="touchUpInside" id="PPM-zm-mOP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8AC-eg-9iU">
+                                <rect key="frame" x="0.0" y="0.0" width="80" height="27.5"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="kDk-PG-BuG"/>
+                                </constraints>
+                                <state key="normal" title="see more..."/>
+                                <connections>
+                                    <action selector="detailButtonTouchUpInside:" destination="SJP-QQ-0N8" eventType="touchUpInside" id="mwI-tQ-FKi"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sxa-Gb-KJo" userLabel="Retweet Number Label">
+                                <rect key="frame" x="257" y="2" width="24" height="23.5"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="eBh-6R-CFL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="sxa-Gb-KJo" firstAttribute="top" secondItem="bSU-Ej-6sp" secondAttribute="top" constant="2" id="5az-W6-vMN"/>
+                            <constraint firstItem="sxa-Gb-KJo" firstAttribute="leading" secondItem="Zjt-Vy-kDK" secondAttribute="trailing" id="77Z-F8-IvJ"/>
+                            <constraint firstAttribute="bottom" secondItem="8AC-eg-9iU" secondAttribute="bottom" id="Aut-od-DRA"/>
+                            <constraint firstAttribute="bottom" secondItem="Zjt-Vy-kDK" secondAttribute="bottom" id="CNJ-Oj-hgp"/>
+                            <constraint firstAttribute="trailing" secondItem="K8h-e7-sOt" secondAttribute="trailing" constant="2" id="DXA-wJ-ngG"/>
+                            <constraint firstAttribute="bottom" secondItem="Y1x-9i-0ch" secondAttribute="bottom" id="S7p-p4-xkw"/>
+                            <constraint firstItem="8AC-eg-9iU" firstAttribute="top" secondItem="bSU-Ej-6sp" secondAttribute="top" id="SVw-eg-idq"/>
+                            <constraint firstItem="8AC-eg-9iU" firstAttribute="leading" secondItem="bSU-Ej-6sp" secondAttribute="leading" id="WfW-Ap-hf6"/>
+                            <constraint firstAttribute="height" constant="28" id="X6e-YI-DDj"/>
+                            <constraint firstAttribute="bottom" secondItem="sxa-Gb-KJo" secondAttribute="bottom" constant="2" id="cUT-Vy-5DC"/>
+                            <constraint firstItem="Zjt-Vy-kDK" firstAttribute="top" secondItem="bSU-Ej-6sp" secondAttribute="top" id="glE-BH-lig"/>
+                            <constraint firstItem="K8h-e7-sOt" firstAttribute="leading" secondItem="Y1x-9i-0ch" secondAttribute="trailing" id="h58-4g-9eH"/>
+                            <constraint firstItem="Y1x-9i-0ch" firstAttribute="leading" secondItem="sxa-Gb-KJo" secondAttribute="trailing" constant="8" id="iAe-pr-J8N"/>
+                            <constraint firstItem="Y1x-9i-0ch" firstAttribute="leading" secondItem="Zjt-Vy-kDK" secondAttribute="trailing" constant="50" id="iFm-PK-qJJ"/>
+                            <constraint firstItem="K8h-e7-sOt" firstAttribute="top" secondItem="bSU-Ej-6sp" secondAttribute="top" id="knf-3b-lld"/>
+                            <constraint firstItem="Y1x-9i-0ch" firstAttribute="top" secondItem="bSU-Ej-6sp" secondAttribute="top" id="lo9-BF-1mM"/>
+                            <constraint firstAttribute="bottom" secondItem="K8h-e7-sOt" secondAttribute="bottom" constant="2" id="nrP-rR-0XD"/>
+                            <constraint firstAttribute="trailing" secondItem="Y1x-9i-0ch" secondAttribute="trailing" id="vTo-aW-jaP"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="iFm-PK-qJJ"/>
+                                <exclude reference="vTo-aW-jaP"/>
+                            </mask>
+                        </variation>
                     </view>
                 </subviews>
                 <animations/>
@@ -362,19 +448,29 @@
                     <constraint firstItem="vey-S6-imr" firstAttribute="top" secondItem="eBa-yL-1t4" secondAttribute="top" id="83d-Pd-VHe"/>
                     <constraint firstItem="ysC-dj-5h0" firstAttribute="top" secondItem="vey-S6-imr" secondAttribute="bottom" id="Fzr-SX-O9a"/>
                     <constraint firstItem="Y5p-g3-FA9" firstAttribute="top" secondItem="eBa-yL-1t4" secondAttribute="top" id="Jsj-A1-7Tw"/>
+                    <constraint firstAttribute="bottom" secondItem="bSU-Ej-6sp" secondAttribute="bottom" id="ONH-Nj-Sti"/>
                     <constraint firstItem="6JV-JG-th2" firstAttribute="leading" secondItem="eBa-yL-1t4" secondAttribute="leading" id="a2R-mI-288"/>
                     <constraint firstItem="6JV-JG-th2" firstAttribute="top" secondItem="ysC-dj-5h0" secondAttribute="bottom" id="ayn-FM-1Vl"/>
+                    <constraint firstItem="bSU-Ej-6sp" firstAttribute="leading" secondItem="eBa-yL-1t4" secondAttribute="leading" id="eDd-ow-Xfc"/>
                     <constraint firstAttribute="trailing" secondItem="vey-S6-imr" secondAttribute="trailing" id="lmJ-A6-n7w"/>
                     <constraint firstItem="ysC-dj-5h0" firstAttribute="leading" secondItem="eBa-yL-1t4" secondAttribute="leading" id="mqv-Bd-9tY"/>
+                    <constraint firstAttribute="trailing" secondItem="bSU-Ej-6sp" secondAttribute="trailing" id="ori-Kf-nRq"/>
                     <constraint firstAttribute="trailing" secondItem="ysC-dj-5h0" secondAttribute="trailing" id="pTE-Jg-upv"/>
+                    <constraint firstItem="bSU-Ej-6sp" firstAttribute="top" secondItem="ysC-dj-5h0" secondAttribute="bottom" id="qUa-Zi-kf8"/>
                     <constraint firstItem="Y5p-g3-FA9" firstAttribute="leading" secondItem="eBa-yL-1t4" secondAttribute="leading" id="s9K-T9-2ib"/>
                     <constraint firstAttribute="bottom" secondItem="6JV-JG-th2" secondAttribute="bottom" id="tRG-81-yVw"/>
                     <constraint firstAttribute="trailing" secondItem="6JV-JG-th2" secondAttribute="trailing" id="uYT-0j-Jqw"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="ayn-FM-1Vl"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <animations/>
             <connections>
                 <outlet property="bottomHorizontalLineToBottomConstraint" destination="SH1-gb-7Ln" id="hxR-gJ-RSA"/>
+                <outlet property="commentCountLabel" destination="K8h-e7-sOt" id="8rQ-3F-gtN"/>
                 <outlet property="contentTextLabel" destination="zfz-VS-IH1" id="eES-qW-Ln9"/>
                 <outlet property="image1View" destination="NpK-qm-WYL" id="3LG-tq-RfA"/>
                 <outlet property="image2View" destination="FrY-8D-3eO" id="o31-YO-SOV"/>
@@ -389,6 +485,7 @@
                 <outlet property="nameLabel" destination="xWG-ak-qOV" id="kqo-Hw-OX2"/>
                 <outlet property="picturesViewHeightConstraint" destination="lJw-dv-UPs" id="sHa-N3-Cih"/>
                 <outlet property="producedTimeLabel" destination="zX9-s8-Oji" id="Wtr-WO-Vn8"/>
+                <outlet property="retweetCountLabel" destination="sxa-Gb-KJo" id="uAA-IY-UJU"/>
                 <outlet property="rightVerticalLineToRightConstraint" destination="86z-bI-YuL" id="kZp-S3-fui"/>
                 <outlet property="sourceLabel" destination="V2r-br-llY" id="Tvm-Ly-Egj"/>
                 <outlet property="subStatusTextLabel" destination="3KC-pX-A1y" id="PTI-R7-oGK"/>
@@ -399,7 +496,7 @@
                 <outlet property="userContentTextLabelHeightContraint" destination="aBP-XL-mE0" id="sIs-sG-Llf"/>
                 <outlet property="userImageView" destination="Y5p-g3-FA9" id="at9-03-BRR"/>
             </connections>
-            <point key="canvasLocation" x="539" y="446"/>
+            <point key="canvasLocation" x="525" y="224"/>
         </tableViewCell>
     </objects>
 </document>

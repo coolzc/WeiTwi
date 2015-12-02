@@ -16,7 +16,7 @@
 
 @property (nonatomic, assign) NSInteger picturesNum;
 @property (nonatomic, strong) NSArray *imageViews;
-@property (nonatomic, assign) CGFloat cellHeight;
+@property (nonatomic, assign) CGFloat totalHeight;
 @property (nonatomic, assign) CGFloat statusTextHeight;
 @property (nonatomic, assign) CGFloat reTweetTextHeight;
 @property (nonatomic, strong) NSArray *picturesConstraints;
@@ -40,8 +40,8 @@
     //retweet
     self.subStatusTextLabelHeightConstraint.constant = self.reTweetTextHeight;
     //pictures
-    self.picturesViewHeightConstraint.constant = self.cellHeight - self.statusTextHeight - self.reTweetTextHeight;
-    NSLog(@"****cell height:%f,text:%f retweet:%f picture:%f",self.cellHeight,self.statusTextHeight,self.reTweetTextHeight,self.picturesViewHeightConstraint.constant);
+    self.picturesViewHeightConstraint.constant = self.totalHeight - self.statusTextHeight - self.reTweetTextHeight;
+    NSLog(@"****cell height:%f,text:%f retweet:%f picture:%f",self.totalHeight,self.statusTextHeight,self.reTweetTextHeight,self.picturesViewHeightConstraint.constant);
     //kinds of numbers picutes arrange configure
     NSNumber *topConstraint = self.picturesConstraints[0];
     NSNumber *bottomConstraint = self.picturesConstraints[1];
@@ -85,13 +85,41 @@
     } else {
         self.picturesNum = 0;
     }
+    //retweet count
+    if (0  < statusesInfo.commentsCount) {
+        self.commentCountLabel.hidden = NO;
+        self.commentCountLabel.text = [NSString stringWithFormat:@"%ld",(long)statusesInfo.commentsCount];
+    } else {
+        self.commentCountLabel.hidden = YES;
+    }
+    //comment count
+    if (0  < statusesInfo.repostsCount) {
+        self.retweetCountLabel.hidden = NO;
+        self.retweetCountLabel.text = [NSString stringWithFormat:@"%ld",(long)statusesInfo.repostsCount];
+    } else {
+        self.retweetCountLabel.hidden = YES;
+    }
 }
 
-- (void)updateCellHeightConstraintValues:(CGFloat)cellHeight statusTextHeightValue:(CGFloat)statusTextHeight reTweetTextHeightValue:(CGFloat)reTweetTextHeight picturesViewConstraintsValues:(NSArray *)viewConstraints {
-    self.cellHeight = cellHeight;
+- (void)updateCellHeightConstraintValues:(CGFloat)totalHeight statusTextHeightValue:(CGFloat)statusTextHeight reTweetTextHeightValue:(CGFloat)reTweetTextHeight picturesViewConstraintsValues:(NSArray *)viewConstraints {
+    self.totalHeight = totalHeight;
     self.statusTextHeight = statusTextHeight;
     self.reTweetTextHeight = reTweetTextHeight;
     self.picturesConstraints = viewConstraints;
+}
+
+#pragma mark - Actions
+
+- (IBAction)commentButtonTouchUpInside:(id)sender {
+    
+}
+
+- (IBAction)retweetButtonTouchUpInside:(id)sender {
+    
+}
+
+- (IBAction)detailButtonTouchUpInside:(id)sender {
+    
 }
 
 #pragma mark - Private Methods
@@ -101,6 +129,8 @@
     //make user avatar view round
     self.userImageView.layer.cornerRadius = 20.f;
     self.userImageView.clipsToBounds = YES;
+    self.retweetCountLabel.hidden = YES;
+    self.commentCountLabel.hidden = YES;
 }
 
 - (void)configureProperties {

@@ -36,14 +36,14 @@ static NSString *const UserTimelinPath = @"/statuses/user_timeline.json";
 + (instancetype)requestForHometimelineSince:(NSString *)sinceId {
     WTRWeiboRequest *weiboRequest = [self requestForTimeline:HomeTimelinePath type:WTRWeiboRequestHomeTimelineSince method:WTRWeiboRequestMethodGet];
     [weiboRequest addParameter:@"since_id" value:sinceId];
-    [weiboRequest addParameter:@"count" value:[NSString stringWithFormat:@"%d",100]];
+    [weiboRequest addParameter:@"count" value:[NSString stringWithFormat:@"%d",25]];
     return weiboRequest;
 }
 
 + (instancetype)requestForHometimelineBefore:(NSString *)maxId {
     WTRWeiboRequest *weiboRequest = [self requestForTimeline:HomeTimelinePath type:WTRWeiboRequestHomeTimelineBefore method:WTRWeiboRequestMethodGet];
     [weiboRequest addParameter:@"max_id" value:maxId];
-    [weiboRequest addParameter:@"count" value:[NSString stringWithFormat:@"%d",100]];
+    [weiboRequest addParameter:@"count" value:[NSString stringWithFormat:@"%d",25]];
     return weiboRequest;
 }
 

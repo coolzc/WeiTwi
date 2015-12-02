@@ -34,6 +34,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *image8View;
 @property (weak, nonatomic) IBOutlet UIImageView *image9View;
 
+@property (weak, nonatomic) IBOutlet UILabel *commentCountLabel;
+@property (weak, nonatomic) IBOutlet UILabel *retweetCountLabel;
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *leftVerticalLineToLeftConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *rightVerticalLineToRightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *topHorizontalLineToTopConstraint;
@@ -41,6 +44,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *picturesViewHeightConstraint;
 
 - (void)updateCellStatuses:(WTRWeiboStatusInfo *)statusesInfo;
-- (void)updateCellHeightConstraintValues:(CGFloat)cellHeight statusTextHeightValue:(CGFloat)statusTextHeight reTweetTextHeightValue:(CGFloat)reTweetTextHeight picturesViewConstraintsValues:(NSArray *)viewConstraints;
+- (void)updateCellHeightConstraintValues:(CGFloat)totalHeight statusTextHeightValue:(CGFloat)statusTextHeight reTweetTextHeightValue:(CGFloat)reTweetTextHeight picturesViewConstraintsValues:(NSArray *)viewConstraints;
 
 @end

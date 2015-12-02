@@ -30,6 +30,8 @@ static NSString *const TimelineCellReuseIdentifier = @"TimelineCellReusedId";
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) UIView *tableViewfooterView;
 
+@property (nonatomic, assign) BOOL refreshWeiboFailure;
+
 @end
 
 @implementation WTRTimeLineViewController
@@ -109,21 +111,32 @@ static NSString *const TimelineCellReuseIdentifier = @"TimelineCellReusedId";
 
 #pragma mark - WTRTwitterTimelineDisplayInterface
 
-- (void)displayWeiboTimelineStatuses:(NSArray *)statuses withCellConfigure:(NSArray *)cellHeights statusTextHeight:(NSArray *)statusTextHeights reTweetTextHeight:(NSArray *)reTweetTextHeights pictureViewConfigure:(NSArray *)pictureViewConfigures refreshDisplayType:(WTRWeiboRefreshDisplayType)refreshDisplayType {
+- (void)displayWeiboTimelineStatuses:(NSArray *)statuses withCellConfigure:(NSArray *)totalHeights statusTextHeight:(NSArray *)statusTextHeights reTweetTextHeight:(NSArray *)reTweetTextHeights pictureViewConfigure:(NSArray *)pictureViewConfigures refreshDisplayType:(WTRWeiboRefreshDisplayType)refreshDisplayType {
+    if (0 == statuses.count) {
+        self.refreshWeiboFailure = YES;
+        NSLog(@"refresh table failure with no statues fetched from remote!!");
+        return;
+    } else {
+        self.refreshWeiboFailure = NO;
+        NSLog(@"refresh table successed with statues fetched from remote!!");
+    }
         switch (refreshDisplayType) {
         case WTRWeiboTimelineViewRefresh:
         case WTRWeiboTimelineViewBottomRefresh: {
             [self.weiboStatuses addObjectsFromArray:statuses];
-            [self.cellsHeights addObjectsFromArray:cellHeights];
+            [self.cellsHeights addObjectsFromArray:totalHeights];
             [self.statusTextHeights addObjectsFromArray:statusTextHeights];
             [self.reTweetTextHeights addObjectsFromArray:reTweetTextHeights];
             [self.picturesViewConfigures addObjectsFromArray:pictureViewConfigures];
+            if (refreshDisplayType == WTRWeiboTimelineViewRefresh) {
+                [self.tableView reloadData];
+            }
         }
             break;
         case WTRWeiboTimelineViewTopRefresh: {
             [statuses enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 [self.weiboStatuses insertObject:obj atIndex:0];
-                [self.cellsHeights insertObject:cellHeights[idx] atIndex:0];
+                [self.cellsHeights insertObject:totalHeights[idx] atIndex:0];
                 [self.statusTextHeights insertObject:statusTextHeights[idx] atIndex:0];
                 [self.reTweetTextHeights insertObject:reTweetTextHeights[idx] atIndex:0];
                 [self.picturesViewConfigures insertObject:pictureViewConfigures[idx] atIndex:0];
@@ -133,8 +146,6 @@ static NSString *const TimelineCellReuseIdentifier = @"TimelineCellReusedId";
         default:
             break;
     }
-
-    [self.tableView reloadData];
 }
 
 #pragma mark - Action
@@ -187,18 +198,27 @@ static NSString *const TimelineCellReuseIdentifier = @"TimelineCellReusedId";
     self.reTweetTextHeights = [NSMutableArray arrayWithCapacity:25];
     self.picturesViewConfigures = [NSMutableArray arrayWithCapacity:25];
     self.cellsDataShouldUpdate = NO;
+    self.refreshWeiboFailure = NO;
 }
 
 - (void)toggleHeaderToloadMoreData {
     [self.weiboTimelineListPresenter reloadNewerWeiboTimelineDataSince:[self.weiboStatuses firstObject]];
-    [self.tableView reloadData];
+    if (self.refreshWeiboFailure) {
+        [self.tableView.mj_header endRefreshing];
+        return;
+    }
     [self.tableView.mj_header endRefreshing];
+    [self.tableView reloadData];
 }
 
 - (void)toggleFooterToloadMoreData {
     [self.weiboTimelineListPresenter reloadOlderWeiboTimelineDataBefore:[self.weiboStatuses lastObject]];
-    [self.tableView reloadData];
+    if (self.refreshWeiboFailure) {
+        [self.tableView.mj_footer endRefreshing];
+        return;
+    }
     [self.tableView.mj_footer endRefreshing];
+    [self.tableView reloadData];
 }
 
 @end

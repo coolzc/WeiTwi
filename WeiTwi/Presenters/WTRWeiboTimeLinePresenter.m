@@ -24,8 +24,8 @@
 @property (nonatomic, assign) BOOL needFetchRemoteData;
 @property (nonatomic, strong) NSMutableArray *statusesInfo;
 //cells constraint configure
-@property (nonatomic, assign) CGFloat cellHeight;
-@property (nonatomic, strong) NSMutableArray *cellsHeights;
+@property (nonatomic, assign) CGFloat totalHeight;
+@property (nonatomic, strong) NSMutableArray *cellsTotalHeights;
 @property (nonatomic, strong) NSMutableArray *statusTextHeights;
 @property (nonatomic, strong) NSMutableArray *reTweetTextHeights;
 @property (nonatomic, strong) NSMutableArray *picturesViewConfigures;
@@ -37,7 +37,7 @@
 - (void)viewDidLoad:(UIViewController *)viewController {
     [super viewDidLoad:viewController];
     self.needFetchRemoteData = YES;
-    self.cellHeight = 0.f;
+    self.totalHeight = 0.f;
 }
 
 - (void)view:(UIViewController *)viewController willAppear:(BOOL)animated {
@@ -46,7 +46,7 @@
         //TODO
         if (0 < [self.statusesInfo count]) {
             [self.weiboTimelineDisplay displayWeiboTimelineStatuses:[self.statusesInfo copy]
-                                                  withCellConfigure:[self.cellsHeights copy]
+                                                  withCellConfigure:[self.cellsTotalHeights copy]
                                                    statusTextHeight:[self.statusTextHeights copy]
                                                   reTweetTextHeight:[self.reTweetTextHeights copy]
                                                pictureViewConfigure:[self.picturesViewConfigures copy]
@@ -88,6 +88,10 @@
     [self.progressView updateProgress:1.f message:NSLocalizedString(@"init-progress-text-end", nil)];
     [self.progressView endProgress];
     self.statusesInfo = [NSMutableArray arrayWithArray:response.responseObject];
+    //in case there is no refresh data from remote,then directly return
+    if (0 == [response.responseObject count]) {
+        return;
+    }
     [self processStatuesDataToFitTimelineCellsConstraints];
     
     WTRWeiboRefreshDisplayType refreshType;
@@ -102,7 +106,7 @@
         case WTRWeiboRequestHomeTimelineBefore: {
             refreshType = WTRWeiboTimelineViewBottomRefresh;
             [self.statusesInfo removeObjectAtIndex:0];
-            [self.cellsHeights removeObjectAtIndex:0];
+            [self.cellsTotalHeights removeObjectAtIndex:0];
             [self.statusTextHeights removeObjectAtIndex:0];
             [self.reTweetTextHeights removeObjectAtIndex:0];
             [self.picturesViewConfigures removeObjectAtIndex:0];
@@ -113,7 +117,7 @@
     }
     
     [self.weiboTimelineDisplay displayWeiboTimelineStatuses:[self.statusesInfo copy]
-                                          withCellConfigure:[self.cellsHeights copy]
+                                          withCellConfigure:[self.cellsTotalHeights copy]
                                            statusTextHeight:[self.statusTextHeights copy]
                                           reTweetTextHeight:[self.reTweetTextHeights copy]
                                        pictureViewConfigure:[self.picturesViewConfigures copy]
@@ -130,6 +134,9 @@
 }
 
 - (void)fetchNewerTimelineInfoFromRemote:(NSString *)sinceId {
+    if (!sinceId) {
+        return;
+    }
     WTRWeiboApiService *weiboApiservice = [WTRWeiboApiService weiboApiServiceWithDeleate:self];
     WTRWeiboRequest *apiRequest = [WTRWeiboRequest requestForHometimelineSince:sinceId];
     [weiboApiservice sendRequest:apiRequest];
@@ -137,6 +144,9 @@
 
 
 - (void)fetchOlderTimelineInfoFromRemote:(NSString *)beforeId {
+    if (!beforeId) {
+        return;
+    }
     WTRWeiboApiService *weiboApiservice = [WTRWeiboApiService weiboApiServiceWithDeleate:self];
     WTRWeiboRequest *apiRequest = [WTRWeiboRequest requestForHometimelineBefore:beforeId];
     [weiboApiservice sendRequest:apiRequest];
@@ -148,7 +158,7 @@
     self.statusTextHeights = [NSMutableArray arrayWithCapacity:statusNum];
     self.reTweetTextHeights = [NSMutableArray arrayWithCapacity:statusNum];
     self.picturesViewConfigures = [NSMutableArray arrayWithCapacity:statusNum];
-    self.cellsHeights = [NSMutableArray arrayWithCapacity:statusNum];
+    self.cellsTotalHeights = [NSMutableArray arrayWithCapacity:statusNum];
     
     for (WTRWeiboStatusInfo *statusInfo in self.statusesInfo) {
         [self caculateLabelHeightWith:statusInfo.text storedResults:self.statusTextHeights];
@@ -159,9 +169,9 @@
             [self caculateStatusPicturesViewConfigurationWith:statusInfo.picUrls stroedResults:self.picturesViewConfigures];
         }
         
-        NSNumber *valueNumber = [NSNumber numberWithFloat:self.cellHeight];
-        [self.cellsHeights addObject:valueNumber];
-        self.cellHeight = 0.f;
+        NSNumber *valueNumber = [NSNumber numberWithFloat:self.totalHeight];
+        [self.cellsTotalHeights addObject:valueNumber];
+        self.totalHeight = 0.f;
     }
 }
 
@@ -246,7 +256,7 @@
 }
 
 - (void)addToCellHeight:(CGFloat)height {
-   self.cellHeight += ceilf(height);
+   self.totalHeight += ceilf(height);
 }
 
 @end
