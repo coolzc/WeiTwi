@@ -12,7 +12,48 @@
 #import "NSString+WTRUtility.h"
 #import "UILabel+WTRUtility.h"
 
-@interface WTRTimelineCell ()
+static inline NSRegularExpression* AuthorNameRegularExpression() {
+    static NSRegularExpression *_nameRegularExpression = nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _nameRegularExpression = [[NSRegularExpression alloc] initWithPattern:@"@[-_a-zA-Z0-9\u4E00-\u9FA5]+"options:kNilOptions error:nil];
+    });
+    
+    return _nameRegularExpression;
+}
+
+static inline NSRegularExpression *webLinkRegularExpression() {
+    static NSRegularExpression *_webLinkRegularExpression = nil;
+    
+    static dispatch_once_t onceToke;
+    dispatch_once(&onceToke, ^{
+        _webLinkRegularExpression = [[NSRegularExpression alloc] initWithPattern:@"\\bhttps?://[a-zA-Z0-9\\-.]+(?::(\\d+))?(?:(?:/[a-zA-Z0-9\\-._?,'+\\&%$=~*!():@\\\\]*)+)?" options:kNilOptions error:nil];
+    });
+    return _webLinkRegularExpression;
+}
+
+static inline NSRegularExpression *topicRegularExpression() {
+    static NSRegularExpression *_topicRegularExpression = nil;
+    
+    static dispatch_once_t onceToke;
+    dispatch_once(&onceToke, ^{
+        _topicRegularExpression = [[NSRegularExpression alloc] initWithPattern:@"#[^@#]+?#" options:kNilOptions error:nil];
+    });
+    return _topicRegularExpression;
+}
+
+static inline NSRegularExpression *emotionRegularExpression() {
+    static NSRegularExpression *_emotionRegularExpression = nil;
+    
+    static dispatch_once_t onceToke;
+    dispatch_once(&onceToke, ^{
+        _emotionRegularExpression = [[NSRegularExpression alloc] initWithPattern:@"\\[[^ \\[\\]]+?\\]" options:kNilOptions error:nil];
+    });
+    return _emotionRegularExpression;
+}
+
+@interface WTRTimelineCell () <TTTAttributedLabelDelegate>
 
 @property (nonatomic, assign) NSInteger picturesNum;
 @property (nonatomic, strong) NSArray *imageViews;
@@ -41,7 +82,6 @@
     self.subStatusTextLabelHeightConstraint.constant = self.reTweetTextHeight;
     //pictures
     self.picturesViewHeightConstraint.constant = self.totalHeight - self.statusTextHeight - self.reTweetTextHeight;
-    NSLog(@"****cell height:%f,text:%f retweet:%f picture:%f",self.totalHeight,self.statusTextHeight,self.reTweetTextHeight,self.picturesViewHeightConstraint.constant);
     //kinds of numbers picutes arrange configure
     NSNumber *topConstraint = self.picturesConstraints[0];
     NSNumber *bottomConstraint = self.picturesConstraints[1];
@@ -61,18 +101,8 @@
     [self.userImageView sd_setImageWithURL:[NSURL URLWithString:statusesInfo.user.profileImageUrl] placeholderImage:[UIImage imageNamed:@"tab_item_message_selected"]];
     self.producedTimeLabel.text = [NSDateFormatter weiboDateConvertToCustomFormat:statusesInfo.createdAt];
     self.sourceLabel.text = [statusesInfo.source sourceDataProcess:statusesInfo.source];
-    //text
-    self.contentTextLabel.text = statusesInfo.text;
-    //retweet
-    if (statusesInfo.retweetedStatus) {
-        self.subStatusTextLabel.hidden = NO;
-        NSString *userName = [@"@" stringByAppendingString: statusesInfo.retweetedStatus.user.name];
-        self.subStatusTextLabel.text = [userName stringByAppendingString: statusesInfo.retweetedStatus.text];
-        [self.subStatusTextLabel highLightTextWithRedColor:NSMakeRange(0, [userName length])];
-    } else {
-        self.subStatusTextLabel.hidden = YES;
-        self.subStatusTextLabel.text = @"";
-    }
+    //text and retweet
+    [self displayWeiboStatusTextAndRetweetText:statusesInfo];
     // pictures
     [self clearImageViewPictures];
     if ([statusesInfo.thumbnailPic isNotBlank]) {
@@ -101,6 +131,52 @@
     }
 }
 
+- (void)displayWeiboStatusTextAndRetweetText:(WTRWeiboStatusInfo *)statusesInfo {
+    //text
+    self.contentTextLabel.text = statusesInfo.text;
+    self.contentTextLabel.enabledTextCheckingTypes = NSTextCheckingTypeLink;
+    self.contentTextLabel.delegate = self;
+    //retweet
+    if (statusesInfo.retweetedStatus) {
+        self.subStatusTextLabel.hidden = NO;
+        NSString *userName = [@"@" stringByAppendingFormat:@"%@\n", statusesInfo.retweetedStatus.user.name];
+        self.subStatusTextLabel.text = [userName stringByAppendingString: statusesInfo.retweetedStatus.text];
+//        [self.subStatusTextLabel highLightTextWithRedColor:NSMakeRange(0, [userName length])];
+    } else {
+        self.subStatusTextLabel.hidden = YES;
+        self.subStatusTextLabel.text = @"";
+    }
+    
+    NSRegularExpression *nameRegExp = AuthorNameRegularExpression();
+    NSRegularExpression *linkRegExp = webLinkRegularExpression();
+    NSRegularExpression *topicRegExp = topicRegularExpression();
+    NSLog(@"微博text:%@,retext:%@", statusesInfo.text, statusesInfo.retweetedStatus.text);
+    [self addLinkToText:statusesInfo withRegularExpression:nameRegExp];
+    [self addLinkToText:statusesInfo withRegularExpression:linkRegExp];
+    [self addLinkToText:statusesInfo withRegularExpression:topicRegExp];
+}
+
+- (void)addLinkToText:(WTRWeiboStatusInfo *)statusesInfo withRegularExpression:(NSRegularExpression *)regExp {
+    [regExp enumerateMatchesInString:statusesInfo.text
+                                 options:0
+                                   range:NSMakeRange(0, [statusesInfo.text length])
+                              usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+                                  
+                                  NSURL *url = [NSURL URLWithString:@"http://github.com/mattt/"];
+                                  [self.contentTextLabel addLinkToURL:url withRange:result.range];
+                              }];
+    if (statusesInfo.retweetedStatus) {
+        [regExp enumerateMatchesInString:statusesInfo.retweetedStatus.text
+                                 options:0
+                                   range:NSMakeRange(0, [statusesInfo.retweetedStatus.text length])
+                              usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+
+                                  NSURL *url = [NSURL URLWithString:@"http://github.com/mattt/"];
+                                  [self.subStatusTextLabel addLinkToURL:url withRange:result.range];
+                          }];
+    }
+}
+
 - (void)updateCellHeightConstraintValues:(CGFloat)totalHeight statusTextHeightValue:(CGFloat)statusTextHeight reTweetTextHeightValue:(CGFloat)reTweetTextHeight picturesViewConstraintsValues:(NSArray *)viewConstraints {
     self.totalHeight = totalHeight;
     self.statusTextHeight = statusTextHeight;
@@ -122,6 +198,11 @@
     
 }
 
+#pragma mark - TTTAttributedLabelDelegate
+
+- (void)attributedLabel:(TTTAttributedLabel *)label didLongPressLinkWithURL:(NSURL *)url atPoint:(CGPoint)point {
+    NSLog(@"tap the text url TTTAttributedLabelDelegate actions");
+}
 #pragma mark - Private Methods
 
 - (void)configureView {
@@ -131,6 +212,8 @@
     self.userImageView.clipsToBounds = YES;
     self.retweetCountLabel.hidden = YES;
     self.commentCountLabel.hidden = YES;
+    self.contentTextLabel.userInteractionEnabled = YES;
+
 }
 
 - (void)configureProperties {

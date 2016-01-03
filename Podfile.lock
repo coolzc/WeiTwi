@@ -1,31 +1,26 @@
 PODS:
-  - AFNetworking (2.6.3):
-    - AFNetworking/NSURLConnection (= 2.6.3)
-    - AFNetworking/NSURLSession (= 2.6.3)
-    - AFNetworking/Reachability (= 2.6.3)
-    - AFNetworking/Security (= 2.6.3)
-    - AFNetworking/Serialization (= 2.6.3)
-    - AFNetworking/UIKit (= 2.6.3)
-  - AFNetworking/NSURLConnection (2.6.3):
+  - AFNetworking (3.0.4):
+    - AFNetworking/NSURLSession (= 3.0.4)
+    - AFNetworking/Reachability (= 3.0.4)
+    - AFNetworking/Security (= 3.0.4)
+    - AFNetworking/Serialization (= 3.0.4)
+    - AFNetworking/UIKit (= 3.0.4)
+  - AFNetworking/NSURLSession (3.0.4):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.6.3):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.6.3)
-  - AFNetworking/Security (2.6.3)
-  - AFNetworking/Serialization (2.6.3)
-  - AFNetworking/UIKit (2.6.3):
-    - AFNetworking/NSURLConnection
+  - AFNetworking/Reachability (3.0.4)
+  - AFNetworking/Security (3.0.4)
+  - AFNetworking/Serialization (3.0.4)
+  - AFNetworking/UIKit (3.0.4):
     - AFNetworking/NSURLSession
   - MagicalRecord (2.3.0)
-  - MJRefresh (3.0.4)
+  - MJRefresh (3.0.8)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
   - STTwitter (0.2.2)
+  - TTTAttributedLabel (1.13.4)
   - WeiboSDK (3.1.3)
 
 DEPENDENCIES:
@@ -34,6 +29,7 @@ DEPENDENCIES:
   - MJRefresh
   - SDWebImage (~> 3.7)
   - STTwitter
+  - TTTAttributedLabel
   - WeiboSDK (from `https://github.com/sinaweibosdk/weibo_ios_sdk.git`)
 
 EXTERNAL SOURCES:
@@ -42,15 +38,16 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   WeiboSDK:
-    :commit: 2ae2945fff7844abc0ba809a15bd638474a0ed69
+    :commit: 61e4bf36084b3fda1f73e4099e6c29bf8758e335
     :git: https://github.com/sinaweibosdk/weibo_ios_sdk.git
 
 SPEC CHECKSUMS:
-  AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
+  AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   MagicalRecord: 89eb7d7ead39fb37f01c3d010665ee94d17f8dba
-  MJRefresh: c95f0d541606ef584dab3fbeda28f4f32b4aca6e
+  MJRefresh: fafde8f18f4afd66b434331a9beb67a6c0264056
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   STTwitter: eb85d8770ddb0f8989f341cf41ea875e90ac6e7f
+  TTTAttributedLabel: 0a2ac7b2dd726d32a070dafb01446026b11e624f
   WeiboSDK: 5f2a707c4569a64f4641f4171acd712016f24342
 
 COCOAPODS: 0.38.2

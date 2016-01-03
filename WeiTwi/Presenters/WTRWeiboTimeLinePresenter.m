@@ -19,6 +19,7 @@
 #import "UIScreen+WTRUtility.h"
 #import "NSObject+WTRUtility.h"
 
+
 @interface WTRWeiboTimeLinePresenter () <WTRWeiboApiServiceDelegate>
 
 @property (nonatomic, assign) BOOL needFetchRemoteData;
@@ -129,7 +130,7 @@
 
 - (void)fetchTimelineInfoFromRemote {
     WTRWeiboApiService *weiboApiservice = [WTRWeiboApiService weiboApiServiceWithDeleate:self];
-    WTRWeiboRequest *apiRequest = [WTRWeiboRequest requestForHometimelineCount:25];
+    WTRWeiboRequest *apiRequest = [WTRWeiboRequest requestForHometimelineCount:WeiboStatusesDisplayedNumbers];
     [weiboApiservice sendRequest:apiRequest];
 }
 
@@ -138,7 +139,7 @@
         return;
     }
     WTRWeiboApiService *weiboApiservice = [WTRWeiboApiService weiboApiServiceWithDeleate:self];
-    WTRWeiboRequest *apiRequest = [WTRWeiboRequest requestForHometimelineSince:sinceId];
+    WTRWeiboRequest *apiRequest = [WTRWeiboRequest requestForHometimelineSince:sinceId refreshCount:WeiboStatusesDisplayedNumbers];
     [weiboApiservice sendRequest:apiRequest];
 }
 
@@ -148,7 +149,7 @@
         return;
     }
     WTRWeiboApiService *weiboApiservice = [WTRWeiboApiService weiboApiServiceWithDeleate:self];
-    WTRWeiboRequest *apiRequest = [WTRWeiboRequest requestForHometimelineBefore:beforeId];
+    WTRWeiboRequest *apiRequest = [WTRWeiboRequest requestForHometimelineBefore:beforeId refreshCount:WeiboStatusesDisplayedNumbers];
     [weiboApiservice sendRequest:apiRequest];
 }
 

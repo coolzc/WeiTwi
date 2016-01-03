@@ -80,13 +80,10 @@ static NSString* const DeckViewControllerIdentifier = @"WTRDeckViewController";
 
 + (WTRBaseViewController *)assembleTimelineView {
     WTRTimeLineViewController *viewController = [[UIStoryboard mainStoryboard] instantiateViewControllerWithIdentifier:TimeLineViewController];
-    viewController.navigationPresenter = [self buildNavigationPresenter];
     
     viewController.weiboTimelineListPresenter = [self buildWeiboTimelinePresenter];
     viewController.weiboTimelineListPresenter.weiboTimelineDisplay = viewController;
-    
-    viewController.twitterTimelinePresenter = [self buildTwitterTimelinePresenter];
-    
+        
     viewController.title = NSLocalizedString(@"tab-bar-item-timeline", nil);
     viewController.tabBarItem.image = [UIImage imageNamed:@"tab_item_timeline"];
     viewController.tabBarItem.selectedImage = [UIImage imageNamed:@"tab_item_timeline_selected"];
@@ -155,12 +152,6 @@ static NSString* const DeckViewControllerIdentifier = @"WTRDeckViewController";
     return initializationPresenter;
 }
 
-
-+ (WTRNavigationPresenter *)buildNavigationPresenter {
-    WTRNavigationPresenter *navigationPresenter = [WTRNavigationPresenter new];
-    return navigationPresenter;
-}
-
 //deck presenter
 + (WTRDeckPresenter *)buildDeckListPresenter {
     WTRDeckPresenter *deckListPresenter = [WTRDeckPresenter new];
@@ -173,13 +164,6 @@ static NSString* const DeckViewControllerIdentifier = @"WTRDeckViewController";
 //    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
 //    appDelegate.weiboSDKDelegate.delegate = timelinePresenter.weiboInteractor;
     return timelinePresenter;
-}
-
-+ (WTRTwitterTimelinePresenter *)buildTwitterTimelinePresenter {
-    WTRTwitterTimelinePresenter *twitterTimelinePresenter = [WTRTwitterTimelinePresenter new];
-    twitterTimelinePresenter.twitterInteractor = [WTRTwitterManagerInteractor new];
-    twitterTimelinePresenter.twitterInteractor.delegate = twitterTimelinePresenter;
-    return twitterTimelinePresenter;
 }
 
 @end

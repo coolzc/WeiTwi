@@ -15,6 +15,7 @@
 #import "NSBundle+WeiTwi.h"
 #import "UIScreen+WTRUtility.h"
 #import "MJRefresh.h"
+#import "WTRConfig.h"
 
 static NSString *const TimelineCellReuseIdentifier = @"TimelineCellReusedId";
 
@@ -43,7 +44,7 @@ static NSString *const TimelineCellReuseIdentifier = @"TimelineCellReusedId";
 }
 
 - (NSArray *)presenters {
-   return @[self.navigationPresenter, self.weiboTimelineListPresenter, self.twitterTimelinePresenter];
+   return @[self.weiboTimelineListPresenter];
 }
 
 #pragma mark - UITableViewDataSource
@@ -58,7 +59,7 @@ static NSString *const TimelineCellReuseIdentifier = @"TimelineCellReusedId";
     NSNumber *statusTextHeight= self.statusTextHeights[indexPath.row];
     NSNumber *reTweetTextHeight = self.reTweetTextHeights[indexPath.row];
     NSArray *picturesViewConfigures = self.picturesViewConfigures[indexPath.row];
-    [cell updateCellHeightConstraintValues:cellHeight.floatValue
+    [cell updateCellHeightConstraintValues:cellHeight.floatValue 
                      statusTextHeightValue:statusTextHeight.floatValue
                     reTweetTextHeightValue:reTweetTextHeight.floatValue
              picturesViewConstraintsValues:picturesViewConfigures];
@@ -192,11 +193,11 @@ static NSString *const TimelineCellReuseIdentifier = @"TimelineCellReusedId";
 }
 
 - (void)initProperties {
-    self.weiboStatuses = [NSMutableArray arrayWithCapacity:25];
-    self.cellsHeights = [NSMutableArray arrayWithCapacity:25];
-    self.statusTextHeights = [NSMutableArray arrayWithCapacity:25];
-    self.reTweetTextHeights = [NSMutableArray arrayWithCapacity:25];
-    self.picturesViewConfigures = [NSMutableArray arrayWithCapacity:25];
+    self.weiboStatuses = [NSMutableArray arrayWithCapacity:WeiboStatusesDisplayedNumbers];
+    self.cellsHeights = [NSMutableArray arrayWithCapacity:WeiboStatusesDisplayedNumbers];
+    self.statusTextHeights = [NSMutableArray arrayWithCapacity:WeiboStatusesDisplayedNumbers];
+    self.reTweetTextHeights = [NSMutableArray arrayWithCapacity:WeiboStatusesDisplayedNumbers];
+    self.picturesViewConfigures = [NSMutableArray arrayWithCapacity:WeiboStatusesDisplayedNumbers];
     self.cellsDataShouldUpdate = NO;
     self.refreshWeiboFailure = NO;
 }

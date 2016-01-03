@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "WTRWeiboStatusInfo.h"
+#import "TTTAttributedLabel.h"
 
 @interface WTRTimelineCell : UITableViewCell
 
@@ -17,11 +18,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *producedTimeLabel;
 
 @property (weak, nonatomic) IBOutlet UIView *timelineContentView;
-@property (weak, nonatomic) IBOutlet UILabel *contentTextLabel;
+@property (weak, nonatomic) IBOutlet TTTAttributedLabel *contentTextLabel;
 @property (weak, nonatomic) IBOutlet UIView *subStatusView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *userContentTextLabelHeightContraint;
 
-@property (weak, nonatomic) IBOutlet UILabel *subStatusTextLabel;
+@property (weak, nonatomic) IBOutlet TTTAttributedLabel *subStatusTextLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *subStatusTextLabelHeightConstraint;
 
 @property (weak, nonatomic) IBOutlet UIImageView *image1View;

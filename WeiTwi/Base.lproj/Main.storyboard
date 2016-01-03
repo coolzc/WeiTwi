@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
         <!--Time Line View Controller-->
@@ -19,12 +19,10 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lSg-kt-twH">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nvA-IW-bSK">
                                 <rect key="frame" x="0.0" y="551" width="600" height="49"/>
-                                <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <items>
                                     <tabBarItem systemItem="favorites" id="I4k-LF-g5C"/>
@@ -34,7 +32,6 @@
                                 </items>
                             </tabBar>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="lSg-kt-twH" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="64" id="4yb-hX-oKn"/>
@@ -79,13 +76,11 @@
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8np-i0-wTq" userLabel="User Image View">
                                         <rect key="frame" x="230" y="0.0" width="140" height="140"/>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="140" id="hNH-93-8H4"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="8np-i0-wTq" secondAttribute="bottom" id="ABN-G9-vGi"/>
@@ -96,12 +91,10 @@
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QdJ-7j-eW0">
                                 <rect key="frame" x="0.0" y="140" width="600" height="411"/>
-                                <animations/>
                                 <color key="backgroundColor" red="0.94901960780000005" green="0.57647058819999997" blue="0.19215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u3Z-Fe-lDi">
                                 <rect key="frame" x="0.0" y="551" width="600" height="49"/>
-                                <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <items>
                                     <tabBarItem systemItem="favorites" id="K95-xY-JEx"/>
@@ -111,7 +104,6 @@
                                 </items>
                             </tabBar>
                         </subviews>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="QdJ-7j-eW0" secondAttribute="trailing" id="17l-YR-61J"/>
                             <constraint firstAttribute="trailing" secondItem="u3Z-Fe-lDi" secondAttribute="trailing" id="1Ey-4q-Jb0"/>
@@ -166,7 +158,6 @@
                         <subviews>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tm1-Ao-sZ6">
                                 <rect key="frame" x="0.0" y="551" width="600" height="49"/>
-                                <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <items>
                                     <tabBarItem systemItem="favorites" id="sFB-tD-cge"/>
@@ -176,7 +167,6 @@
                                 </items>
                             </tabBar>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Tm1-Ao-sZ6" secondAttribute="bottom" id="9lS-bc-Xjs"/>
@@ -203,7 +193,6 @@
                         <subviews>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Ye-X2-l8H">
                                 <rect key="frame" x="0.0" y="551" width="600" height="49"/>
-                                <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <items>
                                     <tabBarItem systemItem="favorites" id="nnh-YQ-ckY"/>
@@ -213,7 +202,6 @@
                                 </items>
                             </tabBar>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="6Ye-X2-l8H" firstAttribute="leading" secondItem="Uyl-sH-PfA" secondAttribute="leading" id="DUZ-Av-gVI"/>
@@ -240,7 +228,6 @@
                         <subviews>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7hZ-Hc-ovn">
                                 <rect key="frame" x="0.0" y="551" width="600" height="49"/>
-                                <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <items>
                                     <tabBarItem systemItem="favorites" id="jbo-tE-iZh"/>
@@ -250,7 +237,6 @@
                                 </items>
                             </tabBar>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="7hZ-Hc-ovn" firstAttribute="leading" secondItem="k1q-Fo-NxR" secondAttribute="leading" id="7ly-q2-Era"/>

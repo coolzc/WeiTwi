@@ -19,7 +19,7 @@
 - (void)reloadWeiboTimelineData;
 
 - (void)reloadNewerWeiboTimelineDataSince:(WTRWeiboStatusInfo *)status;
-- (void)reloadOlderWeiboTimelineDataBefore:(WTRWeiboStatusInfo *)status;
+- (void)reloadOlderWeiboTimelineDataBefore:(WTRWeiboStatusInfo *)status ;
 
 @property (nonatomic, weak) id<WTRProgressViewInterface> progressView;
 @property (nonatomic, weak) id<WTRWeiboTimelineDisplayInterface> weiboTimelineDisplay;

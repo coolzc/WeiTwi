@@ -30,7 +30,8 @@ typedef enum {
 extern NSString *const WeiboAppKey;
 extern NSString *const kRedirectURI;
 extern NSString *const WeiboAPIServerHost;
-extern NSInteger const TimelineDisplayCount;
+
+static NSUInteger const WeiboStatusesDisplayedNumbers = 3;
 
 extern NSString *const TwitterConsumerKey;
 extern NSString *const TwitterConsumerSecret;

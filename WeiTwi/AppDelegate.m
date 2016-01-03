@@ -24,7 +24,7 @@
     
     // Core Data
     [MagicalRecord setupCoreDataStack];
-    
+
     // Override point for customization after application launch.
     self.weiboSDKDelegate = [WTRWeiboSDKDelegate new];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];

@@ -9,18 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "WTRMyView.h"
 #import "WTRBaseViewController.h"
-#import "WTRNavigationPresenter.h"
 #import "WTRWeiboTimeLinePresenter.h"
-#import "WTRTwitterTimelinePresenter.h"
 
-@interface WTRTimeLineViewController : WTRBaseViewController <WTRTwitterTimelineDisplayInterface, WTRWeiboTimelineDisplayInterface>
+@interface WTRTimeLineViewController : WTRBaseViewController <WTRWeiboTimelineDisplayInterface>
 
 @property(nonatomic, strong) WTRMyView *myView;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (nonatomic, strong) WTRNavigationPresenter *navigationPresenter;
 @property (nonatomic, strong) WTRWeiboTimeLinePresenter *weiboTimelineListPresenter;
-@property (nonatomic, strong) WTRTwitterTimelinePresenter *twitterTimelinePresenter;
 
 @end

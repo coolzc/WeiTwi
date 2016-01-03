@@ -15,7 +15,7 @@
     self.splashImageLeftContraint.constant = 0.f;
     self.splashImageTopContraint.constant = 0.f;
     [self.view layoutIfNeeded];
-    [UIView animateWithDuration:12.f animations:^{
+    [UIView animateWithDuration:6.f animations:^{
         self.splashImageTopContraint.constant = -160.f;
         self.splashImageLeftContraint.constant = -140.f;
         [self.view layoutIfNeeded];

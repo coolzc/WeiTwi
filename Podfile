@@ -1,5 +1,6 @@
 # Uncomment this line to define a global platform for your project
 platform :ios, '8.0'
+use_frameworks!
 
 target 'WeiTwi' do
   pod 'STTwitter'
@@ -8,6 +9,7 @@ target 'WeiTwi' do
   pod 'SDWebImage', '~>3.7'
   pod 'MagicalRecord'
   pod 'MJRefresh'
+  pod 'TTTAttributedLabel'
 end
 
 target 'WeiTwiTests' do

@@ -1,0 +1,6 @@
+framework module Pods_WeiTwi {
+  umbrella header "Pods-WeiTwi-umbrella.h"
+
+  export *
+  module * { export * }
+}
