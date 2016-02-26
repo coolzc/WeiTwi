@@ -40,7 +40,7 @@
     return weiboApiService;
 }
 
-#pragma WBHttpRequestDelegate
+#pragma mark - WBHttpRequestDelegate
 
 - (void)request:(WBHttpRequest *)request didFinishLoadingWithResult:(NSString *)result
 {

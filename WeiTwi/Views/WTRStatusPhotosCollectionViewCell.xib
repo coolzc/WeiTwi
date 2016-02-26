@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="VR1-Jh-Y9y" customClass="WTRStatusPhotosCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="236" height="201"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="236" height="201"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8jG-Xr-Xru">
+                        <rect key="frame" x="0.0" y="0.0" width="236" height="201"/>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="8jG-Xr-Xru" firstAttribute="leading" secondItem="VR1-Jh-Y9y" secondAttribute="leading" id="3Em-gc-ycX"/>
+                <constraint firstAttribute="trailing" secondItem="8jG-Xr-Xru" secondAttribute="trailing" id="8DC-Ci-2m8"/>
+                <constraint firstItem="8jG-Xr-Xru" firstAttribute="top" secondItem="VR1-Jh-Y9y" secondAttribute="top" id="CcV-hV-7Yh"/>
+                <constraint firstAttribute="bottom" secondItem="8jG-Xr-Xru" secondAttribute="bottom" id="r08-WT-j3d"/>
+            </constraints>
+            <size key="customSize" width="236" height="201"/>
+            <connections>
+                <outlet property="photoView" destination="8jG-Xr-Xru" id="5XK-db-Kbm"/>
+            </connections>
+            <point key="canvasLocation" x="590" y="320.5"/>
+        </collectionViewCell>
+    </objects>
+</document>

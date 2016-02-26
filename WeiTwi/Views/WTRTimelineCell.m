@@ -11,6 +11,10 @@
 #import "NSDateFormatter+WTRUtility.h"
 #import "NSString+WTRUtility.h"
 #import "UILabel+WTRUtility.h"
+#import "NSLayoutConstraint+Debugging.h"
+#import "UINib+WeiTwi.h"
+#import "WTRStatusPhotosCollectionViewCell.h"
+
 
 static inline NSRegularExpression* AuthorNameRegularExpression() {
     static NSRegularExpression *_nameRegularExpression = nil;
@@ -55,12 +59,7 @@ static inline NSRegularExpression *emotionRegularExpression() {
 
 @interface WTRTimelineCell () <TTTAttributedLabelDelegate>
 
-@property (nonatomic, assign) NSInteger picturesNum;
-@property (nonatomic, strong) NSArray *imageViews;
-@property (nonatomic, assign) CGFloat totalHeight;
-@property (nonatomic, assign) CGFloat statusTextHeight;
-@property (nonatomic, assign) CGFloat reTweetTextHeight;
-@property (nonatomic, strong) NSArray *picturesConstraints;
+@property (nonatomic, strong)NSArray *photoUrls;
 
 @end
 
@@ -72,28 +71,22 @@ static inline NSRegularExpression *emotionRegularExpression() {
     [self configureProperties];
 }
 
-
-- (void)updateConstraints {
-    //text + retweettext + pictures height
-//    self.cellDynamicContentPartHeightConstraint.constant = self.cellHeight;
-    //text
-    self.userContentTextLabelHeightContraint.constant = self.statusTextHeight;
-    //retweet
-    self.subStatusTextLabelHeightConstraint.constant = self.reTweetTextHeight;
-    //pictures
-    self.picturesViewHeightConstraint.constant = self.totalHeight - self.statusTextHeight - self.reTweetTextHeight;
-    //kinds of numbers picutes arrange configure
-    NSNumber *topConstraint = self.picturesConstraints[0];
-    NSNumber *bottomConstraint = self.picturesConstraints[1];
-    NSNumber *leftConstraint = self.picturesConstraints[2];
-    NSNumber *rightConstraint = self.picturesConstraints[3];
-    self.topHorizontalLineToTopConstraint.constant =  topConstraint.floatValue;
-    self.bottomHorizontalLineToBottomConstraint.constant = bottomConstraint.floatValue;
-    self.leftVerticalLineToLeftConstraint.constant = leftConstraint.floatValue;
-    self.rightVerticalLineToRightConstraint.constant = rightConstraint.floatValue;
-    
-    [super updateConstraints];
+- (void)photosCollectionViewDelegate:(id<UICollectionViewDelegate, UICollectionViewDataSource>)delegate {
+    self.photosCollectionView.delegate = delegate;
+    self.photosCollectionView.dataSource = delegate;
+    [self.photosCollectionView reloadData];
 }
+
+- (void)removePhotosCollectionView {
+    self.photosCollectionHeightConstraint.constant = 0.f;
+    self.photosCollectionView.hidden = YES;
+}
+
+- (void)displayPhotosCollectionView {
+    self.photosCollectionHeightConstraint.constant = 126.f;
+    self.photosCollectionView.hidden = NO;
+}
+
 
 - (void)updateCellStatuses:(WTRWeiboStatusInfo *)statusesInfo {
     //status related profile
@@ -103,18 +96,6 @@ static inline NSRegularExpression *emotionRegularExpression() {
     self.sourceLabel.text = [statusesInfo.source sourceDataProcess:statusesInfo.source];
     //text and retweet
     [self displayWeiboStatusTextAndRetweetText:statusesInfo];
-    // pictures
-    [self clearImageViewPictures];
-    if ([statusesInfo.thumbnailPic isNotBlank]) {
-       self.picturesNum = [statusesInfo.picUrls count];
-       [self loadPicturesFromRemote:statusesInfo.picUrls];
-    } else if(statusesInfo.retweetedStatus.thumbnailPic){
-        //retweet pictures
-        self.picturesNum = [statusesInfo.retweetedStatus.picUrls count];
-        [self loadPicturesFromRemote:statusesInfo.retweetedStatus.picUrls];
-    } else {
-        self.picturesNum = 0;
-    }
     //retweet count
     if (0  < statusesInfo.commentsCount) {
         self.commentCountLabel.hidden = NO;
@@ -138,19 +119,18 @@ static inline NSRegularExpression *emotionRegularExpression() {
     self.contentTextLabel.delegate = self;
     //retweet
     if (statusesInfo.retweetedStatus) {
-        self.subStatusTextLabel.hidden = NO;
+        self.retweetTextLabel.hidden = NO;
         NSString *userName = [@"@" stringByAppendingFormat:@"%@\n", statusesInfo.retweetedStatus.user.name];
-        self.subStatusTextLabel.text = [userName stringByAppendingString: statusesInfo.retweetedStatus.text];
+        self.retweetTextLabel.text = [userName stringByAppendingString: statusesInfo.retweetedStatus.text];
 //        [self.subStatusTextLabel highLightTextWithRedColor:NSMakeRange(0, [userName length])];
     } else {
-        self.subStatusTextLabel.hidden = YES;
-        self.subStatusTextLabel.text = @"";
+        self.retweetTextLabel.hidden = YES;
+        self.retweetTextLabel.text = @"";
     }
     
     NSRegularExpression *nameRegExp = AuthorNameRegularExpression();
     NSRegularExpression *linkRegExp = webLinkRegularExpression();
     NSRegularExpression *topicRegExp = topicRegularExpression();
-    NSLog(@"微博text:%@,retext:%@", statusesInfo.text, statusesInfo.retweetedStatus.text);
     [self addLinkToText:statusesInfo withRegularExpression:nameRegExp];
     [self addLinkToText:statusesInfo withRegularExpression:linkRegExp];
     [self addLinkToText:statusesInfo withRegularExpression:topicRegExp];
@@ -172,16 +152,9 @@ static inline NSRegularExpression *emotionRegularExpression() {
                               usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
 
                                   NSURL *url = [NSURL URLWithString:@"http://github.com/mattt/"];
-                                  [self.subStatusTextLabel addLinkToURL:url withRange:result.range];
+                                  [self.retweetTextLabel addLinkToURL:url withRange:result.range];
                           }];
     }
-}
-
-- (void)updateCellHeightConstraintValues:(CGFloat)totalHeight statusTextHeightValue:(CGFloat)statusTextHeight reTweetTextHeightValue:(CGFloat)reTweetTextHeight picturesViewConstraintsValues:(NSArray *)viewConstraints {
-    self.totalHeight = totalHeight;
-    self.statusTextHeight = statusTextHeight;
-    self.reTweetTextHeight = reTweetTextHeight;
-    self.picturesConstraints = viewConstraints;
 }
 
 #pragma mark - Actions
@@ -213,48 +186,11 @@ static inline NSRegularExpression *emotionRegularExpression() {
     self.retweetCountLabel.hidden = YES;
     self.commentCountLabel.hidden = YES;
     self.contentTextLabel.userInteractionEnabled = YES;
-
+    [self.photosCollectionView registerNib:[UINib nibForStatusPhotoCell] forCellWithReuseIdentifier:StatusPhotoCellReuseIdentifier];
 }
 
 - (void)configureProperties {
-    self.picturesNum = 0;
-    self.imageViews = @[self.image1View, self.image2View, self.image3View, self.image4View, self.image5View, self.image6View,self.image7View, self.image8View, self.image9View];
-    self.picturesConstraints = @[];
-}
-
-- (void)loadPicturesFromRemote:(NSArray *)picUrls {
-    //imageView with image
-    if (4 == self.picturesNum) {
-        [self.imageViews enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            UIImageView *imageView = obj;
-            if (idx == 0 || idx == 1 || idx == 3 || idx == 4) {
-                if (2 > idx) {
-                    [imageView sd_setImageWithURL:[picUrls objectAtIndex:idx] placeholderImage:[UIImage imageNamed:@"tab_item_message_selected"]];
-                } else {
-                    [imageView sd_setImageWithURL:[picUrls objectAtIndex:idx - 1] placeholderImage:[UIImage imageNamed:@"tab_item_message_selected"]];
-                }
-                imageView.hidden = NO;
-            } else {
-                imageView.hidden = YES;
-            }
-        }];
-    } else {
-        [self.imageViews enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            UIImageView *imageView = obj;
-            if (idx < [picUrls count]) {
-                [imageView sd_setImageWithURL:[picUrls objectAtIndex:idx] placeholderImage:[UIImage imageNamed:@"tab_item_message_selected"]];
-                imageView.hidden = NO;
-            } else {
-                imageView.hidden = YES;
-            }
-        }];
-    }
-}
-
-- (void)clearImageViewPictures {
-    for (UIImageView *imageView in self.imageViews) {
-        imageView.image = nil;
-    }
+    self.photoUrls = @[];
 }
 
 @end

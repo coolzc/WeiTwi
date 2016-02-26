@@ -12,4 +12,7 @@
 
 + (instancetype)nibForUserGroupCell;
 
++ (instancetype)nibForStatusPhotoCell;
+
++ (instancetype)nibForTimelineCell;
 @end

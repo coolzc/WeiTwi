@@ -16,6 +16,8 @@
 		37223AF21BC8C2C70090AF3C /* WTRBasePresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 37223AF11BC8C2C70090AF3C /* WTRBasePresenter.m */; };
 		37223AF61BC8CA050090AF3C /* WTRBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37223AF51BC8CA050090AF3C /* WTRBaseViewController.m */; };
 		372A6F761BE9DA3D006967FE /* WTRWeiboResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 372A6F751BE9DA3D006967FE /* WTRWeiboResponse.m */; };
+		3733676F1C7DACA200D1D30C /* WTRStatusPhotosCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3733676E1C7DACA200D1D30C /* WTRStatusPhotosCollectionViewCell.m */; };
+		373367721C7DAD2C00D1D30C /* WTRStatusPhotosCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 373367711C7DAD2C00D1D30C /* WTRStatusPhotosCollectionViewCell.xib */; };
 		373FB3091BF335A200CDBF75 /* UIScreen+WTRUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 373FB3081BF335A200CDBF75 /* UIScreen+WTRUtility.m */; };
 		374ADFDD1BC7A5E20055AEB5 /* WTRDeckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 374ADFDC1BC7A5E20055AEB5 /* WTRDeckViewController.m */; };
 		375BD2FA1BCCB99000A3EF90 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 375BD2F91BCCB99000A3EF90 /* Images.xcassets */; };
@@ -59,6 +61,7 @@
 		37CBF5EF1BD0FC0300E01554 /* WTRMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CBF5EE1BD0FC0300E01554 /* WTRMessageViewController.m */; };
 		37CBF5F21BD0FC1900E01554 /* WTRExploreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CBF5F11BD0FC1900E01554 /* WTRExploreViewController.m */; };
 		37CBF5F51BD0FC4100E01554 /* WTRSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CBF5F41BD0FC4100E01554 /* WTRSettingViewController.m */; };
+		37EDCABD1C7C5D0100D0F5C4 /* NSLayoutConstraint+Debugging.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EDCABC1C7C5D0100D0F5C4 /* NSLayoutConstraint+Debugging.m */; };
 		37EE36E71BF1EE8C0094B47B /* UILabel+WTRUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EE36E61BF1EE8C0094B47B /* UILabel+WTRUtility.m */; };
 		37EF7E871BE8B681007434D5 /* WTRWeiboStatusInfo+ResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EF7E7F1BE8B681007434D5 /* WTRWeiboStatusInfo+ResponseParser.m */; };
 		37EF7E881BE8B681007434D5 /* WTRWeiboUserInfo+ResponseParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 37EF7E811BE8B681007434D5 /* WTRWeiboUserInfo+ResponseParser.m */; };
@@ -119,6 +122,9 @@
 		3722F4401BD47C5D00D2A69C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		372A6F741BE9DA3D006967FE /* WTRWeiboResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRWeiboResponse.h; path = WeiboApiService/WTRWeiboResponse.h; sourceTree = "<group>"; };
 		372A6F751BE9DA3D006967FE /* WTRWeiboResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRWeiboResponse.m; path = WeiboApiService/WTRWeiboResponse.m; sourceTree = "<group>"; };
+		3733676D1C7DACA200D1D30C /* WTRStatusPhotosCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRStatusPhotosCollectionViewCell.h; path = Views/WTRStatusPhotosCollectionViewCell.h; sourceTree = "<group>"; };
+		3733676E1C7DACA200D1D30C /* WTRStatusPhotosCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRStatusPhotosCollectionViewCell.m; path = Views/WTRStatusPhotosCollectionViewCell.m; sourceTree = "<group>"; };
+		373367711C7DAD2C00D1D30C /* WTRStatusPhotosCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WTRStatusPhotosCollectionViewCell.xib; path = Views/WTRStatusPhotosCollectionViewCell.xib; sourceTree = "<group>"; };
 		373888811BDF7E4A000BE28F /* WTRWeiboTimelineDisplayInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRWeiboTimelineDisplayInterface.h; path = ViewInterfaces/WTRWeiboTimelineDisplayInterface.h; sourceTree = "<group>"; };
 		373888841BDF7E65000BE28F /* WTRTwitterTimelineDisplayInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRTwitterTimelineDisplayInterface.h; path = ViewInterfaces/WTRTwitterTimelineDisplayInterface.h; sourceTree = "<group>"; };
 		373FB3071BF335A200CDBF75 /* UIScreen+WTRUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIScreen+WTRUtility.h"; path = "Tools/UIScreen+WTRUtility.h"; sourceTree = "<group>"; };
@@ -207,6 +213,8 @@
 		37CBF5F11BD0FC1900E01554 /* WTRExploreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRExploreViewController.m; path = Views/WTRExploreViewController.m; sourceTree = "<group>"; };
 		37CBF5F31BD0FC4100E01554 /* WTRSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WTRSettingViewController.h; path = Views/WTRSettingViewController.h; sourceTree = "<group>"; };
 		37CBF5F41BD0FC4100E01554 /* WTRSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WTRSettingViewController.m; path = Views/WTRSettingViewController.m; sourceTree = "<group>"; };
+		37EDCABB1C7C5D0100D0F5C4 /* NSLayoutConstraint+Debugging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSLayoutConstraint+Debugging.h"; path = "Tools/Debug/NSLayoutConstraint+Debugging.h"; sourceTree = "<group>"; };
+		37EDCABC1C7C5D0100D0F5C4 /* NSLayoutConstraint+Debugging.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSLayoutConstraint+Debugging.m"; path = "Tools/Debug/NSLayoutConstraint+Debugging.m"; sourceTree = "<group>"; };
 		37EE36E51BF1EE8C0094B47B /* UILabel+WTRUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UILabel+WTRUtility.h"; path = "Tools/UILabel+WTRUtility.h"; sourceTree = "<group>"; };
 		37EE36E61BF1EE8C0094B47B /* UILabel+WTRUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+WTRUtility.m"; path = "Tools/UILabel+WTRUtility.m"; sourceTree = "<group>"; };
 		37EF7E7F1BE8B681007434D5 /* WTRWeiboStatusInfo+ResponseParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "WTRWeiboStatusInfo+ResponseParser.m"; path = "WeiboApiService/WTRWeiboStatusInfo+ResponseParser.m"; sourceTree = "<group>"; };
@@ -353,6 +361,7 @@
 				37657CEC1B45660500E37CF8 /* WTRTimelineCell.h */,
 				37657CED1B45660500E37CF8 /* WTRTimelineCell.m */,
 				37FBE0EA1B46310D00813B36 /* WTRTimelineCell.xib */,
+				373367701C7DACAE00D1D30C /* Status Photo Cell */,
 			);
 			name = Timeline;
 			sourceTree = "<group>";
@@ -382,6 +391,16 @@
 				37223AF51BC8CA050090AF3C /* WTRBaseViewController.m */,
 			);
 			name = Basic;
+			sourceTree = "<group>";
+		};
+		373367701C7DACAE00D1D30C /* Status Photo Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3733676D1C7DACA200D1D30C /* WTRStatusPhotosCollectionViewCell.h */,
+				3733676E1C7DACA200D1D30C /* WTRStatusPhotosCollectionViewCell.m */,
+				373367711C7DAD2C00D1D30C /* WTRStatusPhotosCollectionViewCell.xib */,
+			);
+			name = "Status Photo Cell";
 			sourceTree = "<group>";
 		};
 		374ADFDE1BC7C5B00055AEB5 /* DeckList */ = {
@@ -651,6 +670,7 @@
 		37C935EA1B48DBA900160224 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				37EDCABA1C7C5CCC00D0F5C4 /* Debug */,
 				375BD30A1BCCDCBF00A3EF90 /* Utilities */,
 			);
 			name = Tools;
@@ -686,6 +706,15 @@
 				37EF7E861BE8B681007434D5 /* WTRWeiboSDKDelegate.m */,
 			);
 			name = WeiboApiService;
+			sourceTree = "<group>";
+		};
+		37EDCABA1C7C5CCC00D0F5C4 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				37EDCABB1C7C5D0100D0F5C4 /* NSLayoutConstraint+Debugging.h */,
+				37EDCABC1C7C5D0100D0F5C4 /* NSLayoutConstraint+Debugging.m */,
+			);
+			name = Debug;
 			sourceTree = "<group>";
 		};
 		37EF55C51BE21C6100D6B77F /* Models */ = {
@@ -862,6 +891,7 @@
 				37193BB21BD3E0C900D2733B /* Localizable.strings in Resources */,
 				379101AC1BD4DCFC00AC8E1C /* WTRDecListTableViewCell.xib in Resources */,
 				375BD2FA1BCCB99000A3EF90 /* Images.xcassets in Resources */,
+				373367721C7DAD2C00D1D30C /* WTRStatusPhotosCollectionViewCell.xib in Resources */,
 				37FBE0EB1B46310D00813B36 /* WTRTimelineCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -958,6 +988,7 @@
 				373FB3091BF335A200CDBF75 /* UIScreen+WTRUtility.m in Sources */,
 				37223AF21BC8C2C70090AF3C /* WTRBasePresenter.m in Sources */,
 				37AAF2CB1BE6EE7400F95102 /* WTRWeiboGeo+Utility.m in Sources */,
+				3733676F1C7DACA200D1D30C /* WTRStatusPhotosCollectionViewCell.m in Sources */,
 				37C935EF1B48DBB700160224 /* NSString+WTRUtility.m in Sources */,
 				37B5AFBA1BE4E9C400E6F97A /* WTRAuthorizedUser+Utility.m in Sources */,
 				37CBF5F51BD0FC4100E01554 /* WTRSettingViewController.m in Sources */,
@@ -974,6 +1005,7 @@
 				37657CF11B45660500E37CF8 /* WTRTimeLineViewController.m in Sources */,
 				37F6D0D31BE33FEC00E1E611 /* WTRAuthorizedUser.m in Sources */,
 				37F514781BD8B4E700D151AF /* MMDrawerVisualState.m in Sources */,
+				37EDCABD1C7C5D0100D0F5C4 /* NSLayoutConstraint+Debugging.m in Sources */,
 				37BCAEE01BC6756700CB2D14 /* UIStoryboard+WeiTwi.m in Sources */,
 				37C935F41B48E00300160224 /* WTRWeiboUserInfo.m in Sources */,
 				37A7ACB41BCCB21E00243B25 /* WTRSplashScreenViewController.m in Sources */,
@@ -1086,7 +1118,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "206e476e-97a6-4d00-a96e-1788b79cd9b9";
@@ -1124,7 +1156,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PROVISIONING_PROFILE = "206e476e-97a6-4d00-a96e-1788b79cd9b9";
 				SDKROOT = iphoneos;

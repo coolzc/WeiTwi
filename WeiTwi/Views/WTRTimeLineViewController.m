@@ -16,22 +16,28 @@
 #import "UIScreen+WTRUtility.h"
 #import "MJRefresh.h"
 #import "WTRConfig.h"
+#import "WTRStatusPhotosCollectionViewCell.h"
+#import "NSString+WTRUtility.h"
+#import "UINib+WeiTwi.h"
+#import "NSDictionary+WTRUtility.h"
 
 static NSString *const TimelineCellReuseIdentifier = @"TimelineCellReusedId";
 
-@interface WTRTimeLineViewController () <UITableViewDataSource, UITableViewDelegate>
+static CGFloat const CellSizeFor3_5inchLenth = 125.f;
+static CGFloat const CellSizeFor5_5inchLenth = 125.f;
+static CGFloat const CollectionViewLayoutMinimumInteritemSpace = 4.f;
+static CGFloat const CollectionViewLayoutMinimumLineSpace = 4.f;
+
+@interface WTRTimeLineViewController () <UITableViewDataSource, UITableViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *weiboStatuses;
-@property (nonatomic, strong) NSMutableArray *cellsHeights;
-@property (nonatomic, strong) NSMutableArray *statusTextHeights;
-@property (nonatomic, strong) NSMutableArray *reTweetTextHeights;
-@property (nonatomic, strong) NSMutableArray *picturesViewConfigures;
-@property (nonatomic, assign) BOOL cellsDataShouldUpdate;
 
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (nonatomic, strong) UIView *tableViewfooterView;
 
 @property (nonatomic, assign) BOOL refreshWeiboFailure;
+@property (nonatomic, strong) NSArray *photoCellUrls;
+@property (nonatomic, strong) NSMutableDictionary *collectionMap;
 
 @end
 
@@ -49,103 +55,108 @@ static NSString *const TimelineCellReuseIdentifier = @"TimelineCellReusedId";
 
 #pragma mark - UITableViewDataSource
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.weiboStatuses count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     WTRTimelineCell *cell = [tableView dequeueReusableCellWithIdentifier:TimelineCellReuseIdentifier forIndexPath:indexPath];
-    NSNumber *cellHeight = self.cellsHeights[indexPath.row];
-    NSNumber *statusTextHeight= self.statusTextHeights[indexPath.row];
-    NSNumber *reTweetTextHeight = self.reTweetTextHeights[indexPath.row];
-    NSArray *picturesViewConfigures = self.picturesViewConfigures[indexPath.row];
-    [cell updateCellHeightConstraintValues:cellHeight.floatValue 
-                     statusTextHeightValue:statusTextHeight.floatValue
-                    reTweetTextHeightValue:reTweetTextHeight.floatValue
-             picturesViewConstraintsValues:picturesViewConfigures];
-    [cell updateCellStatuses:self.weiboStatuses[indexPath.row]];
-    if (([self.weiboStatuses count] - 1) == indexPath.row) {
-        self.cellsDataShouldUpdate = YES;
+    NSArray *photoUrls = @[];
+    WTRWeiboStatusInfo *statusInfo = self.weiboStatuses[indexPath.row];
+    if ([statusInfo.thumbnailPic isNotBlank]) {
+        photoUrls = statusInfo.picUrls;
+    } else if(statusInfo.retweetedStatus.thumbnailPic){
+        photoUrls = statusInfo.retweetedStatus.picUrls;
     } else {
-        self.cellsDataShouldUpdate = NO;
+        photoUrls = @[];
     }
-    //before the cell returnning ,caculate constraints in this cell first
-    [cell setNeedsUpdateConstraints];
-    [cell updateConstraintsIfNeeded];
+
+    NSString *collectionAddress = [NSString stringWithFormat:@"%p",cell.photosCollectionView];
+    [self.collectionMap setObject:photoUrls forKey:collectionAddress];
+    //reload collection when photos exist
+    if (0 < [photoUrls count]) {
+        [(WTRTimelineCell*)cell displayPhotosCollectionView];
+        [(WTRTimelineCell*)cell photosCollectionViewDelegate:self];
+    } else {
+        [(WTRTimelineCell*)cell removePhotosCollectionView];
+    }
+    [cell updateCellStatuses:self.weiboStatuses[indexPath.row]];
 
     return cell;
 }
 
 #pragma mark - UITableViewDelegate
 
-/** use this funciton will cause the cell updateCellHeightConstraintValues: function to be hang up
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"***heightForRowAtIndexPath***");
-    NSNumber *heightNumber = self.cellsHeights[indexPath.row];
-    return heightNumber.floatValue;
+#pragma mark - UICollectionViewDataSource
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    NSString *collectionKey = [NSString stringWithFormat:@"%p", collectionView];
+    return [self.collectionMap[collectionKey] count];
 }
-**/
 
-//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-//    if ([indexPath isEqual:[NSIndexPath indexPathForRow:[self tableView:self.tableView numberOfRowsInSection:0]-1 inSection:0]]) {
-//        self.tableView.tableFooterView.hidden = NO;
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self.weiboTimelineListPresenter reloadWeiboTimelineData];
-//        });
-////        [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
-//    } else {
-//        self.tableView.tableFooterView.hidden = YES;
-//    }
-//}
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    WTRStatusPhotosCollectionViewCell *photoCell = [collectionView dequeueReusableCellWithReuseIdentifier:StatusPhotoCellReuseIdentifier forIndexPath:indexPath];
+    
+    // prepare photos displayed in each collection of the cell
+    NSString *collectionKey = [NSString stringWithFormat:@"%p", collectionView];
+    NSArray *photoUrls = self.collectionMap[collectionKey];
+    [photoCell updateWithPhoto:photoUrls[indexPath.row]];
+    
+    return photoCell;
+}
 
-#pragma mark - UIScrollViewDelegate
+#pragma mark - UICollectionViewLayout
 
-//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-//    if (self.cellsDataShouldUpdate) {
-//        self.tableView.tableFooterView.hidden = NO;
-//        [self.tableViewfooterView startRefreshing];
-//    } else {
-//        self.tableView.tableFooterView.hidden = YES;
-//        [self.tableViewfooterView stopRefreshing];
-//    }
-//}
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CGSize cellSizeFor5_5inch = CGSizeMake(CellSizeFor5_5inchLenth, CellSizeFor5_5inchLenth);
+    CGSize cellSizeFor3_5inch = CGSizeMake(CellSizeFor3_5inchLenth, CellSizeFor3_5inchLenth);
+    return [UIScreen is3_5InchScreen] ? cellSizeFor3_5inch : cellSizeFor5_5inch;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return [UIScreen is3_5InchScreen] ? CollectionViewLayoutMinimumInteritemSpace : 0;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return [UIScreen is3_5InchScreen] ? CollectionViewLayoutMinimumLineSpace : 0;
+}
+
+#pragma mark - UICollectionViewDelegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+}
 
 #pragma mark - WTRTwitterTimelineDisplayInterface
 
-- (void)displayWeiboTimelineStatuses:(NSArray *)statuses withCellConfigure:(NSArray *)totalHeights statusTextHeight:(NSArray *)statusTextHeights reTweetTextHeight:(NSArray *)reTweetTextHeights pictureViewConfigure:(NSArray *)pictureViewConfigures refreshDisplayType:(WTRWeiboRefreshDisplayType)refreshDisplayType {
+- (void)displayWeiboTimelineStatuses:(NSArray *)statuses refreshDisplayType:(WTRWeiboRefreshDisplayType)refreshDisplayType {
+    
     if (0 == statuses.count) {
         self.refreshWeiboFailure = YES;
-        NSLog(@"refresh table failure with no statues fetched from remote!!");
         return;
     } else {
         self.refreshWeiboFailure = NO;
-        NSLog(@"refresh table successed with statues fetched from remote!!");
     }
-        switch (refreshDisplayType) {
-        case WTRWeiboTimelineViewRefresh:
-        case WTRWeiboTimelineViewBottomRefresh: {
-            [self.weiboStatuses addObjectsFromArray:statuses];
-            [self.cellsHeights addObjectsFromArray:totalHeights];
-            [self.statusTextHeights addObjectsFromArray:statusTextHeights];
-            [self.reTweetTextHeights addObjectsFromArray:reTweetTextHeights];
-            [self.picturesViewConfigures addObjectsFromArray:pictureViewConfigures];
-            if (refreshDisplayType == WTRWeiboTimelineViewRefresh) {
-                [self.tableView reloadData];
-            }
+    switch (refreshDisplayType) {
+    case WTRWeiboTimelineViewRefresh:
+    case WTRWeiboTimelineViewBottomRefresh: {
+        [self.weiboStatuses addObjectsFromArray:statuses];
+        if (refreshDisplayType == WTRWeiboTimelineViewRefresh) {
+            [self.tableView reloadData];
         }
-            break;
-        case WTRWeiboTimelineViewTopRefresh: {
-            [statuses enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                [self.weiboStatuses insertObject:obj atIndex:0];
-                [self.cellsHeights insertObject:totalHeights[idx] atIndex:0];
-                [self.statusTextHeights insertObject:statusTextHeights[idx] atIndex:0];
-                [self.reTweetTextHeights insertObject:reTweetTextHeights[idx] atIndex:0];
-                [self.picturesViewConfigures insertObject:pictureViewConfigures[idx] atIndex:0];
-            }];
-        }
-            break;
-        default:
-            break;
+    }
+        break;
+    case WTRWeiboTimelineViewTopRefresh: {
+        [statuses enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [self.weiboStatuses insertObject:obj atIndex:0];
+        }];
+    }
+        break;
+    default:
+        break;
     }
 }
 
@@ -157,12 +168,12 @@ static NSString *const TimelineCellReuseIdentifier = @"TimelineCellReusedId";
 - (void)configureView {
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self.tableView registerNib:[UINib nibWithNibName:@"WTRTimelineCell" bundle:nil] forCellReuseIdentifier:TimelineCellReuseIdentifier];
+    [self.tableView registerNib:[UINib nibForTimelineCell] forCellReuseIdentifier:TimelineCellReuseIdentifier];
     
     self.tableView.contentInset = UIEdgeInsetsMake(0 - 44 - 20, 0, 0, 0);
-    //*******************
-    //header view refresh
-    //*******************
+    /*
+    * header view refresh
+    */
     NSMutableArray *imageArr = [NSMutableArray arrayWithCapacity:12];
     for (int i = 0; i < 3; i ++ ) {
         NSString *imageName = [@"dropdown_loading_0" stringByAppendingString:[NSNumber numberWithInt:i+1].stringValue];
@@ -179,9 +190,9 @@ static NSString *const TimelineCellReuseIdentifier = @"TimelineCellReusedId";
     // 设置header
     self.tableView.mj_header = header;
     
-    //*******************
-    //footer view
-    //*******************
+    /*
+    * footer view
+    */
     MJRefreshAutoGifFooter *footer = [MJRefreshAutoGifFooter footerWithRefreshingTarget:self refreshingAction:@selector(toggleFooterToloadMoreData)];
     [footer setImages:imageArr forState:MJRefreshStateRefreshing];
     // 设置尾部
@@ -194,12 +205,9 @@ static NSString *const TimelineCellReuseIdentifier = @"TimelineCellReusedId";
 
 - (void)initProperties {
     self.weiboStatuses = [NSMutableArray arrayWithCapacity:WeiboStatusesDisplayedNumbers];
-    self.cellsHeights = [NSMutableArray arrayWithCapacity:WeiboStatusesDisplayedNumbers];
-    self.statusTextHeights = [NSMutableArray arrayWithCapacity:WeiboStatusesDisplayedNumbers];
-    self.reTweetTextHeights = [NSMutableArray arrayWithCapacity:WeiboStatusesDisplayedNumbers];
-    self.picturesViewConfigures = [NSMutableArray arrayWithCapacity:WeiboStatusesDisplayedNumbers];
-    self.cellsDataShouldUpdate = NO;
     self.refreshWeiboFailure = NO;
+    self.photoCellUrls = @[];
+    self.collectionMap = [NSMutableDictionary dictionaryWithDictionary:@{}];
 }
 
 - (void)toggleHeaderToloadMoreData {

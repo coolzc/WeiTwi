@@ -31,7 +31,7 @@ extern NSString *const WeiboAppKey;
 extern NSString *const kRedirectURI;
 extern NSString *const WeiboAPIServerHost;
 
-static NSUInteger const WeiboStatusesDisplayedNumbers = 3;
+static NSUInteger const WeiboStatusesDisplayedNumbers = 6;
 
 extern NSString *const TwitterConsumerKey;
 extern NSString *const TwitterConsumerSecret;

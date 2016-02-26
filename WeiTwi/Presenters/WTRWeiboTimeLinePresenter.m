@@ -19,17 +19,10 @@
 #import "UIScreen+WTRUtility.h"
 #import "NSObject+WTRUtility.h"
 
-
 @interface WTRWeiboTimeLinePresenter () <WTRWeiboApiServiceDelegate>
 
 @property (nonatomic, assign) BOOL needFetchRemoteData;
 @property (nonatomic, strong) NSMutableArray *statusesInfo;
-//cells constraint configure
-@property (nonatomic, assign) CGFloat totalHeight;
-@property (nonatomic, strong) NSMutableArray *cellsTotalHeights;
-@property (nonatomic, strong) NSMutableArray *statusTextHeights;
-@property (nonatomic, strong) NSMutableArray *reTweetTextHeights;
-@property (nonatomic, strong) NSMutableArray *picturesViewConfigures;
 
 @end
 
@@ -38,19 +31,14 @@
 - (void)viewDidLoad:(UIViewController *)viewController {
     [super viewDidLoad:viewController];
     self.needFetchRemoteData = YES;
-    self.totalHeight = 0.f;
 }
 
 - (void)view:(UIViewController *)viewController willAppear:(BOOL)animated {
-    [super view:viewController willDisappear:animated];
+    [super view:viewController willAppear:animated];
     if (self.needFetchRemoteData) {
         //TODO
         if (0 < [self.statusesInfo count]) {
             [self.weiboTimelineDisplay displayWeiboTimelineStatuses:[self.statusesInfo copy]
-                                                  withCellConfigure:[self.cellsTotalHeights copy]
-                                                   statusTextHeight:[self.statusTextHeights copy]
-                                                  reTweetTextHeight:[self.reTweetTextHeights copy]
-                                               pictureViewConfigure:[self.picturesViewConfigures copy]
                                                  refreshDisplayType:WTRWeiboTimelineViewRefresh
              ];
         } else {
@@ -93,7 +81,6 @@
     if (0 == [response.responseObject count]) {
         return;
     }
-    [self processStatuesDataToFitTimelineCellsConstraints];
     
     WTRWeiboRefreshDisplayType refreshType;
     switch (request.type) {
@@ -107,10 +94,6 @@
         case WTRWeiboRequestHomeTimelineBefore: {
             refreshType = WTRWeiboTimelineViewBottomRefresh;
             [self.statusesInfo removeObjectAtIndex:0];
-            [self.cellsTotalHeights removeObjectAtIndex:0];
-            [self.statusTextHeights removeObjectAtIndex:0];
-            [self.reTweetTextHeights removeObjectAtIndex:0];
-            [self.picturesViewConfigures removeObjectAtIndex:0];
         }
             break;
         default:
@@ -118,10 +101,6 @@
     }
     
     [self.weiboTimelineDisplay displayWeiboTimelineStatuses:[self.statusesInfo copy]
-                                          withCellConfigure:[self.cellsTotalHeights copy]
-                                           statusTextHeight:[self.statusTextHeights copy]
-                                          reTweetTextHeight:[self.reTweetTextHeights copy]
-                                       pictureViewConfigure:[self.picturesViewConfigures copy]
                                          refreshDisplayType:refreshType
      ];
 }
@@ -152,112 +131,4 @@
     WTRWeiboRequest *apiRequest = [WTRWeiboRequest requestForHometimelineBefore:beforeId refreshCount:WeiboStatusesDisplayedNumbers];
     [weiboApiservice sendRequest:apiRequest];
 }
-
-- (void)processStatuesDataToFitTimelineCellsConstraints {
-    NSUInteger statusNum = [self.statusesInfo count];
-    
-    self.statusTextHeights = [NSMutableArray arrayWithCapacity:statusNum];
-    self.reTweetTextHeights = [NSMutableArray arrayWithCapacity:statusNum];
-    self.picturesViewConfigures = [NSMutableArray arrayWithCapacity:statusNum];
-    self.cellsTotalHeights = [NSMutableArray arrayWithCapacity:statusNum];
-    
-    for (WTRWeiboStatusInfo *statusInfo in self.statusesInfo) {
-        [self caculateLabelHeightWith:statusInfo.text storedResults:self.statusTextHeights];
-        [self caculateLabelHeightWith:statusInfo.retweetedStatus.text storedResults:self.reTweetTextHeights];
-        if (statusInfo.retweetedStatus) {
-            [self caculateStatusPicturesViewConfigurationWith:statusInfo.retweetedStatus.picUrls stroedResults:self.picturesViewConfigures];
-        } else {
-            [self caculateStatusPicturesViewConfigurationWith:statusInfo.picUrls stroedResults:self.picturesViewConfigures];
-        }
-        
-        NSNumber *valueNumber = [NSNumber numberWithFloat:self.totalHeight];
-        [self.cellsTotalHeights addObject:valueNumber];
-        self.totalHeight = 0.f;
-    }
-}
-
-- (void)caculateLabelHeightWith:(NSString *)text storedResults:(NSMutableArray *)storedResults {
-    CGFloat labeldHeight = 0.f;
-    if ([text isNotBlank]) {
-        labeldHeight = [text heightOfTextInLabelWithWidth:[UIScreen screenWidth]];
-    } else {
-        labeldHeight = 0.f;
-    }
-    [self addToCellHeight:ceilf(labeldHeight)];
-    NSNumber *labeldHeightNumber = [NSNumber numberWithFloat:ceilf(labeldHeight)];
-    [storedResults addObject:labeldHeightNumber];
-}
-
-- (void)caculateStatusPicturesViewConfigurationWith:(NSArray *)pictureUrls stroedResults:(NSMutableArray *)storedResults {
-    NSInteger picturesNum = [pictureUrls count];
-    CGFloat picturesViewHeight = 0.f;
-    //viewConstraints contains:top bottom left right constraints(there are four seperator lines in xib)
-    NSArray *viewConstraints = @[];
-        switch (picturesNum) {
-            case 0: {
-                viewConstraints = @[@0,@0,@0,@0];
-                picturesViewHeight = 0;
-            }
-                break;
-            case 1: {
-                CGFloat distance = ceilf([UIScreen screenWidth] / 2);
-                NSNumber *distanceNum = [NSNumber numberWithFloat:distance];
-                viewConstraints = @[distanceNum, @0, distanceNum, @0];
-                picturesViewHeight = distance;
-            }
-                break;
-            case 2: {
-                CGFloat distance = ceilf([UIScreen screenWidth] / 2);
-                NSNumber *distanceNum = [NSNumber numberWithFloat:distance];
-                viewConstraints = @[distanceNum, @0, distanceNum, @0];
-                picturesViewHeight = distance;
-            }
-                break;
-            case 3: {
-                CGFloat distance = ceilf([UIScreen screenWidth] / 3);
-                NSNumber *distanceNum = [NSNumber numberWithFloat:distance];
-                viewConstraints = @[distanceNum, @0, distanceNum, distanceNum];
-                picturesViewHeight = distance;
-            }
-                break;
-                // TODO:
-            case 4: {
-                CGFloat distance = ceilf([UIScreen screenWidth] / 2);
-                NSNumber *distanceNum = [NSNumber numberWithFloat:distance];
-                viewConstraints = @[distanceNum, @0, distanceNum, @0];
-                picturesViewHeight = [UIScreen screenWidth];
-            }
-                break;
-            case 5:
-            case 6: {
-                CGFloat distance = ceilf([UIScreen screenWidth] / 3);
-                NSNumber *distanceNum = [NSNumber numberWithFloat:distance];
-                viewConstraints = @[distanceNum, @0, distanceNum, distanceNum];
-                picturesViewHeight = [UIScreen screenWidth];
-            }
-                break;
-            case 7:
-            case 8:
-            case 9:{
-                CGFloat distance = ceilf([UIScreen screenWidth] / 3);
-                NSNumber *distanceNum = [NSNumber numberWithFloat:distance];
-                viewConstraints = @[distanceNum, distanceNum, distanceNum, distanceNum];
-                picturesViewHeight = [UIScreen screenWidth];
-            }
-                break;
-                
-            default: {
-                viewConstraints = @[@0,@0,@0,@0];
-                picturesViewHeight = 0;
-            }
-                break;
-        }
-    [self addToCellHeight:ceilf(picturesViewHeight)];
-    [self.picturesViewConfigures addObject:viewConstraints];
-}
-
-- (void)addToCellHeight:(CGFloat)height {
-   self.totalHeight += ceilf(height);
-}
-
 @end
